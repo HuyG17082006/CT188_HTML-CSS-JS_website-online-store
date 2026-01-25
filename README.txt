@@ -14,6 +14,7 @@ model
         type : laptop - monitor - card
         name : string - maxlength 20
         brand : string - maxlength 20
+        image_src : ../assest/(src)
         price : int
     }
 
