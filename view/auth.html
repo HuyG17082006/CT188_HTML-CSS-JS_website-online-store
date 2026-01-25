@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/default.css">
+    <link rel="stylesheet" href="../style/auth.css">
+</head>
+<body>
+    <div class="main">
+        <div class="pc__bar">
+            <div class="introduce__bar">
+                <div class="introduce__limit">
+                    <div class="introduce__text">
+                        <span>⭐ Sản phẩm Chính hãng - VAT đầy đủ</span>
+                        <span>💸 Giá rẻ dẫn đầu - Bảo hành siêu lâu</span>
+                        <span>🔁 Thu cũ giá tốt - Lên đời tiết kiệm</span>
+                    </div>
+                    <div class="introduce__text">
+                        <span>⭐ Sản phẩm Chính hãng - VAT đầy đủ</span>
+                        <span>💸 Giá rẻ dẫn đầu - Bảo hành siêu lâu</span>
+                        <span>🔁 Thu cũ giá tốt - Lên đời tiết kiệm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="menu__pc__container">
+                <ul class="menu__pc">
+                    <li class="pc__action app__logo">
+                        asd
+                    </li>
+                    <li class="pc__action pc__action--main">
+                        <a href="main.html" title="Trang chủ">
+                            <img src="../assets/home-simple.svg" alt="home">
+                            <span>Trang chủ</span>
+                        </a>
+                    </li>
+                    <li class="pc__action pc__action--products">
+                        <a href="products.html" title="Hàng hóa">
+                            <img src="../assets/box-iso.svg" alt="products">
+                            <span>Hàng hóa</span>
+                        </a>
+                    </li>
+                    <li class="pc__action pc__action--info">
+                        <a href="info.html" title="Thông tin">
+                            <img src="../assets/info-circle.svg" alt="info">
+                            <span>Thông tin</span>
+                        </a>
+                    </li>
+                    <li class="pc__action pc__action--cart">
+                        <a href="cart.html" title="Giỏ hàng">
+                            <img src="../assets/user-cart.svg" alt="cart">
+                            <span>Giỏ hàng</span>
+                        </a>
+                    </li>
+                    <li class="pc__action pc__action--login">
+                        <a href="user.html" title="Người dùng" class="pc__user--active is-hidden">
+                            <img src="../assets/profile-circle.svg" alt="user">
+                            <span>Người dùng</span>
+                        </a>
+                        <a href="auth.html" title="Đăng nhập" class="pc__login--active">
+                            <img src="../assets/log-in.svg" alt="login">
+                            <span>Đăng nhập</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>           
+        </div>
+        <div class="mobile__bar">
+            <ul class="menu__mobile">
+                <li class="mobile__action mobile__action--main">
+                    <a href="main.html" title="Trang chủ">
+                        <img src="../assets/home-simple.svg" alt="home">
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                <li class="mobile__action mobile__action--products">
+                    <a href="products.html" title="Hàng hóa">
+                        <img src="../assets/box-iso.svg" alt="products">
+                        <span>Hàng hóa</span>
+                    </a>
+                </li>
+                <li class="mobile__action mobile__action--info">
+                    <a href="info.html" title="Thông tin">
+                        <img src="../assets/info-circle.svg" alt="info">
+                        <span>Thông tin</span>
+                    </a>
+                </li>
+                <li class="mobile__action mobile__action--login">
+                    <a href="auth.html" title="Đăng nhập">
+                        <img src="../assets/log-in.svg" alt="login">
+                        <span>Đăng nhập</span>
+                    </a>
+                </li>
+                <li class="mobile__action mobile__action--user is-hidden">
+                    <a href="user.html" title="Người dùng">
+                        <img src="../assets/profile-circle.svg" alt="user">
+                        <span>Người dùng</span>
+                    </a>
+                </li>
+                <li class="mobile__action mobile__action--cart">
+                    <a href="cart.html" title="Giỏ hàng">
+                        <img src="../assets/user-cart.svg" alt="cart">
+                        <span>Giỏ hàng</span>
+                    </a>
+                </li>
+            </ul>
+        </div >
+        <div class="auth__container">
+            <form class="auth__form auth__form--signIn is-seek on-appear" method="post">
+                <h2 class="auth__title">SIGN IN</h2>
+                <div class="auth__group auth__group--username">
+                    <input class="auth__input" type="text" name="username" placeholder="Username" required>
+                    <p class="auth__error auth__error--username"></p>
+                </div>
+                <div class="auth__group auth__group--password">
+                    <img src="../assets/eye-closed.svg" class="auth__password--active" alt="seek/hidden password">
+                    <input class="auth__input" type="password" name="password" placeholder="Password" required>
+                    <p class="auth__error auth__error--password"></p>
+                </div>                
+                <button  class="auth__button">Sign in</button>
+                <div class="auth__switch auth__switch--span">
+                    <p class="auth__p">Don't have an account?</p>
+                    <span class="auth__span">Sign up</span>
+                </div>
+            </form>
+
+            <form class="auth__form auth__form--signUp on-disappear" method="post">
+                <h2 class="auth__title">SIGN UP</h2>
+                <div class="auth__group auth__group--username">
+                    <input class="auth__input" type="text" name="username" placeholder="Username" required>
+                    <p class="auth__error auth__error--username"></p>
+                </div>
+                <div class="auth__group auth__group--email">
+                    <input class="auth__input" type="text" name="email" placeholder="Email" required>
+                    <p class="auth__error auth__error--email"></p>
+                </div>
+                <div class="auth__group auth__group--password">
+                    <img src="../assets/eye-closed.svg" class="auth__password--active" alt="seek/hidden password">
+                    <input class="auth__input" type="password" name="password" placeholder="Password" required>
+                    <p class="auth__error auth__error--password"></p>
+                </div>     
+                <!-- <div class="auth__group auth__group--password confirm">
+                    <img src="../assets/eye-closed.svg" class="auth__password--active" alt="seek/hidden password">
+                    <input class="auth__input" type="password" name="confirmPassword" placeholder="Confirm password" required>
+                    <p class="auth__error auth__error--confirm">sdf</p>
+                </div>              -->
+                <button class="auth__button">Sign up</button>
+                <div class="auth__switch auth__switch--span">
+                    <p class="auth__p">Already have an account?</p>
+                    <span class="auth__span">Sign in</span>
+                </div>
+            </form>
+
+            <div class="auth__navigate on-right" >
+                <p class="auth__p">Don't have an account?</p>
+                <button  class="auth__button auth__switch--button">Sign up</button>
+            </div>
+        </div>
+        <div class="footer__container">
+            <p>©️ tạo bởi Huy_G</p>
+        </div>
+    </div>
+    <script src="../libs/fakeMongo.js"></script>
+    <script src="../repository/userRepo.js"></script>
+    <script src="../auth/me.js"></script>
+    <script src="../controller/authController.js"></script>
+    <script src="../script/header.js"></script>
+    <script src="../script/auth.js"></script>
+</body>
+</html>

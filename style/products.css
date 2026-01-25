@@ -1,0 +1,31 @@
+.products__container {
+    border-top: 1px solid black;
+    justify-self: center;
+    max-width: 1440px;
+    margin-top: 160px;
+    margin-bottom: 120px;
+    width: 80%;
+    position: relative;
+}
+
+.products__inner {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    gap : 20px;
+}
+
+.type__filter__products__bar {
+    border: 1px solid black;
+    min-width: 120px;
+}
+
+.filter__list {
+    list-style: none;
+}
+
+.list__products__container {
+    border: 1px solid black;
+    min-width: 180px;
+}
