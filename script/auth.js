@@ -85,7 +85,7 @@ function showingPassword (form, icon) {
     const passwordInput = form.querySelector('.auth__group--password .auth__input');
     let isShowing = passwordInput.type === 'password';
     passwordInput.type = isShowing ? 'text' : 'password';
-    icon.src = isShowing ? "../assets/eye-solid.svg" : "../assets/eye-closed.svg"
+    icon.src = isShowing ? "../assets/icon/eye-solid.svg" : "../assets/icon/eye-closed.svg"
 }
 
 signIn_authEyeIcon.addEventListener('click', () => showingPassword(authFormSignIn, signIn_authEyeIcon));
