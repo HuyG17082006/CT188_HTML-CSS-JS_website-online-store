@@ -1,9 +1,6 @@
 const userRepo = window.userRepo;
 const me = window.me;
 
-console.log(userRepo)
-console.log(me)
-
 window.authController = {
     signIn : (username, password) => {
 

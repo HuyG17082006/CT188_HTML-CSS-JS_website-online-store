@@ -38,14 +38,15 @@ button {
 /* pc display */
 .pc__bar {
     background: red;
-    width: 100%;
+    width: 100vw;
     display: grid;
     position: fixed;
     align-items: center ;
     top: 0;
+    left: 0;
     height: 90px;
     grid-template-rows: 20px 1fr;
-    z-index: 100;
+    z-index: 1000;
     min-width: 320px;
 }
 
@@ -140,6 +141,8 @@ button {
     bottom: 0;  
     background: cyan;
     margin-bottom: 64px;
+    min-width: 320px;
+    padding: 0;
 }
 
 .footer__container p {
@@ -189,6 +192,10 @@ button {
 
 .is-hidden {
     display: none !important;
+}
+
+.is-selected {
+    background: rgb(182, 180, 180);
 }
 
 @keyframes move_to_left {

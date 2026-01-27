@@ -109,7 +109,7 @@
         <div class="products__container">
             <div class="products__inner">
                 <div class="type__filter__products__bar">
-                    <p>Danh mục sản phẩm</p>
+                    <h3>Danh mục sản phẩm</h3>
                     <ul class="filter__list mobile__filter__list">
                         <li>
                             <span>Laptop</span>
@@ -134,65 +134,49 @@
                     </ul>
                 </div>
                 <div class="list__products__container">
-                    <div class="filter__box"> 
-                        <div class="filter__box--price">
-                            asd
-                        </div>
-                        <div class="filter__box--brand">
-                            asd
-                        </div>
+                    <div class="filter__box__container"> 
+                        <h3>Sắp xếp theo</h3>
+                        <ul class="filter__box__list">
+                            <li class="filter__box filter__box--price">
+                                <span>Giá</span>
+                            </li>
+                            <li class="filter__box filter__box--brand">
+                                <span>Hãng</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="filter__option__box">
+                        <ul class="filter__box__list filter__options is-hidden">
+                            <li class="asc__filter filter__box">
+                                <span>Tăng dần</span>
+                            </li>
+                            <li class="desc__filter filter__box">
+                                <span>Giảm dần</span>
+                            </li>
+                        </ul>
+                        <ul class="filter__box__list filter__options ">
+                            <li class="filter__box filter__box--brand">
+                                <span>Lenovo</span>
+                            </li>
+                            <li class="filter__box filter__box--brand">
+                                <span>Asus</span>
+                            </li>
+                            <li class="filter__box filter__box--brand">
+                                <span>Acer</span>
+                            </li>
+                            <li class="filter__box filter__box--brand">
+                                <span>DELL</span>
+                            </li>
+                            <li class="filter__box filter__box--brand">
+                                <span>HP</span>
+                            </li>
+                            <li class="filter__box filter__box--brand">
+                                <span>MSI</span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="list__products">
-                        <div class="product__item--test">
-                            <div class="product__item--active">
-                                <img src="../assets/icon/cart-plus.svg" alt="">
-                            </div>
-                            <img class="product__image" src="../assets/image/1mrfoxis-2241-lenovo-loq-15arp9-83jc00m3vn-ryzen-5-7235hs-16gb-1tb-rtx-3050-6gb-15-6-fhd-144hz-new.jpg" alt="">
-                            <div class="product__info">
-                                <span class="product__item--name">Lenovo LOQ 15ARP9</span>
-                                <span class="product__item--price">25.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="product__item--test">
-                            <div class="product__item--active">
-                                <img src="../assets/icon/cart-plus.svg" alt="">
-                            </div>
-                            <img class="product__image" src="../assets/image/1mrfoxis-2241-lenovo-loq-15arp9-83jc00m3vn-ryzen-5-7235hs-16gb-1tb-rtx-3050-6gb-15-6-fhd-144hz-new.jpg" alt="">
-                            <div class="product__info">
-                                <span class="product__item--name">Lenovo LOQ 15ARP9</span>
-                                <span class="product__item--price">25.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="product__item--test">
-                            <div class="product__item--active">
-                                <img src="../assets/icon/cart-plus.svg" alt="">
-                            </div>
-                            <img class="product__image" src="../assets/image/1mrfoxis-2241-lenovo-loq-15arp9-83jc00m3vn-ryzen-5-7235hs-16gb-1tb-rtx-3050-6gb-15-6-fhd-144hz-new.jpg" alt="">
-                            <div class="product__info">
-                                <span class="product__item--name">Lenovo LOQ 15ARP9</span>
-                                <span class="product__item--price">25.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="product__item--test">
-                            <div class="product__item--active">
-                                <img src="../assets/icon/cart-plus.svg" alt="">
-                            </div>
-                            <img class="product__image" src="../assets/image/1mrfoxis-2241-lenovo-loq-15arp9-83jc00m3vn-ryzen-5-7235hs-16gb-1tb-rtx-3050-6gb-15-6-fhd-144hz-new.jpg" alt="">
-                            <div class="product__info">
-                                <span class="product__item--name">Lenovo LOQ 15ARP9</span>
-                                <span class="product__item--price">25.000.000đ</span>
-                            </div>
-                        </div>
-                        <div class="product__item--test">
-                            <div class="product__item--active">
-                                <img src="../assets/icon/cart-plus.svg" alt="">
-                            </div>
-                            <img class="product__image" src="../assets/image/1mrfoxis-2241-lenovo-loq-15arp9-83jc00m3vn-ryzen-5-7235hs-16gb-1tb-rtx-3050-6gb-15-6-fhd-144hz-new.jpg" alt="">
-                            <div class="product__info">
-                                <span class="product__item--name">Lenovo LOQ 15ARP9</span>
-                                <span class="product__item--price">25.000.000đ</span>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -201,8 +185,11 @@
             <p>©️ tạo bởi Huy_G</p>
         </div>
     </div>
-
+    <script src="../libs/fakeMongo.js"></script>
+    <script src="../repository/productRepo.js"></script>
     <script src="../auth/me.js"></script>
+    <script src="../controller/productController.js"></script>
     <script src="../script/header.js"></script>
+    <script src="../script/products.js"></script>
 </body>
 </html>
