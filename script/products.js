@@ -1,165 +1,166 @@
+// Dependencies
 const productController = window.productController;
+const cartController = window.cartController;
+const helper = window.helper;
 
+//DOM
 const listProducts = document.querySelector('.list__products');
-
+const emptyProduct = document.querySelector('.empty__product');
 const filterBoxBrandList = document.querySelectorAll('.filter__box--brand');
+const searchInput = document.querySelector('.search__input');
+const sortButton = document.querySelector('.sort__group');
+const refreshButton = document.querySelector('.refresh__group');
 
-function productData () {
-    const products = [
-        {
-            id : 'laptop-1',
-            type : 'laptop',
-            name : 'Lenovo LOQ 15ARP9',
-            brand : 'lenovo',
-            image_src : '../assets/image/lenovo-loq-2025.jpg',
-            price : '25.000.000đ'
-        },
-        {
-            id : 'laptop-2',
-            type : 'laptop',
-            name : 'ASUS expertBook P1',
-            brand : 'asus',
-            image_src : '../assets/image/asus-expert-book.jpg',
-            price : '15.490.000đ'
-        },
-        {
-            id : 'laptop-3',
-            type : 'laptop',
-            name : 'Lenovo Lecoo Pro 14 2025',
-            brand : 'lenovo',
-            image_src : '../assets/image/lenovo-leco.jpg',
-            price : '19.490.000đ'
-        },
-        {
-            id : 'laptop-4',
-            type : 'laptop',
-            name : 'Acer Gaming Nitro V 15',
-            brand : 'acer',
-            image_src : '../assets/image/acer-nitro-v.jpg',
-            price : '24.490.000đ'
-        },
-        {
-            id : 'laptop-5',
-            type : 'laptop',
-            name : 'Lenovo Legion 5',
-            brand : 'lenovo',
-            image_src : '../assets/image/lenovo-legion-5.jpg',
-            price : '36.990.000đ'
-        },
-        {
-            id : 'laptop-6',
-            type : 'laptop',
-            name : 'HP Victus 16',
-            brand : 'hp',
-            image_src : '../assets/image/hp-victus-16.jpg',
-            price : '23.000.000đ'
-        }
-    ]
-
-    localStorage.setItem('products', JSON.stringify(products));
+//FUNCTION
+function productData() {
+    window.loadProducts();
 }
 
-function convertStringToInt (price) {
+function renderProduct(item, index) {
+    const divOuter = document.createElement('div');
+    const divInnerActive = document.createElement('div');
+    const divInnerInfo = document.createElement('div');
+    const divImage = document.createElement('div');
+
+    const activeImage = document.createElement('img');
+    const productImage = document.createElement('img');
+
+    const spanName = document.createElement('span');
+    const spanPrice = document.createElement('span');
+
+    divOuter.className = 'product__item';
+    divOuter.id = item.id;
+    divInnerActive.className = 'product__item--active';
+    divInnerActive.addEventListener('click', () => addToCart(item.id));
+    divInnerInfo.className = 'product__info';
+
+    activeImage.src = "../assets/icon/cart-plus.svg";
+    productImage.className = 'product__image';
+    productImage.src = item.image_src;
+
+    spanName.className = 'product__item--name';
+    spanName.innerText = item.name;
+    spanPrice.className = 'product__item--price';
+    spanPrice.innerText = item.price;
+
+    divImage.className = 'image__border';
+
+    divImage.append(productImage);
+
+    divInnerInfo.append(
+        spanName, 
+        spanPrice);
+
+    divInnerActive.append(activeImage);
+
+    divOuter.append(
+        divInnerActive, 
+        divImage, 
+        divInnerInfo
+    );
+
+    divOuter.style.setProperty('--i', index)
+
+    return divOuter;
+}
+
+function convertStringToInt(price) {
     return Number(price.replace(/[^\d]/g, ''));
 }
 
+let brandFilter = new URLSearchParams(window.location.search).get('brand') || '';
+let textFilter = '';
+let count = 0;
+const priceMode = ['no_sort', 'asc', 'desc'];
 
-let brandFilter = '';
-let priceFilter = 'asc';
-let typeFilter = 'laptop';
+function filter(list, { brand, text, sortMode }) {
+    let result = [...list];
 
-
-function filter (list) {
-    let filterList = [];
-
-    list.forEach(item => {
-        if (item.brand !== brandFilter && brandFilter)
-            return;
-
-        if (item.type !== typeFilter)
-            return;
-
-        filterList.push(item);
-    })
-
-    if (priceFilter === 'asc') {
-        return filterList.sort((a, b) => convertStringToInt(a.price) - convertStringToInt(b.price));
-    } else {
-        return filterList.sort((a, b) => convertStringToInt(b.price) - convertStringToInt(a.price));
+    if (brand) {
+        result = result.filter(product => product.brand === brand);
     }
+
+    if (text) {
+        const keyword = text.toLowerCase();
+        result = result.filter(product => product.name.toLowerCase().includes(keyword));
+    }
+
+    if (sortMode === 'asc') {
+        return result.sort((a, b) => convertStringToInt(a.price) - convertStringToInt(b.price));
+    } else if (sortMode === 'desc') {
+        return result.sort((a, b) => convertStringToInt(b.price) - convertStringToInt(a.price));
+    }
+    return result;
+}
+
+function addToCart(id) {
+    const productId = id;
+    if (cartController.addToCart(productId))
+        alert('Thêm thành công!');
+    else
+        alert('Vui lòng đăng nhập để thêm sản phẩm!');
 }
 
 
-function renderProducts () {
-    listProducts.innerHTML = '';
-
+function render() {
     productData();
+
+    listProducts.innerHTML = '';
     const list = productController.getList();
 
-    let filterList = filter(list);
+    let filterList = filter(list, {
+        brand : brandFilter,
+        text : textFilter,
+        sortMode : priceMode[count]
+    });
+
+    if (!filterList.length) {
+        emptyProduct.classList.remove('is-hidden');
+        emptyProduct.querySelector('.empty__find__text').innerText = `\"${textFilter}\"`
+        return;
+    }
+
+    emptyProduct.classList.add('is-hidden');
 
     filterList.forEach(
-        item => {
-        
-            const divOuter = document.createElement('div');
-            const divInnerActive = document.createElement('div');
-            const divInnerInfo = document.createElement('div');
-            
-            const activeImage = document.createElement('img');
-            const productImage = document.createElement('img');
-
-            const spanName = document.createElement('span');
-            const spanPrice = document.createElement('span');
-            
-            divOuter.className = 'product__item';
-            divOuter.id=item.id;
-            divInnerActive.className = 'product__item--active';
-            divInnerInfo.className = 'product__info';
-
-            activeImage.src="../assets/icon/cart-plus.svg";
-            productImage.className = 'product__image';
-            productImage.src = item.image_src;
-
-            spanName.className = 'product__item--name';
-            spanName.innerText = item.name;
-            spanPrice.className = 'product__item--price';
-            spanPrice.innerText = item.price;
-
-            divInnerInfo.append(spanName);
-            divInnerInfo.append(spanPrice);
-
-            divInnerActive.append(activeImage);
-
-            divOuter.append(divInnerActive);
-            divOuter.append(productImage);
-            divOuter.append(divInnerInfo);
-
-            listProducts.append(divOuter)
-        }
+        (item, index) => listProducts.append(renderProduct(item, index))
     )
-
 }
 
-function setSelectedBrandFilter (item) {
-    
-    const isSelected = item.classList.contains('is-selected');
-    
-    filterBoxBrandList.forEach(anotherItem => 
-        anotherItem.classList.remove('is-selected')
-    )
+render();
 
-    if (!isSelected) {
-        item.classList.add('is-selected');
-        brandFilter = item.textContent.toString().toLowerCase().trim();
-    }
-    else {
-        brandFilter = '';
-    }
-    renderProducts();
+function setSelectedBrandFilter(item) {
+    brandFilter = item.dataset.brandName;
+    render();
 }
 
-filterBoxBrandList.forEach(item => 
+function setChangePriceMode() {
+    count = (count + 1) % 3;
+    render();
+}
+
+function handleSearchInput(e) {
+    textFilter = e.target.value;
+    render();
+}
+
+function resetFilter() {
+    textFilter = '';
+    brandFilter = '';
+    count = 0;
+    searchInput.value = '';
+    render();
+}
+
+const debouncedSearch = helper.debounce(handleSearchInput, 300);
+
+searchInput.addEventListener('input', debouncedSearch);
+
+sortButton.addEventListener('click', setChangePriceMode);
+
+refreshButton.addEventListener('click', resetFilter);
+
+filterBoxBrandList.forEach(item =>
     item.addEventListener('click', () => setSelectedBrandFilter(item))
 )
 
-renderProducts();

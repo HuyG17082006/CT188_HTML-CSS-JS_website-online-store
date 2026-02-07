@@ -6,8 +6,6 @@ const authSwitchButton = document.querySelector('.auth__switch--button');
 const signIn_authButton = document.querySelector('.auth__form--signIn .auth__button');
 const signUp_authButton = document.querySelector('.auth__form--signUp .auth__button')
 
-const authNavigateP = document.querySelector('.auth__navigate .auth__p');
-
 const authSpan = document.querySelectorAll('.auth__form .auth__span');
 
 const signIn_authEyeIcon = authFormSignIn.querySelector('.auth__password--active');
@@ -19,6 +17,9 @@ const signIn_passwordError = authFormSignIn.querySelector('.auth__error--passwor
 const signUp_usernameError = authFormSignUp.querySelector('.auth__error--username');
 const signUp_passwordError = authFormSignUp.querySelector('.auth__error--password');
 const signUp_emailError = authFormSignUp.querySelector('.auth__error--email');
+
+const navigateP = authFormNavigate.querySelector('p');
+const navigateH2 = authFormNavigate.querySelector('h2');
 
 //dependencies:
 const authController = window.authController;
@@ -47,8 +48,9 @@ function switchFormPC (e) {
 
     let isSignIn = authFormNavigate.classList.contains('on-right'); 
     
-    authNavigateP.textContent = isSignIn ? 'Already have an account?' : "Don't have an account?";
-    authSwitchButton.textContent = isSignIn ? 'Sign in' : 'Sign up';
+    navigateH2.textContent = isSignIn ? "Đã có tài khoản?" : "Chưa có tài khoản?"
+    navigateP.textContent = isSignIn ? "Đăng nhập để tiếp tục mua sắm và quản lý đơn hàng." : "Tạo tài khoản để mua sắm nhanh hơn và theo dõi đơn hàng.";
+    authSwitchButton.textContent = isSignIn ? 'Đăng nhập' : 'Đăng ký';
 
     authFormNavigate.classList.toggle('on-left');
     authFormNavigate.classList.toggle('on-right');
@@ -111,7 +113,7 @@ function signIn (e) {
 
     alert("Đăng nhập thành công!");
 
-    window.location.replace('main.html');
+    window.location.replace('home.html');
 }
 
 authFormSignIn.addEventListener('submit', signIn);

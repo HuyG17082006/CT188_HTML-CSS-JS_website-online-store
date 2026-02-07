@@ -1,11 +1,11 @@
-const mongoDb = window.mongoDb
+const productMongoDb = window.mongoDb
 
 window.productRepo = {
     getAll : () => {
-        return mongoDb.getCollection('products');
+        return productMongoDb.getCollection('products');
     },
 
     findById : (id) => {
-        return mongoDb.findOne('products', 'id', id);
+        return productMongoDb.findOne('products', 'id', id);
     }
 }

@@ -4,7 +4,7 @@ window.me = {
     },
 
     get : () => {
-        return JSON.parse(sessionStorage.getItem('currentUser')) || null;
+        return JSON.parse(sessionStorage.getItem('currentUser'));
     },
 
     remove : () => {

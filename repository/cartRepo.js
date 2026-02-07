@@ -1,9 +1,8 @@
-const mongoDb = window.mongoDb;
-const productRepo = window.productRepo
+const cartMongoDb = window.mongoDb;
 
 window.cartRepo = {
     get (userId) {
-        return mongoDb.findOne('cart', 'userId', userId) 
+        return cartMongoDb.findOne('cart', 'userId', userId) 
         || 
         {
             userId : userId,
@@ -11,17 +10,9 @@ window.cartRepo = {
         };
     },
 
-
-
-    add (userId, productId, quantity = 1) {
-        const existedProduct = productRepo.findById(productId);
-
-        if (!existedProduct)
-            return false;
-        
+    insert (userId, productId, quantity = 1) {     
         const cart = this.get(userId);
 
-        //Tìm xem hàng có lưu vào giỏ chưa, nếu đã lưu thì + số lượng lên
         const item = cart.items.find(item => item.productId === productId);
 
         if (item) {
@@ -30,7 +21,26 @@ window.cartRepo = {
             cart.items.push({ productId, quantity })
         }
 
-        mongoDb.replaceOne('cart', 'userId', userId, cart);
+        cartMongoDb.replaceOne('cart', 'userId', userId, cart);
+        return true;
+    },
+
+    removeOne (userId, productId) {     
+        const cart = this.get(userId);
+
+        const item = cart.items.find(item => item.productId === productId);
+
+        if (!item) 
+            return false;
+
+        item.quantity--;
+
+        if (item.quantity === 0) {
+            this.remove(userId, productId);
+            return true;
+        }
+
+        cartMongoDb.replaceOne('cart', 'userId', userId, cart);
         return true;
     },
 
@@ -42,6 +52,6 @@ window.cartRepo = {
             items : cart.items.filter(item => item.productId !== productId)
         }
 
-        mongoDb.replaceOne('cart', 'userId', userId, newCart);
+        cartMongoDb.replaceOne('cart', 'userId', userId, newCart);
     }
 }

@@ -22,10 +22,11 @@ window.authController = {
         const currentUser = {
             id : user.id,
             username : user.username,
+            receiver_name : user.receiver_name,
+            email : user.email,
             password : user.password,
             number_phone : user.number_phone,
-            address : user.address,
-            gender : user.gender
+            address : user.address
         }
 
         me.set(currentUser);
@@ -61,12 +62,12 @@ window.authController = {
             error.nameError = 'Tên tài khoản đã tồn tại!';
         if (existedEmail)
             error.emailError = 'Email đã tồn tại!'
-
         if (error.emailError || error.nameError)
             return error;
 
         const user = {
             username : username,
+            receiver_name : '',
             password : password,
             email : email,
             address : '',
@@ -78,5 +79,22 @@ window.authController = {
         userRepo.insert(user);
 
         return '';
+    },
+
+    update : (receiver_name, number_phone, address) => {
+
+        const oldUser = me.get();
+
+        const newUser = {
+            ...oldUser,
+            receiver_name : receiver_name,
+            number_phone : number_phone,
+            address : address
+        }
+
+        userRepo.update(newUser.id, newUser);
+
+        me.set(newUser);
+        console.log(me.get())
     }
 }
