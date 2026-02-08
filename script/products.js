@@ -16,7 +16,7 @@ function productData() {
     window.loadProducts();
 }
 
-function renderProduct(item, index) {
+function renderUIProduct(item, index) {
     const divOuter = document.createElement('div');
     const divInnerActive = document.createElement('div');
     const divInnerInfo = document.createElement('div');
@@ -93,6 +93,10 @@ function filter(list, { brand, text, sortMode }) {
     return result;
 }
 
+const MAX_PAGE_SIZE = 15;
+let startIndex = 0;
+let endIndex = 15;
+
 function addToCart(id) {
     const productId = id;
     if (cartController.addToCart(productId))
@@ -101,11 +105,8 @@ function addToCart(id) {
         alert('Vui lòng đăng nhập để thêm sản phẩm!');
 }
 
-
-function render() {
+function renderUI() {
     productData();
-
-    listProducts.innerHTML = '';
     const list = productController.getList();
 
     let filterList = filter(list, {
@@ -119,15 +120,52 @@ function render() {
         emptyProduct.querySelector('.empty__find__text').innerText = `\"${textFilter}\"`
         return;
     }
-
     emptyProduct.classList.add('is-hidden');
 
-    filterList.forEach(
-        (item, index) => listProducts.append(renderProduct(item, index))
+    let visibleList = [];
+    if (filterList.length > endIndex)
+        visibleList = filterList.slice(startIndex, endIndex);
+    else {
+        visibleList = filterList.slice(startIndex, filterList.length);
+    }
+
+    console.log(visibleList)
+
+    const fragment = document.createDocumentFragment();
+
+    visibleList.forEach(
+        (item, index) => fragment.append(renderUIProduct(item, index))
     )
+
+    listProducts.append(fragment);
+
+    let moreBtn = document.querySelector('.more__button');
+
+    if (!moreBtn) {
+        moreBtn = document.createElement('button');
+        moreBtn.classList.add('more__button');
+        moreBtn.classList.add('product__item')
+        moreBtn.textContent = '+ Xem thêm';
+        moreBtn.addEventListener('click', () => renderUI());
+
+    }
+    if (filterList.length > endIndex) {
+        listProducts.append(moreBtn)
+        startIndex += endIndex;
+        endIndex += MAX_PAGE_SIZE;
+    }
+    else {
+        moreBtn.remove();
+    }
 }
 
 render();
+
+function render () {
+    listProducts.innerHTML = '';
+    resetPageSize();
+    renderUI();
+}
 
 function setSelectedBrandFilter(item) {
     brandFilter = item.dataset.brandName;
@@ -152,14 +190,15 @@ function resetFilter() {
     render();
 }
 
+function resetPageSize() {
+    startIndex = 0;
+    endIndex = 15;
+}
+
 const debouncedSearch = helper.debounce(handleSearchInput, 300);
-
 searchInput.addEventListener('input', debouncedSearch);
-
 sortButton.addEventListener('click', setChangePriceMode);
-
 refreshButton.addEventListener('click', resetFilter);
-
 filterBoxBrandList.forEach(item =>
     item.addEventListener('click', () => setSelectedBrandFilter(item))
 )

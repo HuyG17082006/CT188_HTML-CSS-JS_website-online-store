@@ -110,9 +110,9 @@
 .list__products {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     max-width: 1440px;
-    gap : 20px;
+    gap : 10px;
     margin-top: 20px;
 }
 
@@ -122,7 +122,7 @@
     justify-content: center;
     align-items: center;
     max-width: 260px;
-    height: 276px;
+    height: 200px;
     width: 100%;
     box-shadow: 
          2px 2px 3px rgb(207, 207, 207);
@@ -144,15 +144,15 @@
 }
 
 .image__border {
-    width: 200px;
-    height: 175px;
+    padding-top: 10px;
+    width: 110px;
+    height: 110px;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
 .product__item .product__image {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
 }
 
 .product__item--active {
@@ -190,11 +190,11 @@
 
 .product__item--name {
     
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .product__item--price {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color : rgb(9, 95, 255);
 }
@@ -267,6 +267,13 @@
     gap: 16px;
 }
 
+.more__button {
+    font-size: 18px;
+    background: linear-gradient(174deg, rgb(37, 124, 255), rgb(45, 45, 180));
+    color : #dbfdff;
+    border : none;
+}
+
 .cycle {
     width: 120px;
     height: 120px;
@@ -297,16 +304,49 @@
         margin-bottom: 160px;
     }
 
+    .list__products {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+
+    .product__item {
+        height: 276px;
+        padding-bottom: 10px;
+    }
+
+    .image__border {
+        padding-top: 0px;
+    }
+
     .products__inner {
         display: flex;
         flex-direction: column;
-
     }
+
+    .product__item--name {
+        font-size: 15px;
+    }
+
+    .product__item--price {
+        font-size: 18px;
+    }
+
     .type__filter__box__mobile {
         display: none;
     }
     .type__filter__box__pc {
         display: grid;
+    }
+
+    .image__border {
+        width: 200px;
+        height: 175px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .product__item .product__image {
+        width: 200px;
+        height: 200px;
     }
 }
 

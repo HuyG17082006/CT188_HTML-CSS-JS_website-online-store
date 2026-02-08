@@ -75,6 +75,8 @@ function renderUserCart () {
 
     resetTotal();
 
+    const fragment = document.createDocumentFragment();
+
     userListCart.forEach(item => {
         
         const product = getOrderProductDetail(item.productId);
@@ -82,8 +84,10 @@ function renderUserCart () {
         
         calcTotalState(item.quantity, product.price);
         
-        orderList.append(orderProduct)
+        fragment.append(orderProduct);
     })
+
+    orderList.append(fragment)
 }
 
 function renderTotalProductValue ({totalPrice = 0, totalProducts = 0}) {

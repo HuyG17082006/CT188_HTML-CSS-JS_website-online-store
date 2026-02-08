@@ -175,18 +175,22 @@
 @keyframes goLeft {
     0% {
         transform: translateX(0);
+        border-radius: 0 20px 20px 0;
     }
     100% {
         transform: translateX(380px);
+        border-radius: 20px 0 0 20px;
     }
 }
 
 @keyframes goRight {
     0% {
         transform: translateX(380px);
+        border-radius: 20px 0 0 20px;
     }
     100% {
         transform: translateX(0);
+        border-radius: 0 20px 20px 0;
     }
 }
 
@@ -201,12 +205,12 @@
     .auth__navigate {
         display: flex;
         
-        transition: transform 0.4s ease;
+        transition: transform 0.5s ease;
     }
 
     .auth__form {
         display: flex;
-        transition: transform 0.4s ease-in-out;
+        transition: transform 0.5s ease-in-out;
         height: 500px;
         margin-top: 0;
     }
@@ -215,6 +219,11 @@
         display: flex;
         gap : 10px;
         width: 380px;
+        border-radius: 0 20px 20px 0;
+    }
+
+    .auth__form--signIn {
+        border-radius: 20px 0 0 20px;
     }
 
     .auth__navigate .auth__p {
@@ -226,18 +235,20 @@
     }
 
     .on-right { 
-    transform: translateX(380px); 
+        transform: translateX(380px); 
+        border-radius: 0 20px 20px 0;
     } 
     .on-left { 
         transform: translateX(0); 
+        border-radius: 20px 0 0 20px;
     }
 
     .auth__navigate .on-right {
-        animation: goLeft 0.4s ease forwards;
+        animation: goLeft 0.5s ease forwards;
     }
 
     .auth__navigate .on-left {
-        animation: goRight 0.4s ease forwards;
+        animation: goRight 0.5s ease forwards;
     }
 
     .on-appear {
@@ -245,7 +256,7 @@
     }
 
     .on-disappear {
-        opacity: 0;
+        opacity: 0.7;
     }
 
     .auth__form .on-appear {

@@ -4,6 +4,8 @@ const mobileActionUser = document.querySelector('.mobile__action--user');
 const pcActionLogin = document.querySelector('.pc__login--active');
 const pcActionUser = document.querySelector('.pc__user--active');
 
+const listPcAction = document.querySelectorAll('.pc__action')
+
 function isLogin () {
     if (!!me.get()) {
         return true;
@@ -20,6 +22,8 @@ function render () {
         pcActionLogin.classList.toggle('is-hidden');
         pcActionUser.classList.toggle('is-hidden');
     }
+
+
 }
 
 function resetData () {
@@ -29,7 +33,6 @@ function resetData () {
 }
 
 render();
-
 
 
 
