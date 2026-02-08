@@ -6,11 +6,12 @@
     width: 100%;
     justify-self: center;
     align-self: center;
+    margin-top: 100px;
     margin-bottom: 30px;
+    height: auto;
 }
 
 .auth__form{
-    margin-top: 100px;
     display: none;
     flex-direction: column;
     
@@ -196,10 +197,14 @@
 
 @media (min-width : 768px) {
     .auth__container {
+        margin-top: 150px;
+        margin-bottom: 170px;
+    }
+
+    .auth__container {
         display: grid;
         grid-template-columns:1fr 1fr ;
         max-width: 760px;
-        margin-top: 10px;
     }
 
     .auth__navigate {

@@ -81,7 +81,8 @@
 
 @media (min-width : 768px) {
     .home__container {
-        margin-top: 140px;
+        margin-top: 150px;
+        margin-bottom: 170px;
     }
 
     .hero__slide {

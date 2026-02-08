@@ -132,11 +132,6 @@
     cursor: pointer;
 }
 
-span {
-    margin: 0;
-    padding: 0;
-}
-
 .product__cost {
     color : rgb(0, 174, 255);
     font-size: 16px;
@@ -152,7 +147,7 @@ span {
 }
 
 .image__border {
-    min-width: 100px;
+    min-width: 110px;
     width: 30%;
     height: 160px;
     display: flex;
@@ -161,8 +156,8 @@ span {
 }
 
 .image__border img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .order__accept {
@@ -270,6 +265,7 @@ span {
 
     .cart__container {
         margin-top: 150px;
+        margin-bottom: 100px;
     }
 
     .product__info {
