@@ -88,7 +88,7 @@ function removeNotification () {
     localStorage.setItem('notis', JSON.stringify(newList));
 }
 
-function renderNoti () {
+function renderNextNoti () {
     let list = JSON.parse(localStorage.getItem('notis')) || [];
     console.log(list)
     if (list && list.length !== 0) {
@@ -101,6 +101,10 @@ function renderNoti () {
             renderNoti()
         }, 100)
     }
+}
+
+function renderNoti () {
+    setTimeout(renderNextNoti, 1);
 }
 
 renderNoti();
