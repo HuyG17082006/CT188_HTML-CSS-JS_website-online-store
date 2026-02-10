@@ -52,7 +52,7 @@ function createNotification(type, message, time) {
     timeBar.className = 'time__bar';
 
     const infoDiv = document.createElement('div')
-    infoDiv.className = 'info__container'
+    infoDiv.className = 'info__notification__container'
 
     infoDiv.appendChild(
         imgIcon
@@ -90,7 +90,7 @@ function removeNotification () {
 
 function renderNextNoti () {
     let list = JSON.parse(localStorage.getItem('notis')) || [];
-    console.log(list)
+    
     if (list && list.length !== 0) {
         const noti = list[0];
         const { type, message, time } = noti;

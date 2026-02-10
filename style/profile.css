@@ -78,6 +78,7 @@
 .content__container {
     display: grid;
     gap: 24px;
+    width: 100%;
 }
 
 .content__container h2 {
@@ -86,7 +87,9 @@
     margin-top: 20px;
     margin-left: 20px;
     font-size: 28px;
+
 }
+
 
 .info__container button {
     justify-self: center;

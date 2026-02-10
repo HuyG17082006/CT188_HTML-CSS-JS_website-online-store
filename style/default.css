@@ -273,7 +273,7 @@ button {
     animation: slideMobile 2s ease-out;
 }
 
-.info__container {
+.info__notification__container {
     height: auto;
     min-height: 70px;
     width: 280px;
@@ -441,7 +441,7 @@ button {
         animation: dropPc 2s ease-in-out;
     }
 
-    .info__container {
+    .info__notification__container {
         min-height: 90px;
         width: 320px;
         grid-template-columns: 90px 1fr;

@@ -64,7 +64,21 @@ function renderUIProduct(item, index) {
     return divOuter;
 }
 
+let locked = false;
+
+function lockAction () {
+    locked = true;
+    setTimeout(() => {
+        locked = false;
+    }, 500)
+}
+
 function addToCart(id) {
+    if (locked)
+        return;
+
+    lockAction();
+
     const productId = id;
     if (cartController.addToCart(productId))
         addNotification('success', 'Đã thêm vào giỏ hàng', 2000);

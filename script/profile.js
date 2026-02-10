@@ -45,7 +45,7 @@ function renderContainer () {
 
 function renderUserInfor () {
     const user = me.get();
-    console.log(user)
+    
     usernameInput.value = user.username;
     receiverNameInput.value = user.receiver_name || null;
     emailInput.value = user.email;
@@ -66,8 +66,6 @@ function renderUserBillList() {
     }
 
     const bills = userBills.bills;
-
-    console.log(bills)
 
     let billCode = 1;
 
