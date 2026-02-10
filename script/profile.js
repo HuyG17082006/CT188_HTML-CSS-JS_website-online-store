@@ -121,6 +121,7 @@ function renderBillItem(bill, shortId, maxItemPerTime = 3) {
 
     if (bill.userCart.length > maxItemPerTime) {
         const moreBtn = document.createElement('button');
+        moreBtn.classList.add('more__button')
         moreBtn.innerText = `+ ${bill.userCart.length - maxItemPerTime} sản phẩm khác`;
 
         moreBtn.addEventListener('click', () => {
@@ -139,10 +140,17 @@ function renderBillItem(bill, shortId, maxItemPerTime = 3) {
     const footer = document.createElement('div');
     footer.className = 'bill__footer';
 
-    const total = document.createElement('span');
-    total.innerText = `Tổng tiền : ${bill.totalPrice}`;
+    const totalText = document.createElement('span');
+    totalText.classList.add('bill__total--text')
+    totalText.innerText = `Tổng tiền : `;
 
-    footer.append(total);
+    const totalPrice = document.createElement('span');
+    totalPrice.classList.add('bill__total--price');
+    totalPrice.innerText = `${bill.totalPrice}`;
+    
+    totalText.append(totalPrice)
+
+    footer.append(totalText);
 
     billItem.append(
         header,
@@ -180,13 +188,13 @@ function renderBillProduct(productId, quantity) {
 
     const quantitySpan = document.createElement('span');
     quantitySpan.className = 'product__quantity';
-    quantitySpan.innerText = "x"+`${quantity}`;
+    quantitySpan.innerText = `x${quantity}`;
 
     const price = document.createElement('span');
     price.className = 'product__price';
     price.innerText = product.price;
 
-    amount.append(quantity, price);
+    amount.append(quantitySpan, price);
     inner.append(name, amount);
 
     item.append(img, inner);
@@ -213,10 +221,15 @@ function updateUserInfor () {
 
     authController.update(receiver_name, number_phone, address);
 
-    alert('Cập nhật thành công')
+    addNotification('success', 'Cập nhật thành công!', 2000);
+    renderNoti();
 }
 
 function choiceContent (e) {
+
+    if (e.target.classList.contains('side__bar__logout'))
+        return;
+
     choice = e.target.dataset.choice;
 
     listSideBarBtn.forEach(
@@ -227,10 +240,29 @@ function choiceContent (e) {
     render()
 }
 
+function acceptToLogout () {
+    logoutBtn.innerText = 'Chắc chưa ní?'
+    logoutBtn.addEventListener('click', logout)
+    logoutBtn.removeEventListener('click', acceptToLogout);
+
+    setTimeout(() => {
+        logoutBtn.innerText = 'Đăng xuất'
+        logoutBtn.addEventListener('click', acceptToLogout);
+        logoutBtn.removeEventListener('click', logout);
+    }, 3000)
+}
+
+function logout () {
+    me.remove();
+    render();
+    addNotification('success', 'Đăng xuất thành công', 2000);
+}
+
+logoutBtn.addEventListener('click', acceptToLogout);
+
 updateInforBtn.addEventListener('click', updateUserInfor);
 
 listSideBarBtn.forEach(btn =>
     btn.addEventListener('click', choiceContent)
 )
 
-logoutBtn.addEventListener('click', () => me.remove())

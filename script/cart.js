@@ -112,6 +112,7 @@ function addOneProduct (productId) {
 
 function removeProduct (productId) {
     cartController.removeFromCart(productId);
+    addNotification('success', 'Xóa thành công!', 2000);
     RenderState();
 }
 
@@ -143,7 +144,7 @@ function acceptOrder (form) {
     orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, convertIntToString(totalPrice));
     console.log(localStorage.getItem('orders'))
     RenderState();
-    alert('Đặt hàng thành công!');
+    addNotification('success', 'Đặt hàng thành công!', 2000);
     goBackToOrderStep();
 }
 
@@ -250,6 +251,7 @@ function render () {
 }
 
 function RenderState () {
+    renderNoti();
     renderUserCart();
     renderTotalProductValue({
         totalPrice : totalPrice, 

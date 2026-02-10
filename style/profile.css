@@ -1,5 +1,4 @@
 .user__container {
-    border-top: 1px solid black;
     justify-self: center;
     max-width: 1000px;
     min-width: 288px;
@@ -27,11 +26,12 @@
     margin-top: auto;
     color: #c0392b;
     background-color: transparent;
-    border: 1px solid #c0392b;
+    border : none;
+    background: #ffe0dc !important;
 }
 
 .side__bar__logout:hover {
-    background-color: #c0392b;
+    background-color: #c0392b !important;
     color: #fff;
 }
 
@@ -45,49 +45,62 @@
 } */
 
 .side__bar {
-    border: 1px solid black;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 2px 3px rgb(246, 254, 255);
     display: flex;
-    flex-direction: column;   /* QUAN TRỌNG */
+    flex-direction: column;  
     align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
+    gap: 8px;
+    padding: 30px 30px;
 }
 
 .side__bar__item {
-    border: 1px solid black;
-    padding: 10px 10px;
+    padding: 14px 12px;
+    height: 40px;
     min-width: 288px;
+    transition: background 0.2s linear;
+    border : none;
+    color: #1e293b;
+    background: rgb(240, 240, 240);
+}
+
+.side__bar__item:hover {
+    background: rgb(187, 209, 255);
 }
 
 .side__bar__item.is-active {
-    background-color: #fff;
+    background: #245dd6;
+    color: #ffffff;
 }
 
 /* content__container */
 .content__container {
-    border: 1px solid black;
-    padding: 30px 20px;
     display: grid;
-    gap: 20px;
+    gap: 24px;
 }
 
 .content__container h2 {
     text-align: left;
     margin-bottom: 10px;
+    margin-top: 20px;
     margin-left: 20px;
+    font-size: 28px;
 }
 
 .info__container button {
     justify-self: center;
-    height: 40px;
+    height: 50px;
     width: 50%;
     border : none;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .input__field {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
     width: 80%;
     justify-self: center;
 }
@@ -99,10 +112,10 @@
 
 .input__field input {
     width: 100%;
-    height: 34px;
+    height: 36px;
     line-height: 100%;
     padding-left: 10px;
-    font-size: 16px;
+    font-size: 17px;
     border: none;
     outline: none;
 }
@@ -110,25 +123,26 @@
 .input__field textarea {
     font-size: 15px;
     height: 50px;
-    padding-left: 10px;
+    padding: 10px;
+    resize: none;
     border: none;
     outline: none;
 }
 
 .bill__list {
-    
     display: flex;
     flex-direction: column;
     gap : 20px;
 }
 
 .bill__item {
-    border: 1px solid black;
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap : 12px;
     background-color: #fff;
+    border-radius: 10px;
+    
 }
 
 .bill__header {
@@ -138,28 +152,34 @@
 
 .bill__receiver {
     font-size: 14px;
+    color : rgb(94, 94, 94);
 }
 
 .bill__products__container {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    
 }
 
 .bill__products {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     
 }
 
 .bill__product {
-    background-color: aliceblue;
+    background-color: rgb(238, 245, 255);
+    border: 1px solid rgb(206, 225, 255);
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap : 10px;
-    padding: 10px;
+    padding: 12px;
+}
+
+.bill__item h3 {
+    margin-bottom: 5px;
 }
 
 .bill__product__inner {
@@ -177,13 +197,42 @@
     display: none;
 }
 
+.product__price {
+    font-size: 15px;
+    color : rgb(83, 83, 83)
+}
+
 .bill__footer {
     display: flex;
     justify-content: right;
+    height: 36px;
+    align-items: center;
 }
 
 .bill__list {
     min-height: 400px;
+}
+
+.more__button {
+    border : none;
+    height: 30px;
+    color : rgb(49, 87, 255);
+    background: #d8e8ff;
+    transition: background 0.2s linear;
+}
+
+.more__button:hover {
+    background: #a8cbff;
+}
+
+.bill__total--text {
+    font-size: 15px;
+}
+
+.bill__total--price {
+    color : red;
+    font-size: 17px;
+    font-weight: 500;
 }
 
 @media (min-width: 768px) {
@@ -192,11 +241,27 @@
         grid-template-rows: none;
         margin-top: 150px;
         margin-bottom: 110px;
+        gap: 30px;
     }
 
     .side__bar {
         align-items: stretch;
         padding: 20px 0;
+    }
+
+    .bill__product {
+        display: grid;
+        grid-template-columns: 50px 1fr;
+    }
+
+    .bill__item {
+        padding: 20px;
+    }
+
+    .bill__product img {
+        display: flex;
+        width: 50px;
+        height:50px;
     }
 
     .side__bar__item {

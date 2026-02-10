@@ -7,9 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="../style/default.css">
     <link rel="stylesheet" href="../style/cart.css">
+    
 </head>
 
 <body>
+    <div class="notification__container">
+        
+    </div>
     <div class="pc__bar">
         <div class="introduce__bar">
             <div class="introduce__limit">
@@ -111,14 +115,18 @@
     </div>
     <div class="cart__container" id="cart">
         <div class="cart__nav cart__authorization--box is-hidden">
-            <p>Vui lòng đăng nhập để xem giỏ hàng...</p>
+            <img src="../assets/icon/user-x.svg" alt="">
+            <p class="cart__nav__title">Bạn chưa đăng nhập</p>
+            <span class="cart__nav__info">Vui lòng đăng nhập để quản lí giỏ hàng của bạn</span>
             <a href="../view/auth.html">
                 <span>Đăng nhập</span>
             </a>
         </div>
 
         <div class="cart__nav cart__empty--box is-hidden">
-            <p>Giỏ hàng hiện đang trống...</p>
+            <img src="../assets/icon/shopping-cart-off.svg" alt="">
+            <p class="cart__nav__title">Giỏ hàng hiện đang trống...</p>
+            <span class="cart__nav__info">Có vẻ bạn chưa thêm sản phẩm nào</span>
             <a href="../view/products.html">
                 <span>Chọn thêm sản phẩm</span>
             </a>
@@ -154,6 +162,7 @@
     <div class="footer__container">
         <p>©️ tạo bởi Huy_G</p>
     </div>
+    <script src="../script/notification.js"></script>
     <script src="../libs/fakeMongo.js"></script>
     <script src="../auth/me.js"></script>
     <script src="../repository/cartRepo.js"></script>

@@ -22,8 +22,6 @@ function render () {
         pcActionLogin.classList.toggle('is-hidden');
         pcActionUser.classList.toggle('is-hidden');
     }
-
-
 }
 
 function resetData () {

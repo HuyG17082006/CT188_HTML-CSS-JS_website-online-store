@@ -110,9 +110,7 @@ function signIn (e) {
         signIn_usernameError.textContent=error;
         return;
     }
-
-    alert("Đăng nhập thành công!");
-
+    addNotification('success', 'Đăng nhập thành công', 2000);
     window.location.replace('home.html');
 }
 
@@ -137,10 +135,10 @@ function signUp (e) {
         signUp_emailError.textContent=emailError;
         return;
     }
-
-    alert('Đăng ký thành công!');
-
-    window.location.reload();
+    addNotification('success', 'Đăng ký thành công', 2000);
+    window.location.href = '../view/auth.html'
 }
+
+
 
 authFormSignUp.addEventListener('submit', signUp)
