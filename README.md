@@ -3,6 +3,7 @@
 auth
 ├─ assets
 │  ├─ icon
+│  │  ├─ arrow-left.svg
 │  │  ├─ box-iso.svg
 │  │  ├─ cart-cyan.svg
 │  │  ├─ cart-plus.svg
@@ -14,15 +15,20 @@ auth
 │  │  ├─ home-simple.svg
 │  │  ├─ info-circle.svg
 │  │  ├─ log-in.svg
+│  │  ├─ log-out.svg
 │  │  ├─ page-edit-gray.svg
 │  │  ├─ page-edit.svg
 │  │  ├─ profile-circle.svg
 │  │  ├─ refresh.svg
 │  │  ├─ search.svg
+│  │  ├─ shopping-cart-off.svg
+│  │  ├─ shopping-cart-white.svg
+│  │  ├─ shopping-cart.svg
 │  │  ├─ sort.svg
 │  │  ├─ trash.svg
 │  │  ├─ user-cart.svg
-│  │  └─ user-circle.svg
+│  │  ├─ user-circle.svg
+│  │  └─ user-x.svg
 │  └─ image
 │     ├─ brand
 │     │  ├─ acer.png
@@ -37,10 +43,14 @@ auth
 │     │  ├─ samsung.png
 │     │  └─ surface.png
 │     ├─ main
+│     │  ├─ error.png
 │     │  ├─ H1_1440x242_0fd509341f.jpg
 │     │  ├─ H1_1440x242_6b2b92c3c5.jpg
 │     │  ├─ H1_1440x242_93f8d1845b.jpg
-│     │  └─ H1_1440x242_e90739576d.jpg
+│     │  ├─ H1_1440x242_e90739576d.jpg
+│     │  ├─ logoStore.png
+│     │  ├─ mark.png
+│     │  └─ warning.png
 │     └─ product
 │        ├─ acer-nitro-v.jpg
 │        ├─ asus-expert-book.jpg
@@ -92,9 +102,12 @@ auth
 ├─ script
 │  ├─ auth.js
 │  ├─ cart.js
+│  ├─ head.js
 │  ├─ header.js
 │  ├─ home.js
-│  └─ products.js
+│  ├─ notification.js
+│  ├─ products.js
+│  └─ profile.js
 ├─ store
 │  └─ data.js
 ├─ style
@@ -102,7 +115,9 @@ auth
 │  ├─ cart.css
 │  ├─ default.css
 │  ├─ home.css
-│  └─ products.css
+│  ├─ products.css
+│  ├─ profile.css
+│  └─ test.css
 ├─ test.js
 └─ view
    ├─ auth.html
@@ -110,6 +125,6 @@ auth
    ├─ home.html
    ├─ info.html
    ├─ products.html
-   └─ user.html
+   └─ profile.html
 
 ```
