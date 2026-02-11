@@ -43,7 +43,7 @@ button {
     border-bottom: 1px solid #dce8ff;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     width: 100%;
-    display: grid;
+    display: none;
     position: fixed;
     align-items: center ;
     top: 0;
@@ -483,6 +483,7 @@ button {
 
     .pc__bar {
         background-color: #ffffff;
+        display: grid;
     }
 
     .footer__container {

@@ -17,6 +17,8 @@ const totalProductPrice = document.querySelector('.total__product--price');
 
 const cartAcceptForm = document.querySelector('.cart__accept--form');
 
+const backToOrderBtn = document.querySelector('.back__to__order');
+
 let totalItem = 0;
 let totalPrice = 0;
 
@@ -265,6 +267,8 @@ cartAcceptForm.addEventListener('submit', (e) => {
     e.preventDefault();
     acceptOrder(cartAcceptForm)
 });
+
+backToOrderBtn.addEventListener('click', goBackToOrderStep);
 
 orderButton.addEventListener('click', goAcceptStep);
 

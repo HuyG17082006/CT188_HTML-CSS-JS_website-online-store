@@ -6,8 +6,8 @@
     width: 100%;
     justify-self: center;
     align-self: center;
-    margin-top: 100px;
-    margin-bottom: 30px;
+    margin-top: 130px;
+    margin-bottom: 50px;
     height: auto;
 }
 
@@ -155,6 +155,14 @@
     font-size: 17px;
 }
 
+.logo {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    pointer-events: none;
+    justify-self: center;
+}
+
 @keyframes appear {
     0% {
         opacity: 0.5;
@@ -254,6 +262,10 @@
 
     .auth__navigate .on-left {
         animation: goRight 0.5s ease forwards;
+    }
+
+    .logo {
+        display: none;
     }
 
     .on-appear {
