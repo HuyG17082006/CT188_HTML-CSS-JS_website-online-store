@@ -150,12 +150,10 @@
         </div>
         <div class="cart__accept__steps is-hidden">
             <h1>
-                <button class="back__to__order">
-                    <img src="../assets/icon/arrow-left.svg" alt="">
-                </button>
-                Xác nhận thông tin đặt hàng
+                Xác nhận
             </h1>
             <form method="post" class="cart__accept--form">
+                <img src="../assets/icon/arrow-left.svg" class="back__to__order" title="Quay lại">
                 <h2>Thông tin khách hàng</h2>
                 <input type="text" name="username" placeholder="Họ và tên..." required>
                 <input type="text" name="number_phone" placeholder="Số điện thoại..." required>
@@ -172,6 +170,7 @@
     <script src="../components/notification.js"></script>
     <script src="../core/fakeMongo.js"></script>
     <script src="../auth/me.js"></script>
+    <script src="../helper/helper.js"></script>
     <script src="../repository/cartRepo.js"></script>
     <script src="../repository/productRepo.js"></script>
     <script src="../repository/orderRepo.js"></script>

@@ -264,7 +264,7 @@
         animation: goRight 0.5s ease forwards;
     }
 
-    .logo {
+    .logo__mobile {
         display: none;
     }
 

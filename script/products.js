@@ -1,7 +1,7 @@
 // Dependencies
 const productController = window.productController;
 const cartController = window.cartController;
-const helper = window.helper;
+const { convertStringToInt, debounce } = window.helper;
 
 //DOM
 const listProducts = document.querySelector('.list__products');
@@ -85,10 +85,6 @@ function addToCart(id) {
     else
         addNotification('error', 'Vui lòng đăng nhập để thêm', 2000);
     renderNoti()
-}
-
-function convertStringToInt(price) {
-    return Number(price.replace(/[^\d]/g, ''));
 }
 
 let brandFilter = new URLSearchParams(window.location.search).get('brand') || '';
@@ -223,7 +219,7 @@ function resetPageSize() {
 
 
 
-const debouncedSearch = helper.debounce(handleSearchInput, 300);
+const debouncedSearch = debounce(handleSearchInput, 300);
 searchInput.addEventListener('input', debouncedSearch);
 sortButton.addEventListener('click', setChangePriceMode);
 refreshButton.addEventListener('click', resetFilter);
