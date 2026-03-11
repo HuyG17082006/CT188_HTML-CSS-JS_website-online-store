@@ -8,12 +8,12 @@
     <script src="../components/head.js"></script>
     <link rel="icon" href="../assets/image/main/logoStore.png" sizes="64x64" type="image/png">
     <link rel="stylesheet" href="../style/default.css">
-    <link rel="stylesheet" href="../style/home.css">
+    <link rel="stylesheet" href="../style/test.css">
 </head>
 
 <body>
     <div class="notification__container">
-        
+
     </div>
     <div class="pc__bar">
         <div class="introduce__bar">
@@ -115,46 +115,67 @@
         </ul>
     </div>
     <div class="home__container" id="home">
-        <div class="hero">
-            <div class="hero__slide">
-                <img src="../assets/image/main/H1_1440x242_93f8d1845b.jpg" alt="">
-                <img src="../assets/image/main/H1_1440x242_0fd509341f.jpg" alt="">
-                <img src="../assets/image/main/H1_1440x242_e90739576d.jpg" alt="">
-                <img src="../assets/image/main/H1_1440x242_6b2b92c3c5.jpg" alt="">
-            </div>
-        </div>
 
-        <div class="brand">
-            <div class="brand__list">
-                <a class="brand__icon" href="../view/products.html?brand=acer">
-                    <img src="../assets/image/brand/acer.png" alt="Acer">
+        <!-- HERO -->
+        <section class="home__hero">
+            <img src="../assets/image/main/H1_1440x242_93f8d1845b.jpg" alt="">
+            <img src="../assets/image/main/H1_1440x242_0fd509341f.jpg" alt="">
+            <img src="../assets/image/main/H1_1440x242_e90739576d.jpg" alt="">
+            <img src="../assets/image/main/H1_1440x242_6b2b92c3c5.jpg" alt="">
+        </section>
+
+
+        <!-- BANNER -->
+        <section class="home__banner">
+            <img src="../assets/image/main/images_no_bg.png" alt="">
+        </section>
+
+        <section class="home__brand">
+
+            <div class="home__section__header">
+                <h2>Laptop theo hãng</h2>
+            </div>
+
+            <div class="home__brand__list">
+
+                <a href="../view/products.html?brand=acer" class="home__brand__item">
+                    <img src="../assets/image/brand/acer.png" alt="acer">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=asus">
-                    <img src="../assets/image/brand/asus.png" alt="Asus">
+
+                <a href="../view/products.html?brand=asus" class="home__brand__item">
+                    <img src="../assets/image/brand/asus.png" alt="asus">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=dell">
-                    <img src="../assets/image/brand/dell.png" alt="Dell">
+
+                <a href="../view/products.html?brand=dell" class="home__brand__item">
+                    <img src="../assets/image/brand/dell.png" alt="dell">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=gigabyte">
-                    <img src="../assets/image/brand/gigabyte.png" alt="Gigabyte">
+
+                <a href="../view/products.html?brand=hp" class="home__brand__item">
+                    <img src="../assets/image/brand/hp.png" alt="hp">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=hp">
-                    <img src="../assets/image/brand/hp.png" alt="HP">
+
+                <a href="../view/products.html?brand=lenovo" class="home__brand__item">
+                    <img src="../assets/image/brand/lenovo.png" alt="lenovo">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=lenovo">
-                    <img src="../assets/image/brand/lenovo.png" alt="Lenovo">
+
+                <a href="../view/products.html?brand=msi" class="home__brand__item">
+                    <img src="../assets/image/brand/msi.png" alt="msi">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=msi">
-                    <img src="../assets/image/brand/msi.png" alt="MSI">
-                </a>
-                <a class="brand__icon" href="../view/products.html?brand=samsung">
+
+                <a class="home__brand__item" href="../view/products.html?brand=samsung">
                     <img src="../assets/image/brand/samsung.png" alt="Samsung">
                 </a>
-                <a class="brand__icon" href="../view/products.html?brand=surface">
+
+                <a class="home__brand__item" href="../view/products.html?brand=surface">
                     <img src="../assets/image/brand/surface.png" alt="Surface">
                 </a>
+
             </div>
-        </div>
+
+        </section>
+
+
+        <!-- TOP 5 LAPTOP KHỦNG -->
         <section class="home__top">
             <div class="home__section__header">
                 <h2>Top 5 laptop cấu hình khủng</h2>
@@ -162,12 +183,102 @@
 
             <div class="home__product__list">
 
+                <div class="home__product__card">
+                    <div class="home__product__image">
+                        <img src="../assets/image/product/demo1.png" alt="">
+                    </div>
+
+                    <div class="home__product__info">
+                        <h3>ROG Strix Scar 18</h3>
+                        <p class="home__product__spec">
+                            i9 • RTX 4090 • 32GB • 2TB
+                        </p>
+
+                        <p class="home__product__price">
+                            129.990.000đ
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="home__product__card">
+                    <div class="home__product__image">
+                        <img src="../assets/image/product/demo2.png" alt="">
+                    </div>
+
+                    <div class="home__product__info">
+                        <h3>MSI Titan GT77</h3>
+                        <p class="home__product__spec">
+                            i9 • RTX 4090 • 64GB • 4TB
+                        </p>
+
+                        <p class="home__product__price">
+                            149.990.000đ
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="home__product__card">
+                    <div class="home__product__image">
+                        <img src="../assets/image/product/demo3.png" alt="">
+                    </div>
+
+                    <div class="home__product__info">
+                        <h3>Alienware m18</h3>
+                        <p class="home__product__spec">
+                            i9 • RTX 4090 • 32GB • 1TB
+                        </p>
+
+                        <p class="home__product__price">
+                            119.990.000đ
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="home__product__card">
+                    <div class="home__product__image">
+                        <img src="../assets/image/product/demo4.png" alt="">
+                    </div>
+
+                    <div class="home__product__info">
+                        <h3>Razer Blade 18</h3>
+                        <p class="home__product__spec">
+                            i9 • RTX 4080 • 32GB • 2TB
+                        </p>
+
+                        <p class="home__product__price">
+                            109.990.000đ
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="home__product__card">
+                    <div class="home__product__image">
+                        <img src="../assets/image/product/demo5.png" alt="">
+                    </div>
+
+                    <div class="home__product__info">
+                        <h3>Lenovo Legion 9i</h3>
+                        <p class="home__product__spec">
+                            i9 • RTX 4090 • 32GB • 1TB
+                        </p>
+
+                        <p class="home__product__price">
+                            114.990.000đ
+                        </p>
+                    </div>
+                </div>
+
 
             </div>
 
         </section>
 
     </div>
+
     <div class="footer__container">
         <p>©️ tạo bởi Huy_G</p>
     </div>
@@ -176,4 +287,5 @@
     <script src="../components/header.js"></script>
     <script src="../script/home.js"></script>
 </body>
+
 </html>

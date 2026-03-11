@@ -1,96 +1,311 @@
-/* ======================
-   BRAND FILTER – CHUNG
-====================== */
+.home__container {
 
-.filter__box--brand {
-    list-style: none;
-    background: #ffffff;
-    border: 1px solid #e4e0ff;
+    width: 100%;
+    min-width: 340px;
+    max-width: 1200px;
+
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 12px;
+    padding-right: 12px;
+
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 160px;
+    gap: 20px;
+}
+
+
+/* HERO */
+
+.home__hero {
+
+    width: 100%;
+    height: 160px;
+
     border-radius: 14px;
-    height: 64px;
+    overflow: hidden;
+
+    background: #000;
+}
+
+.home__hero img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* BANNER */
+
+.home__banner {
+
+    width: 100%;
+
+    border-radius: 14px;
+    overflow: hidden;
+
+    background: #fff;
+    padding: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.home__banner img {
+
+    width: 100%;
+}
+
+
+
+/* SECTION HEADER */
+
+.home__section__header {
+
+    padding: 6px 4px;
+}
+
+.home__section__header h2 {
+
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #2563eb;
+}
+
+
+
+/* PRODUCT LIST */
+
+.home__product__list {
+
+    display: flex;
+
+    gap: 12px;
+
+    overflow-x: auto;
+
+    padding-bottom: 4px;
+}
+
+
+
+/* PRODUCT CARD */
+
+.home__product__card {
+
+    min-width: 180px;
+    max-width: 200px;
+
+    background: white;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.2s;
+}
+
+.home__product__card:hover {
+
+    transform: translateY(-4px);
+}
+
+
+
+/* IMAGE */
+
+.home__product__image {
+
+    width: 100%;
+    height: 120px;
+
+    background: #f3f4f6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home__product__image img {
+
+    width: 90%;
+    height: 90%;
+
+    object-fit: contain;
+}
+
+
+
+/* INFO */
+
+.home__product__info {
+
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.home__product__info h3 {
+
+    font-size: 14px;
+
+    height: 34px;
+
+    overflow: hidden;
+}
+
+
+
+.home__product__spec {
+
+    font-size: 12px;
+    color: #6b7280;
+}
+
+
+.home__product__price {
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    color: #dc2626;
+}
+
+.home__brand__list {
+
+    display: flex;
+    gap: 20px;
+
+    overflow-x: auto;
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.home__brand__item {
+
+    min-width: 90px;
+
+    padding: 10px;
+
+    background: #f9fafb;
+
+    border-radius: 12px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    cursor: pointer;
+    transition: 0.2s;
 
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.15s ease;
+    text-decoration: none;
 }
 
-.filter__box--brand img {
-    max-width: 70%;
-    max-height: 36px;
+.home__brand__item:hover {
+
+    transform: translateY(-3px);
+}
+
+.home__brand__item img {
+
+    height: 40px;
     object-fit: contain;
-    filter: grayscale(20%);
-    transition: filter 0.2s ease;
 }
 
-/* hover */
-.filter__box--brand:hover {
-    background: #f5f2ff;
-    border-color: #7c5cff;
-    box-shadow: 0 6px 16px rgba(124, 92, 255, 0.18);
-    transform: translateY(-2px);
+@media (min-width:768px){
+
+    .home__brand__list {
+
+        overflow-x: hidden;
+        justify-content: space-between;
+    }
+
+    .home__brand__item {
+
+        flex: 1;
+    }
+
 }
 
-.filter__box--brand:hover img {
-    filter: grayscale(0%);
-}
 
-/* active (nếu có) */
-.filter__box--brand.is-active {
-    background: #f2efff;
-    border-color: #7c5cff;
-    box-shadow: 0 0 0 2px rgba(124, 92, 255, 0.25);
-}
 
-.filter__box--brand.is-active img {
-    filter: grayscale(0%);
-}
+/* DESKTOP */
 
-/* ======================
-   PC
-====================== */
+@media (min-width: 768px)
+{
 
-.list__filter__brand__image__pc {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 16px;
-    padding: 0;
-    margin: 0;
-}
+    .home__container {
 
-/* ======================
-   MOBILE
-====================== */
+        margin-top: 140px;
 
-.type__filter__brand__outer {
-    overflow-x: auto;
-    padding-bottom: 8px;
-}
+        gap: 28px;
+    }
 
-/* ẩn scrollbar */
-.type__filter__brand__outer::-webkit-scrollbar {
-    display: none;
-}
-.type__filter__brand__outer {
-    scrollbar-width: none;
-}
 
-.list__filter__brand__image__mobile {
-    display: flex;
-    gap: 12px;
-    padding: 0;
-    margin: 0;
-    width: max-content;
-}
+    .home__hero {
 
-.list__filter__brand__image__mobile .filter__box--brand {
-    min-width: 72px;
-    height: 56px;
+        height: 260px;
+
+        border-radius: 18px;
+    }
+
+
+    .home__section__header h2 {
+
+        font-size: 22px;
+    }
+
+
+    .home__product__list {
+
+        overflow-x: hidden;
+
+        justify-content: space-between;
+    }
+
+
+    .home__product__card {
+
+        width: 19%;
+        max-width: none;
+    }
+
+
+    .home__product__image {
+
+        height: 160px;
+    }
+
+
+    .home__product__info h3 {
+
+        font-size: 15px;
+    }
+
+
+    .home__product__price {
+
+        font-size: 16px;
+    }
+
 }

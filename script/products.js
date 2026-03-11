@@ -27,6 +27,7 @@ function renderUIProduct(item, index) {
 
     const spanName = document.createElement('span');
     const spanPrice = document.createElement('span');
+    const spanSpec = document.createElement('span');
 
     divOuter.className = 'product__item';
     divOuter.id = item.id;
@@ -40,6 +41,8 @@ function renderUIProduct(item, index) {
 
     spanName.className = 'product__item--name';
     spanName.innerText = item.name;
+    spanSpec.className = 'product__item--spec'
+    spanSpec.innerText = item.spec;
     spanPrice.className = 'product__item--price';
     spanPrice.innerText = item.price;
 
@@ -48,7 +51,8 @@ function renderUIProduct(item, index) {
     divImage.append(productImage);
 
     divInnerInfo.append(
-        spanName, 
+        spanName,
+        spanSpec, 
         spanPrice);
 
     divInnerActive.append(activeImage);

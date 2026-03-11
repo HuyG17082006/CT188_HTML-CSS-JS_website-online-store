@@ -180,7 +180,6 @@ button {
     bottom: 0;  
     background-color: #0f172a;
     margin-bottom: 64px;
-    min-width: 320px;
     padding: 0;
     color: #e5e7eb;
 }
@@ -198,7 +197,6 @@ button {
     justify-content: center;
     align-items: center;
     height: 64px;
-    min-width: 375px;
     z-index: 10000;
     background-color: #ffffff;
     border-top: 1px solid #e5e7eb;
