@@ -1,18 +1,8 @@
 window.helper = {
-    debounce(callback, delay) {
-        let timer = null;
-
-        return function (e) {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                callback(e);
-            }, delay)
-        }
-    },
     convertStringToInt(price) {
         return Number(price.replace(/[^\d]/g, ''));
     },
-    convertIntToString(price) {
+    formatString(price) {
         const newPrice = price.toString();
         let newString = 'đ';
         let count = 0;

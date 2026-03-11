@@ -2,7 +2,7 @@
 const productController = window.productController;
 const cartController = window.cartController;
 const orderController = window.orderController;
-const { convertIntToString, convertStringToInt } = window.helper;
+const { formatString, convertStringToInt } = window.helper;
 
 //DOM
 const cartAuthorization = document.querySelector('.cart__authorization--box');
@@ -72,7 +72,7 @@ function renderUserCart () {
 
 function renderTotalProductValue ({totalPrice = 0, totalProducts = 0}) {
     totalProductAmount.innerText = totalProducts;
-    totalProductPrice.innerText = convertIntToString(totalPrice);
+    totalProductPrice.innerText = formatString(totalPrice);
 }
 
 function resetTotal () {
@@ -121,7 +121,7 @@ function acceptOrder (form) {
 
     const orderId = crypto.randomUUID();
 
-    orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, convertIntToString(totalPrice));
+    orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, formatString(totalPrice));
     console.log(localStorage.getItem('orders'))
     RenderState();
     addNotification('success', 'Đặt hàng thành công!', 2000);

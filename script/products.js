@@ -221,10 +221,7 @@ function resetPageSize() {
     endIndex = 15;
 }
 
-
-
-const debouncedSearch = debounce(handleSearchInput, 300);
-searchInput.addEventListener('input', debouncedSearch);
+searchInput.addEventListener('input', handleSearchInput);
 sortButton.addEventListener('click', setChangePriceMode);
 refreshButton.addEventListener('click', resetFilter);
 filterBoxBrandList.forEach(item =>
