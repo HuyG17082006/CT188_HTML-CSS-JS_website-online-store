@@ -197,6 +197,194 @@ window.loadProducts = () => {
             type: 'study',
             image_src: '../assets/image/product/l22.jpg',
             price: '17.490.000đ'
+        }, {
+            id: 'a1',
+            name: 'MSI Cyborg 15',
+            brand: 'msi',
+            spec: 'i7 • RTX 4050 • 16GB • 512GB',
+            type: 'gaming',
+            image_src: '../assets/image/product/a1.jpg',
+            price: '23.990.000đ'
+        },
+        {
+            id: 'a2',
+            name: 'MSI Katana 15',
+            brand: 'msi',
+            spec: 'i7 • RTX 4060 • 16GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/a2.jpg',
+            price: '20.990.000đ'
+        },
+        {
+            id: 'a3',
+            name: 'MSI Sword 16',
+            brand: 'msi',
+            spec: 'i7 • RTX 4060 • 16GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/a3.jpg',
+            price: '30.990.000đ'
+        },
+        {
+            id: 'a4',
+            name: 'MSI Gaming Thin 15',
+            brand: 'msi',
+            spec: 'i5 • RTX 4050 • 16GB • 512GB',
+            type: 'gaming',
+            image_src: '../assets/image/product/a4.jpg',
+            price: '20.790.000đ'
+        },
+        {
+            id: 'a5',
+            name: 'MSI Modern 14',
+            brand: 'msi',
+            spec: 'i5 • Iris Xe • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a5.jpg',
+            price: '14.290.000đ'
+        },
+        {
+            id: 'a6',
+            name: 'MSI Prestige 13',
+            brand: 'msi',
+            spec: 'Intel Ultra 7 • Intel Arc • 32GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/a6.jpg',
+            price: '44.990.000đ'
+        },
+        {
+            id: 'a7',
+            name: 'MSI Venture 14',
+            brand: 'msi',
+            spec: 'i5 • Iris Xe • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a7.jpg',
+            price: '19.990.000đ'
+        },
+        {
+            id: 'a8',
+            name: 'MSI Stealth A16',
+            brand: 'msi',
+            spec: 'Ryzen 9 • RTX 4070 • 32GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/a8.jpg',
+            price: '63.690.000đ'
+        },
+        {
+            id: 'a9',
+            name: 'Samsung Galaxy Chromebook Go',
+            brand: 'samsung',
+            spec: 'Celeron • UHD • 4GB • 64GB',
+            type: 'study',
+            image_src: '../assets/image/product/a9.jpg',
+            price: '7.290.000đ'
+        },
+        {
+            id: 'a10',
+            name: 'Samsung Galaxy Book 5',
+            brand: 'samsung',
+            spec: 'Intel Ultra 7 • Intel Arc • 16GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/a10.jpg',
+            price: '32.990.000đ'
+        },
+        {
+            id: 'a11',
+            name: 'Samsung Galaxy Book 3',
+            brand: 'samsung',
+            spec: 'i5 • Iris Xe • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a11.jpg',
+            price: '19.690.000đ'
+        },
+        {
+            id: 'a12',
+            name: 'Samsung Galaxy Book 4',
+            brand: 'samsung',
+            spec: 'i5 • Iris Xe • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a12.jpg',
+            price: '19.880.000đ'
+        },
+        {
+            id: 'a13',
+            name: 'Samsung Galaxy Book 3 Pro',
+            brand: 'samsung',
+            spec: 'i7 • Iris Xe • 16GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/a13.jpg',
+            price: '34.490.000đ'
+        },
+        {
+            id: 'a14',
+            name: 'Samsung Galaxy Book',
+            brand: 'samsung',
+            spec: 'i5 • Iris Xe • 8GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a14.jpg',
+            price: '25.990.000đ'
+        },
+        {
+            id: 'a15',
+            name: 'Samsung Galaxy Chromebook Go',
+            brand: 'samsung',
+            spec: 'Celeron • UHD • 8GB • 128GB',
+            type: 'study',
+            image_src: '../assets/image/product/a15.jpg',
+            price: '19.990.000đ'
+        },
+        {
+            id: 'a16',
+            name: 'Surface 7',
+            brand: 'surface',
+            spec: 'Intel Ultra 5 • Intel Arc • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a16.jpg',
+            price: '25.490.000đ'
+        },
+        {
+            id: 'a17',
+            name: 'Surface Go i5',
+            brand: 'surface',
+            spec: 'i5 • UHD • 8GB • 256GB',
+            type: 'study',
+            image_src: '../assets/image/product/a17.jpg',
+            price: '11.990.000đ'
+        },
+        {
+            id: 'a18',
+            name: 'Surface Pro 5',
+            brand: 'surface',
+            spec: 'i5 • HD 620 • 8GB • 256GB',
+            type: 'study',
+            image_src: '../assets/image/product/a18.jpg',
+            price: '6.990.000đ'
+        },
+        {
+            id: 'a19',
+            name: 'Surface Pro 8',
+            brand: 'surface',
+            spec: 'i7 • Iris Xe • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/a19.jpg',
+            price: '16.990.000đ'
+        },
+        {
+            id: 'a20',
+            name: 'Surface Studio 2',
+            brand: 'surface',
+            spec: 'i7 • GTX 1060 • 32GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/a20.jpg',
+            price: '58.000.000đ'
+        },
+        {
+            id: 'a21',
+            name: 'Surface Studio',
+            brand: 'surface',
+            spec: 'i7 • GTX 965M • 16GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/a21.jpg',
+            price: '21.990.000đ'
         }
     ]
 
