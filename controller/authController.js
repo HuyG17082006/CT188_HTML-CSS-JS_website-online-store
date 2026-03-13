@@ -7,7 +7,7 @@ window.authController = {
         let error = '';
 
         const user = userRepo.findByUsername(username);
-        console.log(user)
+        
         if (!user) {
             error = 'Sai tên tài khoản hoặc mật khẩu!'
         }
@@ -17,21 +17,32 @@ window.authController = {
         }
 
         if (error)
-            return error;
+            return { error };
 
-        const currentUser = {
+        let currentUser = {
             id : user.id,
             username : user.username,
             receiver_name : user.receiver_name,
             email : user.email,
             password : user.password,
             number_phone : user.number_phone,
+            isAdmin : false,
             address : user.address
+        }
+
+        if (user.isAdmin) {
+            currentUser = {
+                ...currentUser,
+                isAdmin : true
+            } 
         }
 
         me.set(currentUser);
 
-        return '';
+        return {
+            error : '',
+            isAdmin : currentUser.isAdmin
+        };
     },
 
     signUp : (username, password, email) => {
@@ -73,6 +84,7 @@ window.authController = {
             address : '',
             number_phone : '',
             gender : '',
+            isAdmin : false,
             created_at : Date.now()
         }
 

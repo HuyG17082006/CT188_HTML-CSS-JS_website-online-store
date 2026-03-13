@@ -7,5 +7,17 @@ window.productController = {
 
     getProduct : (id) => {
         return productRepo.findById(id);
+    },
+
+    updateProduct : (id) => {
+        productRepo.updateById(id);
+    },
+
+    deleteProduct : (id) => {
+        productRepo.deleteById(id);
+    },
+
+    insertProduct : (newProduct) => {
+        productRepo.insert(newProduct);
     }
 }

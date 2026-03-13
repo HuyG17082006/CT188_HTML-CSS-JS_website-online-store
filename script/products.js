@@ -10,6 +10,7 @@ const filterBoxBrandList = document.querySelectorAll('.filter__box--brand');
 const searchInput = document.querySelector('.search__input');
 const sortButton = document.querySelector('.sort__group');
 const refreshButton = document.querySelector('.refresh__group');
+const usingFilterList = document.querySelectorAll('.using__filter')
 
 //FUNCTION
 function productData() {
@@ -17,53 +18,32 @@ function productData() {
 }
 
 function renderUIProduct(item, index) {
-    const divOuter = document.createElement('div');
-    const divInnerActive = document.createElement('div');
-    const divInnerInfo = document.createElement('div');
-    const divImage = document.createElement('div');
+    const divOuter = document.createElement("div");
 
-    const activeImage = document.createElement('img');
-    const productImage = document.createElement('img');
-
-    const spanName = document.createElement('span');
-    const spanPrice = document.createElement('span');
-    const spanSpec = document.createElement('span');
-
-    divOuter.className = 'product__item';
+    divOuter.className = "product__item";
     divOuter.id = item.id;
-    divInnerActive.className = 'product__item--active';
-    divInnerActive.addEventListener('click', () => addToCart(item.id));
-    divInnerInfo.className = 'product__info';
 
-    activeImage.src = "../assets/icon/shopping-cart-white.svg";
-    productImage.className = 'product__image';
-    productImage.src = item.image_src;
+    divOuter.innerHTML = `
+        <div class="product__item--active">
+            <img src="../assets/icon/shopping-cart-white.svg">
+        </div>
 
-    spanName.className = 'product__item--name';
-    spanName.innerText = item.name;
-    spanSpec.className = 'product__item--spec'
-    spanSpec.innerText = item.spec;
-    spanPrice.className = 'product__item--price';
-    spanPrice.innerText = item.price;
+        <div class="image__border">
+            <img class="product__image" src="${item.image_src}">
+        </div>
 
-    divImage.className = 'image__border';
+        <div class="product__info">
+            <span class="product__item--name">${item.name}</span>
+            <span class="product__item--spec">${item.spec}</span>
+            <span class="product__item--price">${item.price}</span>
+        </div>
+    `;
 
-    divImage.append(productImage);
+    divOuter.style.setProperty("--i", index);
 
-    divInnerInfo.append(
-        spanName,
-        spanSpec, 
-        spanPrice);
-
-    divInnerActive.append(activeImage);
-
-    divOuter.append(
-        divInnerActive, 
-        divImage, 
-        divInnerInfo
-    );
-
-    divOuter.style.setProperty('--i', index)
+    divOuter
+        .querySelector(".product__item--active")
+        .addEventListener("click", () => addToCart(item.id));
 
     return divOuter;
 }
@@ -92,11 +72,12 @@ function addToCart(id) {
 }
 
 let brandFilter = new URLSearchParams(window.location.search).get('brand') || '';
+let usingFilter = '';
 let textFilter = '';
 let count = 0;
 const priceMode = ['no_sort', 'asc', 'desc'];
 
-function filter(list, { brand, text, sortMode }) {
+function filter(list, { brand, text, sortMode, type }) {
     let result = [...list];
 
     if (brand) {
@@ -106,6 +87,10 @@ function filter(list, { brand, text, sortMode }) {
     if (text) {
         const keyword = text.toLowerCase();
         result = result.filter(product => product.name.toLowerCase().includes(keyword));
+    }
+
+    if (type) {
+        result = result.filter(product => product.type.includes(type));
     }
 
     if (sortMode === 'asc') {
@@ -132,14 +117,14 @@ function getFilterList () {
     return filter(list, {
         brand : brandFilter,
         text : textFilter,
-        sortMode : priceMode[count]
+        sortMode : priceMode[count],
+        type : usingFilter
     });
 }
 
 function renderEmptyList(list) {
     if (!list.length) {
         emptyProduct.classList.remove('is-hidden');
-        emptyProduct.querySelector('.empty__find__text').innerText = `\"${textFilter}\"`
         return true;
     }
     emptyProduct.classList.add('is-hidden');
@@ -208,11 +193,23 @@ function handleSearchInput(e) {
     render();
 }
 
+function setSelectedUsingFilter(item) {
+
+    usingFilterList.forEach(i => 
+        i.classList.remove('selected')
+    )
+
+    item.classList.add('selected');
+    usingFilter = item.dataset.type;
+    render();
+}
+
 function resetFilter() {
     textFilter = '';
     brandFilter = '';
     count = 0;
     searchInput.value = '';
+    resetUsingFilter();
     render();
 }
 
@@ -221,9 +218,19 @@ function resetPageSize() {
     endIndex = 15;
 }
 
+function resetUsingFilter () {
+    usingFilter = '';
+    usingFilterList.forEach(item => {
+        item.classList.remove('selected');
+    })
+}
+
 searchInput.addEventListener('input', handleSearchInput);
 sortButton.addEventListener('click', setChangePriceMode);
 refreshButton.addEventListener('click', resetFilter);
+usingFilterList.forEach(item => {
+    item.addEventListener('click', () => setSelectedUsingFilter(item))
+})
 filterBoxBrandList.forEach(item =>
     item.addEventListener('click', () => setSelectedBrandFilter(item))
 )

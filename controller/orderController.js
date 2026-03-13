@@ -21,6 +21,7 @@ window.orderController = {
             address : address,
             userCart : userCart,
             totalPrice : totalPrice,
+            status : 'ordered',
             date : `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
         }
 
@@ -30,6 +31,29 @@ window.orderController = {
         }
 
         orderRepo.update(userId, newUserBill);
+    },
+    
+    confirmDelivery : (userId, orderId) => {
+        const userBills = orderRepo.getOne(userId) || {
+            userId,
+            bills : []
+        };
+
+        const newBills = userBills.bills.map(bill => {
+            if (bill.orderId === orderId)
+                return {
+                ...bill,
+                status : 'pending'
+                }
+            return bill;
+        })
+
+        const newUserBills = {
+            ...userBills,
+            bills : newBills
+        };
+
+        orderRepo.update(userId, newUserBills);
     },
 
     getUserOrderList : (userId) => {

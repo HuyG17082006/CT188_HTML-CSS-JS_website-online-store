@@ -385,6 +385,96 @@ window.loadProducts = () => {
             type: 'office',
             image_src: '../assets/image/product/a21.jpg',
             price: '21.990.000đ'
+        },
+        {
+            id: 'laptop-26',
+            name: 'Dell Pro 14 Essential',
+            brand: 'dell',
+            spec: 'i5 • Iris Xe • 16GB • 512GB',
+            type: 'office',
+            image_src: '../assets/image/product/h2.jpg',
+            price: '22.190.000đ'
+        },
+        {
+            id: 'laptop-27',
+            name: 'Dell 15 DC15250',
+            brand: 'dell',
+            spec: 'i7 • Iris Xe • 16GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/h3.jpg',
+            price: '21.990.000đ'
+        },
+        {
+            id: 'laptop-28',
+            name: 'Dell Inspiron 15',
+            brand: 'dell',
+            spec: 'i5 • Iris Xe • 16GB • 512GB',
+            type: 'study',
+            image_src: '../assets/image/product/h4.jpg',
+            price: '15.990.000đ'
+        },
+        {
+            id: 'laptop-29',
+            name: 'Dell Gaming G15 5530',
+            brand: 'dell',
+            spec: 'i9 • RTX 4060 • 16GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/h5.jpg',
+            price: '40.190.000đ'
+        },
+        {
+            id: 'laptop-30',
+            name: 'Dell 16 Plus',
+            brand: 'dell',
+            spec: 'i7 • RTX 4050 • 16GB • 1TB',
+            type: 'office',
+            image_src: '../assets/image/product/h6.jpg',
+            price: '35.990.000đ'
+        },
+        {
+            id: 'laptop-31',
+            name: 'GIGABYTE Gaming AERO X16',
+            brand: 'gigabyte',
+            spec: 'i7 • RTX 4060 • 16GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/g1.jpg',
+            price: '42.290.000đ'
+        },
+        {
+            id: 'laptop-33',
+            name: 'GIGABYTE Gaming A16',
+            brand: 'gigabyte',
+            spec: 'i7 • RTX 4050 • 16GB • 512GB',
+            type: 'gaming',
+            image_src: '../assets/image/product/g3.jpg',
+            price: '29.190.000đ'
+        },
+        {
+            id: 'laptop-34',
+            name: 'GIGABYTE Gaming G5',
+            brand: 'gigabyte',
+            spec: 'i5 • RTX 4050 • 16GB • 512GB',
+            type: 'gaming',
+            image_src: '../assets/image/product/g4.jpg',
+            price: '23.990.000đ'
+        },
+        {
+            id: 'laptop-35',
+            name: 'GIGABYTE Gaming A16 GA6H',
+            brand: 'gigabyte',
+            spec: 'i7 • RTX 4060 • 16GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/g5.jpg',
+            price: '31.690.000đ'
+        },
+        {
+            id: 'laptop-36',
+            name: 'GIGABYTE Gaming AORUS 16X',
+            brand: 'gigabyte',
+            spec: 'i9 • RTX 4070 • 32GB • 1TB',
+            type: 'gaming',
+            image_src: '../assets/image/product/g6.jpg',
+            price: '38.290.000đ'
         }
     ]
 

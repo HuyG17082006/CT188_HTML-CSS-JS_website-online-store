@@ -142,84 +142,55 @@ function goBackToOrderStep () {
 
 
 function renderOrderProduct(product, amount) {
+
     const orderProduct = document.createElement('div');
-    const removeBox = document.createElement('div');
-    const removeImg = document.createElement('img');
-
-    const imageBorder = document.createElement('div');
-    const productImg = document.createElement('img');
-
-    const productInfo = document.createElement('div');
-    const nameSpan = document.createElement('span');
-
-    const priceP = document.createElement('p');
-    const priceSpan = document.createElement('span');
-
-    const quantityBox = document.createElement('div');
-    const quantityText = document.createElement('span');
-    const quantityActive = document.createElement('div');
-    const minusBtn = document.createElement('button');
-    const amountSpan = document.createElement('span');
-    const plusBtn = document.createElement('button');
-
-    const totalP = document.createElement('p');
-    const totalSpan = document.createElement('span');
-
     orderProduct.className = 'order__product';
+    const totalPrice = helper.convertStringToInt(product.price) * amount;
+    orderProduct.innerHTML = `
+        <div class="order__product--remove">
+            <img src="../assets/icon/trash.svg">
+        </div>
 
-    removeBox.className = 'order__product--remove';
-    imageBorder.className = 'image__border';
-    productInfo.className = 'product__info';
+        <div class="image__border">
+            <img src="${product.image_src}">
+        </div>
 
-    nameSpan.className = 'product__info--name';
-    priceSpan.className = 'product__info--price';
+        <div class="product__info">
+            <span class="product__info--name">${product.name}</span>
 
-    quantityBox.className = 'product__quantity';
-    quantityActive.className = 'product__quantity--active';
-    minusBtn.className = 'plus__one';
-    minusBtn.addEventListener('click', () => removeOneProduct(product.id));
-    plusBtn.className = 'minus__one';
-    plusBtn.addEventListener('click', () => addOneProduct(product.id));
-    amountSpan.className = 'product__amount';
+            <p>
+                Giá :
+                <span class="product__info--price">${product.price}</span>
+            </p>
 
-    totalSpan.className = 'product__cost';
+            <div class="product__quantity">
+                <span>Số lượng :</span>
 
-    removeImg.src = '../assets/icon/trash.svg';
-    removeImg.addEventListener('click', () => removeProduct(product.id))
-    productImg.src = product.image_src;
-    nameSpan.innerText = product.name;
-    priceSpan.innerText = product.price;
-    quantityText.innerText = 'Số lượng : ';
-    minusBtn.innerText = '-';
-    plusBtn.innerText = '+';
-    amountSpan.innerText = amount;
-    totalSpan.innerText = ' ' + product.price;
+                <div class="product__quantity--active">
+                    <button class="plus__one">-</button>
+                    <span class="product__amount">${amount}</span>
+                    <button class="minus__one">+</button>
+                </div>
+            </div>
 
-    priceP.innerText = 'Giá : ';
-    totalP.innerText = 'Tổng tiền :';
+            <p>
+                Tổng tiền :
+                <span class="product__cost">
+                    ${helper.formatString(totalPrice)}
+                </span>
+            </p>
+        </div>
+    `
 
-    removeBox.append(removeImg);
-    imageBorder.append(productImg);
-
-    priceP.append(priceSpan);
-
-    quantityActive.append(minusBtn, amountSpan, plusBtn);
-    quantityBox.append(quantityText, quantityActive);
-
-    totalP.append(totalSpan);
-
-    productInfo.append(
-        nameSpan,
-        priceP,
-        quantityBox,
-        totalP
-    );
-
-    orderProduct.append(
-        removeBox,
-        imageBorder,
-        productInfo
-    );
+    orderProduct
+        .querySelector('.order__product--remove img')
+        .addEventListener('click', () => removeProduct(product.id));
+    orderProduct
+        .querySelector('.plus__one')
+        .addEventListener('click', () => removeOneProduct(product.id));
+    orderProduct
+        .querySelector('.minus__one')
+        .addEventListener('click', () => addOneProduct(product.id));
 
     return orderProduct;
 }

@@ -1,10 +1,8 @@
 .home__container {
     justify-self: center;
     position: relative;
-    margin-top: 90px;
-    width: 100%;
     max-width: 1440px;
-    min-width: 288px;
+    margin-top: 120px;
 }
 
 .hero {
@@ -19,11 +17,6 @@
     background-color: black;
     overflow: hidden;
     display: flex;
-    
-}
-
-.hero1 {
-    width:100dvh;
 }
 
 .hero1 img {
@@ -179,6 +172,8 @@
     color: #2563EB;
     font-weight: 600;
 }
+
+
 
 @keyframes slide {
     0%,

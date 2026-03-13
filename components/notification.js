@@ -23,52 +23,29 @@ const config = {
 function createNotification(type, message, time) {
 
     const thisNotificationType = config[type];
-
     const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.classList.add(thisNotificationType.className);
+    notification.className = `notification ${thisNotificationType.className}`;
+    notification.innerHTML = `
+        <div class="info__notification__container">
+            <div class="notification__img">
+                <img src="${thisNotificationType.img}">
+            </div>
 
-    const imgIcon = document.createElement('div');
-    imgIcon.className = 'notification__img';
+            <div class="notification__info">
+                <h4>${thisNotificationType.title}</h4>
+                <p>${message}</p>
+            </div>
+        </div>
 
-    const img = document.createElement('img');
-    img.src = thisNotificationType.img;
-
-    imgIcon.appendChild(img);
-
-    const info = document.createElement('div');
-    info.className = 'notification__info';
-
-    const notiTitle = document.createElement('h4');
-    notiTitle.textContent = thisNotificationType.title;
-
-    const notiMessage = document.createElement('p');
-    notiMessage.textContent = message;
-
-    info.appendChild(notiTitle);
-    info.appendChild(notiMessage);
-
-    const timeBar = document.createElement('div');
-    timeBar.className = 'time__bar';
-
-    const infoDiv = document.createElement('div')
-    infoDiv.className = 'info__notification__container'
-
-    infoDiv.appendChild(
-        imgIcon
-    )
-    infoDiv.appendChild(
-        info
-    )
-
-    notification.appendChild(infoDiv);
-    notification.appendChild(timeBar);
-
+        <div class="time__bar"></div>
+    `;
+    const timeBar = notification.querySelector(".time__bar");
+    timeBar.style.animationDuration = time + "ms";
     notificationList.append(notification);
 
     setTimeout(() => {
         notification.remove();
-    }, time)
+    }, time);
 }
 
 function addNotification (type, message, time) {

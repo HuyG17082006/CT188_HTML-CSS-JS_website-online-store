@@ -1,7 +1,6 @@
 .user__container {
     justify-self: center;
     max-width: 1000px;
-    min-width: 288px;
     margin-bottom: 80px;
     width: 90%;
 }
@@ -57,7 +56,6 @@
 .side__bar__item {
     padding: 14px 12px;
     height: 40px;
-    min-width: 288px;
     transition: background 0.2s linear;
     border : none;
     color: #1e293b;
@@ -269,6 +267,5 @@
     .side__bar__item {
         width: 80%;
         margin: 10px auto;
-        min-width: auto;
     }
 }

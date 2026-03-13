@@ -103,13 +103,21 @@ function signIn (e) {
     const username = form.get('username');
     const password = form.get('password');
 
-    const error = authController.signIn(username, password);
+    const res = authController.signIn(username, password);
+
+    const error = res.error;
 
     if (error) {
         signIn_passwordError.textContent=error;
         signIn_usernameError.textContent=error;
         return;
     }
+
+    if (res.isAdmin) {
+        window.location.replace('admin.html');
+        return;
+    }
+
     addNotification('success', 'Đăng nhập thành công', 2000);
     window.location.replace('home.html');
 }

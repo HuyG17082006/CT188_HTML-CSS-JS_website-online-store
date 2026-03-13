@@ -21,7 +21,7 @@ body {
     font-family: sans-serif;
     overflow-y: auto;
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 100dvh;
     display: grid;
     grid-template-rows: 1fr auto;
     background:linear-gradient(62deg, #ffffff, #f6f9fc, #f1f9ff, #f5fdff, #ebfbfd, #effcff, #e6f5f8, #e7fbff, #eaf9ff, #eef6ff, #efedfc, #faecff) no-repeat;
@@ -51,13 +51,11 @@ button {
     height: 90px;
     grid-template-rows: 20px 1fr;
     z-index: 10000;
-    min-width: 320px;
 }
 
 .introduce__bar {
     background: linear-gradient(90deg, #2563eb, #1e40af);
     height: 100%;
-    min-width: 320px;
     display: flex;
     overflow: hidden;
     justify-content: center;
@@ -179,8 +177,6 @@ button {
     height: 140px;
     bottom: 0;  
     background-color: #0f172a;
-    margin-bottom: 64px;
-    padding: 0;
     color: #e5e7eb;
 }
 
@@ -193,6 +189,7 @@ button {
     width: 100%;
     display: flex;
     position: fixed;
+    left: 0;
     bottom: 0;
     justify-content: center;
     align-items: center;
@@ -201,6 +198,8 @@ button {
     background-color: #ffffff;
     border-top: 1px solid #e5e7eb;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
+    margin: 0;
+    padding: 0;
 }
 
 .mobile__action a {
@@ -224,13 +223,11 @@ button {
 .menu__mobile {
     list-style: none;
     display: flex;
-    gap:20px;
+    gap: 20px;
     flex-grow: 1;
 }
 
 .mobile__action {
-    padding: 0;
-    margin: 0;
     width: 100%;
 }
 
@@ -240,7 +237,6 @@ button {
     align-items: center;
     justify-content: center;
     color: #4b5563;
-    
 }
 
 .mobile__action a img {
@@ -250,7 +246,7 @@ button {
 }
 
 .mobile__action a span {
-    font-size: 11px; 
+    font-size: 12px;
 }
 
 /* Notification */
@@ -327,8 +323,7 @@ button {
     height: 4px;
     width: 100%;
     background: linear-gradient(128deg,rgb(244, 255, 86), rgb(138, 138, 255), rgb(255, 130, 130),rgb(151, 235, 96), rgb(215, 130, 255), rgb(255, 46, 46));
-    transition: 2s linear;
-    animation: time_running 2s linear;
+    animation: time_running linear forwards;
 }
 
 .is-hidden {
