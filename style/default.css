@@ -95,21 +95,23 @@ button {
     justify-content: center;
     justify-self: center;
     width: 100%;
-    max-width: 1200px;
+    max-width:1200px;
     background-color: #ffffff;
 }
 
-.menu__pc {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(6, 150px);
-    justify-self: center;
+.menu__pc{
+    list-style:none;
+    width:100%;
+    max-width:1200px;
+    display:flex !important;
+    justify-content:space-around;
+    align-items:center;
 }
 
 .pc__action {
     padding: 7px;
     width: 100%;
-    max-width: 130px;
+    max-width: 150px;
     height: 50px;
     margin: 0;
     margin-left: 20px;

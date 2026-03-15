@@ -116,7 +116,7 @@ tbody tr:hover {
     padding: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .info__container {
         margin: 50px auto;
     }
