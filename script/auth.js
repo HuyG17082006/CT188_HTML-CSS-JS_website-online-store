@@ -105,11 +105,9 @@ function signIn (e) {
 
     const res = authController.signIn(username, password);
 
-    const error = res.error;
-
-    if (error) {
-        signIn_passwordError.textContent=error;
-        signIn_usernameError.textContent=error;
+    if (!res.isOk) {
+        signIn_passwordError.textContent = res.error.passwordError;
+        signIn_usernameError.textContent = res.error.usernameError;
         return;
     }
 
@@ -135,12 +133,12 @@ function signUp (e) {
     const password = form.get('password');
     const email = form.get('email');
 
-    const {nameError, emailError, passwordError} = authController.signUp(username, password, email);
+    const res = authController.signUp(username, password, email);
 
-    if (nameError || emailError || passwordError) {
-        signUp_usernameError.textContent=nameError;
-        signUp_passwordError.textContent=passwordError;
-        signUp_emailError.textContent=emailError;
+    if (!res.isOk) {
+        signUp_usernameError.textContent=res.error.nameError;
+        signUp_passwordError.textContent=res.error.passwordError;
+        signUp_emailError.textContent=res.error.emailError;
         return;
     }
     addNotification('success', 'Đăng ký thành công', 2000);

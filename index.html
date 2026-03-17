@@ -18,8 +18,6 @@
 
         users = [...users, adminAccount];
 
-        console.log(adminAccount)
-
         localStorage.setItem('users', JSON.stringify(users));
         window.location.replace('./view/auth.html');
     </script>

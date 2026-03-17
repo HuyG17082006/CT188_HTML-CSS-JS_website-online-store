@@ -4,20 +4,37 @@ const me = window.me;
 window.authController = {
     signIn : (username, password) => {
 
-        let error = '';
+        let error = {
+            usernameError : '',
+            passwordError : ''
+        };
+
+        if (!username) {
+            error.usernameError = 'Tên người dùng không được bỏ trống!';
+        }
+
+        if (!password) {
+            error.passwordError = 'Mật khẩu không được bỏ trống!';
+        }
+
+        if (error.passwordError || error.usernameError)
+            return {
+                isOk : false,
+                error
+            };
 
         const user = userRepo.findByUsername(username);
         
-        if (!user) {
-            error = 'Sai tên tài khoản hoặc mật khẩu!'
+        if (!user || user.password !== password) {
+            error.passwordError = 'Sai tên tài khoản hoặc mật khẩu!';
+            error.usernameError = 'Sai tên tài khoản hoặc mật khẩu!'
         }
 
-        if (user && user.password !== password) {
-            error = 'Sai tên tài khoản hoặc mật khẩu!'
-        }
-
-        if (error)
-            return { error };
+        if (error.passwordError || error.usernameError)
+            return {
+                isOk : false,
+                error
+            };
 
         let currentUser = {
             id : user.id,
@@ -40,9 +57,9 @@ window.authController = {
         me.set(currentUser);
 
         return {
-            error : '',
-            isAdmin : currentUser.isAdmin
-        };
+                isOk : true,
+                isAdmin : user.isAdmin
+            };
     },
 
     signUp : (username, password, email) => {
@@ -63,18 +80,36 @@ window.authController = {
             error.emailError = 'Email sai định dạng!';
         }
 
+        if (!username) {
+            error.nameError = 'Tên người dùng không được bỏ trống!';
+        }
+        if (!password) {
+            error.passwordError = 'Mật khẩu không được bỏ trống!';
+        }
+        if (!email) {
+            error.emailError = 'Email không được bỏ trống!';
+        }
+
         if (error.emailError || error.nameError || error.passwordError)
-            return error;
+            return {
+                isOk : false,
+                error
+            };
 
         const existedUser = userRepo.findByUsername(username);
         const existedEmail = userRepo.findByEmail(email);
         
         if (existedUser)
             error.nameError = 'Tên tài khoản đã tồn tại!';
+        
         if (existedEmail)
             error.emailError = 'Email đã tồn tại!'
+        
         if (error.emailError || error.nameError)
-            return error;
+            return {
+                isOk : false,
+                error
+            };
 
         const user = {
             username : username,
@@ -90,7 +125,9 @@ window.authController = {
 
         userRepo.insert(user);
 
-        return '';
+        return {
+            isOk : true
+        };
     },
 
     update : (receiver_name, number_phone, address) => {
@@ -107,6 +144,5 @@ window.authController = {
         userRepo.update(newUser.id, newUser);
 
         me.set(newUser);
-        console.log(me.get())
     }
 }
