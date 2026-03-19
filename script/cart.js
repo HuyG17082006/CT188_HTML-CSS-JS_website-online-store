@@ -147,9 +147,7 @@ function renderOrderProduct(product, amount) {
     orderProduct.className = 'order__product';
     const totalPrice = helper.convertStringToInt(product.price) * amount;
     orderProduct.innerHTML = `
-        <div class="order__product--remove">
-            <img src="../assets/icon/trash.svg">
-        </div>
+        
 
         <div class="image__border">
             <img src="${product.image_src}">
@@ -158,14 +156,12 @@ function renderOrderProduct(product, amount) {
         <div class="product__info">
             <span class="product__info--name">${product.name}</span>
 
-            <p>
-                Giá :
-                <span class="product__info--price">${product.price}</span>
-            </p>
+            <span class="product__info--spec"><span>Cấu hình : </span>${product.spec}</span>
+
+            <span class="product__info--price"><span>Giá : </span>${product.price}</span>
 
             <div class="product__quantity">
-                <span>Số lượng :</span>
-
+                <span class="mobile__quantity">Số lượng : </span>
                 <div class="product__quantity--active">
                     <button class="plus__one">-</button>
                     <span class="product__amount">${amount}</span>
@@ -173,24 +169,28 @@ function renderOrderProduct(product, amount) {
                 </div>
             </div>
 
-            <p>
-                Tổng tiền :
-                <span class="product__cost">
-                    ${helper.formatString(totalPrice)}
-                </span>
-            </p>
+            <span class="product__cost">
+                <span>Tổng tiền : </span>
+                ${helper.formatString(totalPrice)}
+            </span>
+        </div>
+
+        <div class="order__product--remove">
+            <img src="../assets/icon/trash.svg">
+            <span>Xóa</span>
         </div>
     `
 
-    orderProduct
-        .querySelector('.order__product--remove img')
-        .addEventListener('click', () => removeProduct(product.id));
-    orderProduct
-        .querySelector('.plus__one')
-        .addEventListener('click', () => removeOneProduct(product.id));
-    orderProduct
-        .querySelector('.minus__one')
-        .addEventListener('click', () => addOneProduct(product.id));
+    const removeOrderProductImage = orderProduct.querySelector('.order__product--remove img');
+    const removeOrderProductSpan = orderProduct.querySelector('.order__product--remove span');
+    const plusOneOrderProduct = orderProduct.querySelector('.plus__one');
+    const minusOneOrderProduct = orderProduct.querySelector('.minus__one');
+        
+
+    removeOrderProductImage.addEventListener('click', () => removeProduct(product.id));
+    removeOrderProductSpan.addEventListener('click', () => removeProduct(product.id));
+    plusOneOrderProduct.addEventListener('click', () => removeOneProduct(product.id));
+    minusOneOrderProduct.addEventListener('click', () => addOneProduct(product.id));
 
     return orderProduct;
 }

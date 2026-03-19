@@ -43,7 +43,7 @@ window.orderController = {
             if (bill.orderId === orderId)
                 return {
                 ...bill,
-                status : 'pending'
+                status : 'isPending'
                 }
             return bill;
         })

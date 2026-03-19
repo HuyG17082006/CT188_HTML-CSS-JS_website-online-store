@@ -9,12 +9,12 @@
     <link rel="icon" href="../assets/image/main/logoStore.png" sizes="64x64" type="image/png">
     <link rel="stylesheet" href="../style/default.css">
     <link rel="stylesheet" href="../style/cart.css">
-    
+    <link rel="stylesheet" href="../library/all.min.css">
 </head>
 
 <body>
     <div class="notification__container">
-        
+
     </div>
     <div class="pc__bar">
         <div class="introduce__bar">
@@ -135,9 +135,25 @@
         </div>
 
         <div class="cart__ordering__steps is-hidden">
-            <h1>Chọn sản phẩm</h1>
+            <h1 class="form__title">
+                <i class="fa-solid fa-laptop"></i>
+                Chọn sản phẩm
+            </h1>
+            <div class="order__header">
+                <div class="product">Sản phẩm</div>
+                <div class="order__header__info">
+                    <div></div>
+                    <div>Thông số</div>
+                    <div>Giá</div>
+                    <div>Số lượng</div>
+                    <div>Tổng tiền</div>
+                    <div>Thao tác</div>
+                </div>
+            </div>
             <div class="order__list">
+                <div>
 
+                </div>
             </div>
             <div class="order__accept ">
                 <div class="order__accept__inner">
@@ -149,18 +165,24 @@
             </div>
         </div>
         <div class="cart__accept__steps is-hidden">
-            <h1>
-                Xác nhận
+            <h1 class="form__title">
+                <i class="fa-solid fa-circle-check"></i>
+                Xác nhận đặt hàng
             </h1>
             <form method="post" class="cart__accept--form">
-                <img src="../assets/icon/arrow-left.svg" class="back__to__order" title="Quay lại">
                 <h2>Thông tin khách hàng</h2>
+                <label>Tên người nhận</label>
                 <input type="text" name="username" placeholder="Họ và tên..." required>
+                <label>Số điện thoại</label>
                 <input type="text" name="number_phone" placeholder="Số điện thoại..." required>
+                <label>Email</label>
                 <input type="text" name="email" placeholder="Email..." required>
                 <h2>Địa chỉ nhận hàng</h2>
                 <input type="text" name="address" placeholder="Địa chỉ nhận hàng..." required>
-                <button type="submit">Xác nhận đặt hàng</button>
+                <div class="choice">
+                    <button class="back__to__order" type="button">Quay lại</button>
+                    <button type="submit">Xác nhận đặt hàng</button>
+                </div>
             </form>
         </div>
     </div>

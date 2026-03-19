@@ -6,7 +6,7 @@ const { convertStringToInt, debounce } = window.helper;
 //DOM
 const listProducts = document.querySelector('.list__products');
 const emptyProduct = document.querySelector('.empty__product');
-const filterBoxBrandList = document.querySelectorAll('.filter__box--brand');
+const filterBoxBrandList = document.querySelectorAll('.list__filter');
 const searchInput = document.querySelector('.search__input');
 const sortButton = document.querySelector('.sort__group');
 const refreshButton = document.querySelector('.refresh__group');
@@ -178,9 +178,21 @@ function render () {
 productData();
 render();
 
-function setSelectedBrandFilter(item) {
-    brandFilter = item.dataset.brandName;
-    render();
+function setSelectedBrandFilter(e) {
+    if (e.target.tagName === "LI") {
+
+        brandFilter = e.target.dataset.brandName;        
+        
+        filterBoxBrandList.forEach(filterBox => filterBox.querySelectorAll('.filter__box--brand').forEach(item => {
+            item.classList.remove('active');
+            if (item.dataset.brandName === brandFilter)
+                item.classList.add('active');
+                }
+            )
+        )
+
+        render();
+    }
 }
 
 function setChangePriceMode() {
@@ -231,7 +243,5 @@ refreshButton.addEventListener('click', resetFilter);
 usingFilterList.forEach(item => {
     item.addEventListener('click', () => setSelectedUsingFilter(item))
 })
-filterBoxBrandList.forEach(item =>
-    item.addEventListener('click', () => setSelectedBrandFilter(item))
-)
+filterBoxBrandList.forEach(i => i.addEventListener('click', setSelectedBrandFilter));
 

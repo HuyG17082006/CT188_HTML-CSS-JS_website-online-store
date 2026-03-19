@@ -16,11 +16,15 @@ const billContainer = document.querySelector('.bill__container');
 const billList = billContainer.querySelector('.bill__list');
 const emptyList = billContainer.querySelector('.empty__list');
 
+const billTypeSelectList = document.querySelector('.bill__container ul')
+
 const listSideBarBtn = document.querySelectorAll('.side__bar__item');
 
 const logoutBtn = document.querySelector('.side__bar__logout');
 
 let choice = 'info';
+
+let billType = 'ordered';
 
 function renderUI(choice) {
     infoContainer.classList.toggle('is-hidden', choice !== 'info');
@@ -34,7 +38,7 @@ function renderData(choice) {
         renderUserBillList();
 }
 
-function renderContainer () {
+function renderContainer() {
     if (!me.get()) {
         window.location.replace('../view/auth.html');
         return;
@@ -43,9 +47,9 @@ function renderContainer () {
     renderData(choice);
 }
 
-function renderUserInfor () {
+function renderUserInfor() {
     const user = me.get();
-    
+
     usernameInput.value = user.username;
     receiverNameInput.value = user.receiver_name || null;
     emailInput.value = user.email;
@@ -53,19 +57,23 @@ function renderUserInfor () {
     addressInput.value = user.address || null;
 }
 
+function fillterBill(list, type) {
+    return list.filter(bill => bill.status === type);
+}
+
 function renderUserBillList() {
     billList.innerHTML = '';
     const userId = me.get().id;
 
     const userBills = orderController.getUserOrderList(userId);
-
     if (!userBills || userBills.bills.length === 0) {
         billList.classList.remove('is-hidden');
         emptyList.classList.add('is-hidden');
         return;
     }
 
-    const bills = userBills.bills;
+    const bills = fillterBill(userBills.bills, billType);
+
 
     let billCode = 1;
 
@@ -80,134 +88,95 @@ function renderBillItem(bill, shortId, maxItemPerTime = 3) {
     billItem.className = 'bill__item';
     billItem.id = bill.orderId;
 
-    const header = document.createElement('div');
-    header.className = 'bill__header';
-
-    const billId = document.createElement('span');
-    billId.className = 'bill__id';
-    billId.innerText = `Đơn : ${shortId}`;
-
-    const billDate = document.createElement('span');
-    billDate.className = 'bill__date';
-    billDate.innerText = `Ngày đặt : ${bill.date}`;
-
-    header.append(billId, billDate);
-
-    const receiver = document.createElement('div');
-    receiver.className = 'bill__receiver';
-
-    receiver.innerHTML = `
-        <p>Người nhận : ${bill.username}</p>
-        <p>SĐT : ${bill.number_phone}</p>
-        <p>Địa chỉ : ${bill.address}</p>
-    `;
-
-    const productContainer = document.createElement('div');
-    productContainer.className = 'bill__products__container';
-
-    const title = document.createElement('h3');
-    title.innerText = 'Danh sách :';
-
-    const productsBox = document.createElement('div');
-    productsBox.className = 'bill__products';
-
     const previewProducts = bill.userCart.slice(0, maxItemPerTime);
 
-    previewProducts.forEach(({ productId, quantity }) => {
-        productsBox.append(renderBillProduct(productId, quantity));
-    });
+    billItem.innerHTML = `
+        <div class="bill__header">
+            <span class="bill__id">Đơn : ${shortId}</span>
+            <span class="bill__date">Ngày đặt : ${bill.date}</span>
+        </div>
+
+        <div class="bill__receiver">
+            <p>Người nhận : ${bill.username}</p>
+            <p>SĐT : ${bill.number_phone}</p>
+            <p>Địa chỉ : ${bill.address}</p>
+        </div>
+
+        <div class="bill__products__container">
+            <h3>Danh sách :</h3>
+            <div class="bill__products">
+            </div>
+        </div>
+
+        <div class="bill__footer">
+            <span class="bill__total--text">
+                Tổng tiền :
+                <span class="bill__total--price">${bill.totalPrice}</span>
+            </span>
+        </div>
+    `;
+
+    const productsBox = billItem.querySelector('.bill__products');
+
+    let moreBtn = null;
 
     if (bill.userCart.length > maxItemPerTime) {
-        const moreBtn = document.createElement('button');
-        moreBtn.classList.add('more__button')
-        moreBtn.innerText = `+ ${bill.userCart.length - maxItemPerTime} sản phẩm khác`;
-
-        moreBtn.addEventListener('click', () => {
-            productsBox.innerHTML = '';
-            bill.userCart.forEach(({ productId, quantity }) => {
-                productsBox.append(renderBillProduct(productId, quantity));
-            });
-            moreBtn.remove();
-        });
-
-        productsBox.append(moreBtn);
+        moreBtn = document.createElement('button');
+        moreBtn.className = 'more__button';
+        moreBtn.innerText = `+ ${bill.userCart.length - maxItemPerTime} sản phẩm khác`
     }
 
-    productContainer.append(title, productsBox);
+    previewProducts.forEach(p => {
+        const product = getProductDetail(p.productId);
+        productsBox.appendChild(renderBillProduct(product, p.quantity))
+    })
 
-    const footer = document.createElement('div');
-    footer.className = 'bill__footer';
+    if (moreBtn) {
+        moreBtn.addEventListener('click', () => {
+            productsBox.innerHTML = '';
 
-    const totalText = document.createElement('span');
-    totalText.classList.add('bill__total--text')
-    totalText.innerText = `Tổng tiền : `;
-
-    const totalPrice = document.createElement('span');
-    totalPrice.classList.add('bill__total--price');
-    totalPrice.innerText = `${bill.totalPrice}`;
-    
-    totalText.append(totalPrice)
-
-    footer.append(totalText);
-
-    billItem.append(
-        header,
-        receiver,
-        productContainer,
-        footer
-    );
+            bill.userCart.forEach(p => {
+                const product = getProductDetail(p.productId);
+                productsBox.appendChild(renderBillProduct(product, p.quantity))
+            })
+            moreBtn.remove();
+        });
+        productsBox.appendChild(moreBtn);
+    }
 
     return billItem;
 }
 
-function getProductDetail (productId) {
+function getProductDetail(productId) {
     return productController.getProduct(productId);
 }
 
-function renderBillProduct(productId, quantity) {
-    const product = getProductDetail(productId);
+function renderBillProduct(product, quantity) {
 
-    const item = document.createElement('div');
-    item.className = 'bill__product';
+    const billProduct = document.createElement('div');
+    billProduct.className = 'bill__product';
+    billProduct.innerHTML = `<img src="${product.image_src}" alt="${product.name}">
+                        <div class="bill__product__inner">
+                            <span class="product__name">${product.name}</span>
+                            <span class="product__spec">${product.spec}</span>
+                            <div class="product__amount">
+                                <span class="product__quantity">x${quantity}</span>
+                                <span class="product__price">${product.price}</span>
+                            </div>
+                        </div>
+    `
 
-    const img = document.createElement('img');
-    img.src = product.image_src;
-    img.alt = product.name;
-
-    const inner = document.createElement('div');
-    inner.className = 'bill__product__inner';
-
-    const name = document.createElement('span');
-    name.className = 'product__name';
-    name.innerText = product.name;
-
-    const amount = document.createElement('div');
-    amount.className = 'product__amount';
-
-    const quantitySpan = document.createElement('span');
-    quantitySpan.className = 'product__quantity';
-    quantitySpan.innerText = `x${quantity}`;
-
-    const price = document.createElement('span');
-    price.className = 'product__price';
-    price.innerText = product.price;
-
-    amount.append(quantitySpan, price);
-    inner.append(name, amount);
-
-    item.append(img, inner);
-
-    return item;
+    return billProduct;
 }
 
 
-function render () {
+function render() {
     renderContainer();
 }
 
 render();
 
-function updateUserInfor () {
+function updateUserInfor() {
     const user = me.get();
 
     const receiver_name = receiverNameInput.value;
@@ -223,7 +192,7 @@ function updateUserInfor () {
     renderNoti();
 }
 
-function choiceContent (e) {
+function choiceContent(e) {
 
     if (e.target.classList.contains('side__bar__logout'))
         return;
@@ -238,7 +207,7 @@ function choiceContent (e) {
     render()
 }
 
-function acceptToLogout () {
+function acceptToLogout() {
     logoutBtn.innerText = 'Chắc chưa ní?'
     logoutBtn.addEventListener('click', logout)
     logoutBtn.removeEventListener('click', acceptToLogout);
@@ -250,10 +219,22 @@ function acceptToLogout () {
     }, 3000)
 }
 
-function logout () {
+function logout() {
     me.remove();
     render();
     addNotification('success', 'Đăng xuất thành công', 2000);
+}
+
+function choiceType(e) {
+    if (e.target.tagName !== "LI")
+        return;
+
+    const typeList = billTypeSelectList.querySelectorAll('li');
+    typeList.forEach(l => l.classList.remove('selected'));
+
+    billType = e.target.dataset.type;
+    e.target.classList.add('selected');
+    render();
 }
 
 logoutBtn.addEventListener('click', acceptToLogout);
@@ -263,4 +244,6 @@ updateInforBtn.addEventListener('click', updateUserInfor);
 listSideBarBtn.forEach(btn =>
     btn.addEventListener('click', choiceContent)
 )
+
+billTypeSelectList.addEventListener('click', choiceType)
 
