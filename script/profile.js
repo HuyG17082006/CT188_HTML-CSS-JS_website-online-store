@@ -81,6 +81,8 @@ function renderUserBillList() {
         billList.append(renderBillItem(bill, `#${billCode}`, 3));
         billCode++;
     })
+
+    
 }
 
 function renderBillItem(bill, shortId, maxItemPerTime = 3) {
@@ -171,7 +173,9 @@ function renderBillProduct(product, quantity) {
 
 
 function render() {
+    
     renderContainer();
+    
 }
 
 render();
@@ -234,6 +238,7 @@ function choiceType(e) {
 
     billType = e.target.dataset.type;
     e.target.classList.add('selected');
+
     render();
 }
 

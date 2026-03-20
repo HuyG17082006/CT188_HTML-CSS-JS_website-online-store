@@ -9,6 +9,7 @@
     <link rel="icon" href="../assets/image/main/logoStore.png" sizes="64x64" type="image/png">
     <link rel="stylesheet" href="../style/default.css">
     <link rel="stylesheet" href="../style/profile.css">
+    <link rel="stylesheet" href="../library/all.min.css">
 </head>
 
 <body>
@@ -131,7 +132,10 @@
             </div>
             <div class="side__container">
                 <div class="content__container info__container ">
-                    <h2>Thông tin cá nhân</h2>
+                    <h2 class="main__title">
+                        <i class="fa-solid fa-id-card"></i>
+                        Thông tin cá nhân
+                    </h2>
                     <div class="input__field">
                         <label>Tên tài khoản</label>
                         <input type="text" class="username" maxlength="20" readonly>
@@ -157,7 +161,10 @@ Nhơn Mỹ, Chợ Mới, An Giang</textarea>
                     <button class="update__button">Cập nhật</button>
                 </div>
                 <div class="content__container bill__container is-hidden">
-                    <h2>Đơn mua</h2>
+                    <h2 class="main__title">
+                        <i class="fa-solid fa-receipt"></i>
+                        Đơn mua
+                    </h2>
                     <ul>
                         <li class="selected" data-type="ordered">Đã đặt</li>
                         <li data-type="isPending">Vận chuyển</li>

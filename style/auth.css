@@ -1,7 +1,6 @@
 
 
 .auth__container {
-    min-width: 320px;
     max-width: 340px;
     width: 100%;
     justify-self: center;
@@ -40,8 +39,54 @@
     gap: 10px;
 }
 
+.auth__form--signIn .bar {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.auth__form--signIn .bar p {
+    z-index: 1;
+    font-size: 17px;
+    background: #ffffff;
+    width: 20%;
+    text-align: center;
+}
+
+.auth__form--signIn .bar .bar__inner {
+    position: absolute;
+    border: 1px solid black;
+    width: 100%;
+    top: 50%;
+    z-index: 0;
+}
+
 .auth__form--signIn .auth__title {
     padding-bottom: 30px;
+}
+
+.sign__another__container {
+    list-style: none;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+}
+
+.sign__another__container li {
+    width: 45%;
+    border: 1px solid rgb(190, 190, 190);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.sign__another__container img {
+    width: 30px;
 }
 
 .auth__error {
@@ -138,6 +183,7 @@
     flex-direction: column;
     gap: 20px;
     background: linear-gradient(185deg,rgb(77, 118, 255), rgb(47, 47, 204));
+    z-index: 2;
 }
 
 .auth__navigate h2 {
@@ -219,6 +265,14 @@
         display: flex;
         
         transition: all 0.5s ease;
+    }
+
+    .sign__another__container {
+        height: 50px;
+    }
+
+    .sign__another__container img {
+        width: 45px;
     }
 
     .auth__form {

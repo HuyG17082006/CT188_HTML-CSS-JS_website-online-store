@@ -1,6 +1,6 @@
 .cart__container {
     margin-top: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     max-width: 1440px;
     width: 80%;
     justify-self: center;
@@ -367,7 +367,7 @@
 
     .cart__container {
         margin-top: 150px;
-        margin-bottom: 100px;
+        margin-bottom: 40px;
         display: flex;
     }
 
@@ -376,9 +376,6 @@
         align-items: center;
     }
 
-    .order__accept {
-        margin-bottom: 130px;
-    }
 
     .image__border img {
         width: 120px;
@@ -478,10 +475,6 @@
 
     .product__info span span, .mobile__quantity {
         display: none;
-    }
-
-    .cart__accept__steps {
-        margin-bottom: 120px;
     }
 
     .cart__accept--form {
