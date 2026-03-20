@@ -190,9 +190,13 @@ function setSelectedBrandFilter(e) {
                 }
             )
         )
-
         render();
     }
+}
+
+function resetSelectedBrand() {
+    filterBoxBrandList.forEach(filterBox => filterBox.querySelectorAll('.filter__box--brand').forEach(item => {
+            item.classList.remove('active')}));
 }
 
 function setChangePriceMode() {
@@ -221,6 +225,7 @@ function resetFilter() {
     brandFilter = '';
     count = 0;
     searchInput.value = '';
+    resetSelectedBrand();
     resetUsingFilter();
     render();
 }

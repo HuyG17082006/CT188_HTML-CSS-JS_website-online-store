@@ -1,6 +1,6 @@
 
 .products__container {
-    border-top: 1px solid black;
+    border-top: 1px solid rgb(64, 210, 255);
     justify-self: center;
     max-width: 1440px;
     min-width: 288px;
