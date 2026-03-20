@@ -13,14 +13,22 @@
 .auth__form{
     display: none;
     flex-direction: column;
-    
     height: 500px;
     justify-content: center;
     align-items: center;
-
     background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.auth__form button {
+    transition: all 0.4s ease;
+}
+
+.auth__form button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2);
 }
 
 .auth__title {
@@ -76,7 +84,7 @@
 
 .sign__another__container li {
     width: 45%;
-    border: 1px solid rgb(190, 190, 190);
+    border: 1px solid rgb(101, 163, 255);
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -272,7 +280,7 @@
     }
 
     .sign__another__container img {
-        width: 45px;
+        width: 40px;
     }
 
     .auth__form {

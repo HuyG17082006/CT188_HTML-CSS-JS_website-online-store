@@ -107,20 +107,15 @@ function renderUserInfor (form) {
     form.elements['address'].value = user.address || null; 
 }
 
-function acceptOrder (form) {
-    const formData = new FormData(form);
-
+function acceptOrder () {
+    const formData = new FormData(cartAcceptForm);
     const userId = me.get().id;
-
     const username = formData.get('username');
     const email = formData.get('email');
     const number_phone = formData.get('number_phone');
     const address = formData.get('address');
-
     const list = cartController.getUserCart().items;
-
     const orderId = crypto.randomUUID();
-
     orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, formatString(totalPrice));
     console.log(localStorage.getItem('orders'))
     RenderState();
@@ -214,7 +209,7 @@ render();
 
 cartAcceptForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    acceptOrder(cartAcceptForm)
+    showConfirmBox(acceptOrder, "Xác nhận đơn hàng", "Bạn có chắc chắn muốn đặt hàng không?")
 });
 
 backToOrderBtn.addEventListener('click', goBackToOrderStep);

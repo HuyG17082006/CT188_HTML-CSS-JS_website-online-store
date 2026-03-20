@@ -10,9 +10,28 @@
     <link rel="stylesheet" href="../style/default.css">
     <link rel="stylesheet" href="../style/cart.css">
     <link rel="stylesheet" href="../library/all.min.css">
+    <link rel="stylesheet" href="../style/confirmBox.css">
 </head>
 
 <body>
+    <div class="covered is-hidden">
+        <div class="confirm__box">
+            <div class="confirm__icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <h3 class="confirm__title">Xác nhận</h3>
+
+            <p class="confirm__desc">
+                Bạn có chắc muốn thực hiện hành động này?
+            </p>
+
+            <div class="confirm__actions">
+                <button class="btn cancel">Hủy</button>
+                <button class="btn confirm">Đồng ý</button>
+            </div>
+        </div>
+    </div>
     <div class="notification__container">
 
     </div>
@@ -222,6 +241,7 @@
     <script src="../controller/orderController.js"></script>
     <script src="../script/cart.js"></script>
     <script src="../components/header.js"></script>
+    <script src="../components/confirm.js"></script>
 </body>
 
 </html>
