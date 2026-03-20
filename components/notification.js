@@ -61,7 +61,6 @@ function addNotification (type, message, time) {
 function removeNotification () {
     const list = JSON.parse(localStorage.getItem('notis')) || [];
     const [,...newList] = list;
-    console.log('newList', newList)
     localStorage.setItem('notis', JSON.stringify(newList));
 }
 

@@ -71,7 +71,6 @@ function renderUserBillList() {
     if (!userBills || bills.length === 0) {
         billList.classList.remove('is-hidden');
         billList.append(emptyItem());
-        console.log(1)
         return;
     }
 
