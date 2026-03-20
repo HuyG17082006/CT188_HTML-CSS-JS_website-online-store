@@ -209,7 +209,7 @@ render();
 
 cartAcceptForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    showConfirmBox(acceptOrder, "Xác nhận đơn hàng", "Bạn có chắc chắn muốn đặt hàng không?")
+    showConfirmBox(acceptOrder, "Xác nhận đơn hàng", "Bạn có chắc chắn muốn đặt hàng không?");
 });
 
 backToOrderBtn.addEventListener('click', goBackToOrderStep);

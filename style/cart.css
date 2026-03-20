@@ -328,17 +328,27 @@
     border: none;
     height: 50px;
     font-size: 18px;
-    background: #2563eb;
-    color: white;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.cart__accept--form button:hover {
+.cart__accept--form .submit {
+    background: #2563eb;
+    color: white;
+}
+
+.cart__accept--form .submit:hover {
     background: #1d4ed8;
     transform: translateY(-1px);
     box-shadow: 0 6px 12px rgba(37, 99, 235, 0.2);
 }
+
+.cart__accept--form .back__to__order:hover {
+    background: #dfdfdf;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(204, 204, 204, 0.2);
+}
+
 
 @keyframes flyLeft {
     0% {

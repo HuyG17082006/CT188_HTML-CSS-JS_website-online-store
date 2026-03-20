@@ -9,6 +9,7 @@ function showConfirmBox (fn, title = '', message = '') {
     confirmTitle.innerText = title;
     confirmDesc.innerText = message;
     confirmBtn.onclick = () => confirm(fn);
+    cancelBtn.onclick = () => closeConfirmBox();
 }
 
 function closeConfirmBox () {
@@ -16,7 +17,8 @@ function closeConfirmBox () {
 }
 
 function confirm (fn) {
-    fn();
+    if (typeof fn === 'function')
+        fn();
     closeConfirmBox();
 }
 
@@ -24,5 +26,3 @@ confirmBox.addEventListener('click', (e) => {
     if (e.target.className === 'covered')
         closeConfirmBox()
 });
-
-cancelBtn.addEventListener('click', closeConfirmBox);
