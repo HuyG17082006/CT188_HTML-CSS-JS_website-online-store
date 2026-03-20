@@ -14,7 +14,6 @@ const updateInforBtn = infoContainer.querySelector('.update__button');
 
 const billContainer = document.querySelector('.bill__container');
 const billList = billContainer.querySelector('.bill__list');
-const emptyList = billContainer.querySelector('.empty__list');
 
 const billTypeSelectList = document.querySelector('.bill__container ul')
 
@@ -66,14 +65,15 @@ function renderUserBillList() {
     const userId = me.get().id;
 
     const userBills = orderController.getUserOrderList(userId);
-    if (!userBills || userBills.bills.length === 0) {
-        billList.classList.remove('is-hidden');
-        emptyList.classList.add('is-hidden');
-        return;
-    }
 
     const bills = fillterBill(userBills.bills, billType);
 
+    if (!userBills || bills.length === 0) {
+        billList.classList.remove('is-hidden');
+        billList.append(emptyItem());
+        console.log(1)
+        return;
+    }
 
     let billCode = 1;
 
@@ -81,8 +81,16 @@ function renderUserBillList() {
         billList.append(renderBillItem(bill, `#${billCode}`, 3));
         billCode++;
     })
+}
 
-    
+function emptyItem () {
+    const empty = document.createElement('div');
+    empty.className = 'empty__item';
+    empty.innerHTML = `
+        <i class="fa-solid fa-box-open"></i>
+        <p>Chưa có gì cả!</p>
+    `
+    return empty
 }
 
 function renderBillItem(bill, shortId, maxItemPerTime = 3) {

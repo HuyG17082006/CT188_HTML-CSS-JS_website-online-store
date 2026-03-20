@@ -371,7 +371,7 @@
     border-radius: 50%;
     display: flex;
     justify-content: center;
-     background: linear-gradient(135deg,#6dd5fa,#a18cd1,#fbc2eb);
+     background: linear-gradient(135deg,#6dd5fa,#bda1ff,#fbc2eb);
     animation: changeColor 4s linear infinite;
 }
 
@@ -401,7 +401,7 @@
     cursor: pointer;
     border-radius: 999px;
     font-size: 14px;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .type__using__filter li:hover {
