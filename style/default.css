@@ -37,6 +37,10 @@ button {
     cursor: pointer;
 }
 
+ul li {
+    user-select: none;
+}
+
 /* pc display */
 .pc__bar {
     border-bottom: 1px solid #dce8ff;
