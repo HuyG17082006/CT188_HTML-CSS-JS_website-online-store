@@ -21,6 +21,8 @@ const signUp_emailError = authFormSignUp.querySelector('.auth__error--email');
 const navigateP = authFormNavigate.querySelector('p');
 const navigateH2 = authFormNavigate.querySelector('h2');
 
+const signAnotherContainer = authFormSignIn.querySelector('.sign__another__container');
+
 //dependencies:
 const authController = window.authController;
 
@@ -120,8 +122,6 @@ function signIn (e) {
     window.location.replace('home.html');
 }
 
-authFormSignIn.addEventListener('submit', signIn);
-
 //sign up
 function signUp (e) {
     e.preventDefault();
@@ -146,5 +146,11 @@ function signUp (e) {
 }
 
 
+authFormSignIn.addEventListener('submit', signIn);
+authFormSignUp.addEventListener('submit', signUp);
+signAnotherContainer.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI')
+        addNotification('warning', 'Chức năng đang trong quá trình phát triển!', 1500);
+    renderNoti();
+})
 
-authFormSignUp.addEventListener('submit', signUp)

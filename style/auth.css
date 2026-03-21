@@ -93,6 +93,10 @@
     cursor: pointer;
 }
 
+.sign__another__container li * {
+    pointer-events: none;
+}
+
 .sign__another__container img {
     width: 30px;
 }
