@@ -1,7 +1,7 @@
 window.helper = {
     convertStringToInt(price) {
         return Number(price.replace(/[^\d]/g, ''));
-    },
+    }, //Chuyển đổi từ string sang kiểu int
 
     convertIntToVietNamDong(price) {
         const newPrice = price.toString();
@@ -21,7 +21,7 @@ window.helper = {
         }
 
         return newString;
-    }, 
+    }, //Chuyển đồi từ kiểu int sang string với format (xxx.xxx.xxxđ)
 
     locked : false,
     lockAction(time) {
