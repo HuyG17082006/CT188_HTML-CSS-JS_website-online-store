@@ -149,8 +149,9 @@ function signUp (e) {
 authFormSignIn.addEventListener('submit', signIn);
 authFormSignUp.addEventListener('submit', signUp);
 signAnotherContainer.addEventListener('click', (e) => {
-    if (e.target.tagName === 'LI')
+    if (e.target.tagName === 'LI') {
         addNotification('warning', 'Chức năng đang trong quá trình phát triển!', 1500);
-    renderNoti();
+        renderNoti();
+    }
 })
 

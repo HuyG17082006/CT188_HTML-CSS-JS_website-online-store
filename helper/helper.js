@@ -2,7 +2,8 @@ window.helper = {
     convertStringToInt(price) {
         return Number(price.replace(/[^\d]/g, ''));
     },
-    formatString(price) {
+
+    convertIntToVietNamDong(price) {
         const newPrice = price.toString();
         let newString = 'đ';
         let count = 0;
@@ -20,5 +21,18 @@ window.helper = {
         }
 
         return newString;
-    }
+    }, 
+
+    locked : false,
+    lockAction(time) {
+        if (this.locked)
+            return true;
+
+        this.locked = true;
+        setTimeout(() => {
+            this.locked = false;
+        }, time)
+
+        return false;
+    } //Thiết lập khoảng thời gian giữa các lần thực hiện cùng một hành động
 }

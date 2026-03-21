@@ -1,4 +1,6 @@
 const products = window.productController ? window.productController.getList() : [];
+const { convertStringToInt } = window.helper;
+
 const productContainer = document.querySelector(".list__products");
 
 const officeBtn = document.querySelectorAll(".laptop-item")[0];
@@ -29,6 +31,10 @@ function renderProducts(productList) {
 }
 
 function handleAddToCart(productId) {
+
+    if (helper.lockAction(500))
+        return;
+
     if (window.cartController && window.cartController.addToCart(productId)) {
             window.addNotification('success', 'Đã thêm vào giỏ hàng', 2000);
     } else {

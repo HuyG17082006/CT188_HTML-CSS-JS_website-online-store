@@ -2,7 +2,7 @@
 const productController = window.productController;
 const cartController = window.cartController;
 const orderController = window.orderController;
-const { formatString, convertStringToInt } = window.helper;
+const { convertIntToVietNamDong, convertStringToInt } = window.helper;
 
 //DOM
 const cartAuthorization = document.querySelector('.cart__authorization--box');
@@ -72,7 +72,7 @@ function renderUserCart () {
 
 function renderTotalProductValue ({totalPrice = 0, totalProducts = 0}) {
     totalProductAmount.innerText = totalProducts;
-    totalProductPrice.innerText = formatString(totalPrice);
+    totalProductPrice.innerText = convertIntToVietNamDong(totalPrice);
 }
 
 function resetTotal () {
@@ -116,7 +116,7 @@ function acceptOrder () {
     const address = formData.get('address');
     const list = cartController.getUserCart().items;
     const orderId = crypto.randomUUID();
-    orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, formatString(totalPrice));
+    orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, convertIntToVietNamDong(totalPrice));
     console.log(localStorage.getItem('orders'))
     RenderState();
     addNotification('success', 'Đặt hàng thành công!', 2000);
@@ -166,7 +166,7 @@ function renderOrderProduct(product, amount) {
 
             <span class="product__cost">
                 <span>Tổng tiền : </span>
-                ${helper.formatString(totalPrice)}
+                ${helper.convertIntToVietNamDong(totalPrice)}
             </span>
         </div>
 

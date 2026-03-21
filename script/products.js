@@ -1,7 +1,7 @@
 // Dependencies
 const productController = window.productController;
 const cartController = window.cartController;
-const { convertStringToInt, debounce } = window.helper;
+const { convertStringToInt } = window.helper;
 
 //DOM
 const listProducts = document.querySelector('.list__products');
@@ -10,7 +10,7 @@ const filterBoxBrandList = document.querySelectorAll('.list__filter');
 const searchInput = document.querySelector('.search__input');
 const sortButton = document.querySelector('.sort__group');
 const refreshButton = document.querySelector('.refresh__group');
-const usingFilterList = document.querySelectorAll('.using__filter')
+const usingFilterList = document.querySelector('.type__using__filter')
 
 //FUNCTION
 function productData() {
@@ -48,20 +48,9 @@ function renderUIProduct(item, index) {
     return divOuter;
 }
 
-let locked = false;
-
-function lockAction () {
-    locked = true;
-    setTimeout(() => {
-        locked = false;
-    }, 500)
-}
-
 function addToCart(id) {
-    if (locked)
+    if (helper.lockAction(500))
         return;
-
-    lockAction();
 
     const productId = id;
     if (cartController.addToCart(productId))
@@ -105,20 +94,20 @@ const MAX_PAGE_SIZE = 15;
 let startIndex = 0;
 let endIndex = 15;
 
-function visibleListProduct (list, { startIndex, endIndex }) {
+function visibleListProduct(list, { startIndex, endIndex }) {
     if (list.length > endIndex)
         return list.slice(startIndex, endIndex);
     return list.slice(startIndex, list.length);
 }
 
-function getFilterList () {
+function getFilterList() {
     const list = productController.getList();
 
     return filter(list, {
-        brand : brandFilter,
-        text : textFilter,
-        sortMode : priceMode[count],
-        type : usingFilter
+        brand: brandFilter,
+        text: textFilter,
+        sortMode: priceMode[count],
+        type: usingFilter
     });
 }
 
@@ -164,31 +153,28 @@ function renderProductsList(list) {
     }
 }
 
-function render () {
+function render() {
     listProducts.innerHTML = '';
     const filterList = getFilterList();
     resetPageSize();
-    
+
     if (renderEmptyList(filterList))
         return;
 
     renderProductsList(filterList);
 }
 
-productData();
-render();
-
 function setSelectedBrandFilter(e) {
     if (e.target.tagName === "LI") {
 
-        brandFilter = e.target.dataset.brandName;        
-        
+        brandFilter = e.target.dataset.brandName;
+
         filterBoxBrandList.forEach(filterBox => filterBox.querySelectorAll('.filter__box--brand').forEach(item => {
             item.classList.remove('active');
             if (item.dataset.brandName === brandFilter)
                 item.classList.add('active');
-                }
-            )
+        }
+        )
         )
         render();
     }
@@ -196,7 +182,8 @@ function setSelectedBrandFilter(e) {
 
 function resetSelectedBrand() {
     filterBoxBrandList.forEach(filterBox => filterBox.querySelectorAll('.filter__box--brand').forEach(item => {
-            item.classList.remove('active')}));
+        item.classList.remove('active')
+    }));
 }
 
 function setChangePriceMode() {
@@ -209,15 +196,17 @@ function handleSearchInput(e) {
     render();
 }
 
-function setSelectedUsingFilter(item) {
+function setSelectedUsingFilter(e) {
 
-    usingFilterList.forEach(i => 
-        i.classList.remove('selected')
-    )
+    if (e.target.tagName === 'LI') {
+        usingFilterList.querySelectorAll('li').forEach(i =>
+            i.classList.remove('selected')
+        )
 
-    item.classList.add('selected');
-    usingFilter = item.dataset.type;
-    render();
+        e.target.classList.add('selected');
+        usingFilter = e.target.dataset.type;
+        render();
+    }
 }
 
 function resetFilter() {
@@ -235,18 +224,19 @@ function resetPageSize() {
     endIndex = 15;
 }
 
-function resetUsingFilter () {
+function resetUsingFilter() {
     usingFilter = '';
     usingFilterList.forEach(item => {
         item.classList.remove('selected');
     })
 }
 
+productData();
+render();
+
 searchInput.addEventListener('input', handleSearchInput);
 sortButton.addEventListener('click', setChangePriceMode);
 refreshButton.addEventListener('click', resetFilter);
-usingFilterList.forEach(item => {
-    item.addEventListener('click', () => setSelectedUsingFilter(item))
-})
+usingFilterList.addEventListener('click', setSelectedUsingFilter);
 filterBoxBrandList.forEach(i => i.addEventListener('click', setSelectedBrandFilter));
 
