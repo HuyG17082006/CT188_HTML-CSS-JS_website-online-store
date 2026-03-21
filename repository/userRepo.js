@@ -1,16 +1,16 @@
-const userMongoDb = window.mongoDb
+const userDatabase = window.database
 
 window.userRepo = {
     findByUsername : (username) => {
-        return userMongoDb.findOne('users', 'username', username);
+        return userDatabase.findOne('users', 'username', username);
     },
     findByEmail : (email) => {
-        return userMongoDb.findOne('users', 'email', email);
+        return userDatabase.findOne('users', 'email', email);
     },
     insert : (user) => {
-        userMongoDb.insertOne('users', user);
+        userDatabase.insertOne('users', user);
     },
     update : (userId, newUser) => {
-        userMongoDb.replaceOne('users', 'id', userId, newUser)
+        userDatabase.replaceOne('users', 'id', userId, newUser)
     }
 }

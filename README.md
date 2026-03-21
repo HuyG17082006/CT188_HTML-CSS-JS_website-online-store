@@ -52,7 +52,9 @@ auth
 │     ├─ main
 │     │  ├─ 23-730x408-1.jpg
 │     │  ├─ asus-rog-mo-dat-hang-laptop-gaming-50-series-1-6-1365x1024.jpg
+│     │  ├─ download.jpg
 │     │  ├─ error.png
+│     │  ├─ facebook-logo-blue-circle_705838-12823.jpg
 │     │  ├─ H1_1440x242_0fd509341f.jpg
 │     │  ├─ H1_1440x242_6b2b92c3c5.jpg
 │     │  ├─ H1_1440x242_93f8d1845b.jpg
@@ -128,6 +130,7 @@ auth
 ├─ auth
 │  └─ me.js
 ├─ components
+│  ├─ confirm.js
 │  ├─ head.js
 │  ├─ header.js
 │  └─ notification.js
@@ -137,10 +140,13 @@ auth
 │  ├─ orderController.js
 │  └─ productController.js
 ├─ core
-│  └─ fakeMongo.js
+│  └─ database.js
 ├─ helper
 │  └─ helper.js
 ├─ index.html
+├─ library
+│  ├─ all.min.css
+│  └─ bootstrap.css
 ├─ repository
 │  ├─ cartRepo.js
 │  ├─ orderRepo.js
@@ -157,24 +163,28 @@ auth
 │  └─ data.js
 ├─ style
 │  ├─ auth.css
-│  ├─ bootstrap.css
 │  ├─ cart.css
+│  ├─ confirmBox.css
 │  ├─ default.css
 │  ├─ home.css
-│  ├─ home2.css
 │  ├─ info.css
+│  ├─ notification.css
 │  ├─ products.css
-│  ├─ profile.css
-│  └─ test.css
+│  └─ profile.css
 ├─ test.js
-└─ view
-   ├─ admin.html
-   ├─ auth.html
-   ├─ cart.html
-   ├─ home.html
-   ├─ info.html
-   ├─ products.html
-   ├─ profile.html
-   └─ test.html
+├─ view
+│  ├─ admin.html
+│  ├─ auth.html
+│  ├─ cart.html
+│  ├─ home.html
+│  ├─ info.html
+│  ├─ products.html
+│  ├─ profile.html
+│  └─ test.html
+└─ webfonts
+   ├─ fa-brands-400.woff2
+   ├─ fa-regular-400.woff2
+   ├─ fa-solid-900.woff2
+   └─ fa-v4compatibility.woff2
 
 ```

@@ -1,23 +1,23 @@
-const orderMongoDb = window.mongoDb;
+const orderDatabase = window.database;
 
 window.orderRepo = {
     getAll () {
-        return orderMongoDb.getCollection('orders');
+        return orderDatabase.getCollection('orders');
     },
 
     getOne (userId) {
-        return orderMongoDb.findOne('orders', 'userId', userId);
+        return orderDatabase.findOne('orders', 'userId', userId);
     },
 
     insert (userOrder) {
-        orderMongoDb.insertOne('orders', userOrder);
+        orderDatabase.insertOne('orders', userOrder);
     },
 
     remove (userId) {
-        orderMongoDb.deleteOne('orders', 'userId', userId);
+        orderDatabase.deleteOne('orders', 'userId', userId);
     },
 
     update (userId, newUserBill) {
-        orderMongoDb.replaceOne('orders', 'userId', userId, newUserBill)
+        orderDatabase.replaceOne('orders', 'userId', userId, newUserBill)
     }
 }

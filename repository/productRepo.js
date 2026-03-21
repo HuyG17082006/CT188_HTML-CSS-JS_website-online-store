@@ -1,23 +1,23 @@
-const productMongoDb = window.mongoDb
+const productDatabase = window.database
 
 window.productRepo = {
     getAll : () => {
-        return productMongoDb.getCollection('products');
+        return productDatabase.getCollection('products');
     },
 
     findById : (id) => {
-        return productMongoDb.findOne('products', 'id', id);
+        return productDatabase.findOne('products', 'id', id);
     },
 
     updateById : (id, newProductData) => {
-        productMongoDb.replaceOne('products', 'id', id, newProductData);
+        productDatabase.replaceOne('products', 'id', id, newProductData);
     },
 
     deleteById : (id) => {
-        productMongoDb.deleteOne('products', 'id', id);
+        productDatabase.deleteOne('products', 'id', id);
     },
 
     insert : (newProduct) => {
-        productMongoDb.insertOne('products', newProduct);
+        productDatabase.insertOne('products', newProduct);
     }
 }

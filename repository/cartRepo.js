@@ -1,8 +1,8 @@
-const cartMongoDb = window.mongoDb;
+const cartDatabase = window.database;
 
 window.cartRepo = {
     get (userId) {
-        return cartMongoDb.findOne('cart', 'userId', userId) 
+        return cartDatabase.findOne('cart', 'userId', userId) 
         || 
         {
             userId : userId,
@@ -21,7 +21,7 @@ window.cartRepo = {
             cart.items.push({ productId, quantity })
         }
 
-        cartMongoDb.replaceOne('cart', 'userId', userId, cart);
+        cartDatabase.replaceOne('cart', 'userId', userId, cart);
         return true;
     },
 
@@ -40,7 +40,7 @@ window.cartRepo = {
             return true;
         }
 
-        cartMongoDb.replaceOne('cart', 'userId', userId, cart);
+        cartDatabase.replaceOne('cart', 'userId', userId, cart);
         return true;
     },
 
@@ -52,6 +52,6 @@ window.cartRepo = {
             items : cart.items.filter(item => item.productId !== productId)
         }
 
-        cartMongoDb.replaceOne('cart', 'userId', userId, newCart);
+        cartDatabase.replaceOne('cart', 'userId', userId, newCart);
     }
 }

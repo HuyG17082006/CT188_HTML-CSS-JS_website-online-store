@@ -1,4 +1,4 @@
-window.mongoDb = {
+window.database = {
 
     getCollection (key) {
         return JSON.parse(localStorage.getItem(key)) || [];
