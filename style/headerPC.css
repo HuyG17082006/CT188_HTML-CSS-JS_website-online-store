@@ -1,0 +1,163 @@
+.pc__bar {
+    border-bottom: 1px solid #dce8ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    display: none;
+    position: fixed;
+    align-items: center;
+    top: 0;
+    left: 0;
+    height: 90px;
+    grid-template-rows: 20px 1fr;
+    z-index: 10000;
+}
+
+.introduce__bar {
+    background: linear-gradient(90deg, #2563eb, #1e40af);
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+.introduce__limit {
+    max-width: 900px;
+    min-width: 320px;
+    width: 100%;
+    display: inline-flex;
+    overflow: hidden;
+    gap: 60px;
+}
+
+.introduce__text {
+    animation: move_to_left 18s linear infinite;
+    display: inline-flex;
+    white-space: nowrap;
+    gap: 70px;
+}
+
+.introduce__bar span {
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.menu__pc__container {
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #ffffff;
+}
+
+.menu__pc {
+    list-style: none;
+    width: 100%;
+    max-width: 1200px;
+    display: flex !important;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pc__action {
+    padding: 7px;
+    width: 100%;
+    max-width: 150px;
+    height: 50px;
+    margin: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-size: 15px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s linear;
+}
+
+.pc__action.is-active {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-radius: 16px;
+}
+
+.pc__action.is-active span {
+    color: #ffffff;
+}
+
+.pc__action.is-active img {
+    filter: brightness(0) invert(1);
+}
+
+.app__logo {
+    display: block;
+}
+
+.pc__action img {
+    width: 24px;
+}
+
+.pc__action.app__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pc__action .logo {
+    height: 140px;
+    width: 140px;
+}
+
+.pc__action:not(.is-active, .app__logo):hover {
+    background-color: #89a8eb;
+}
+
+.pc__action a,
+.pc__action button {
+    display: flex;
+    line-height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* animation PC */
+@keyframes move_to_left {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+@keyframes dropPc {
+    0% { transform: translateX(30px); opacity: 0; }
+    30% { transform: translateX(0); opacity: 1; }
+    85% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(30px); opacity: 0; }
+}
+
+@media (min-width : 768px) {
+    .menu__pc {
+        display: grid;
+    }
+
+    .pc__bar {
+        background-color: #ffffff;
+        display: grid;
+        height: 120px;
+    }
+
+    .pc__action {
+        display: flex;
+    }
+
+    .logout {
+        display: none;
+    }
+}

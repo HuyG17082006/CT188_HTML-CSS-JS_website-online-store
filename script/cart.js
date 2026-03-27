@@ -70,8 +70,8 @@ function renderUserCart () {
     orderList.append(fragment)
 }
 
-function renderTotalProductValue ({totalPrice = 0, totalProducts = 0}) {
-    totalProductAmount.innerText = totalProducts;
+function renderTotalProductValue () {
+    totalProductAmount.innerText = totalItem;
     totalProductPrice.innerText = convertIntToVietNamDong(totalPrice);
 }
 
@@ -96,10 +96,15 @@ function removeProduct (productId) {
     RenderState();
 }
 
-function renderUserInfor (form) {
+function renderUserInfor () {
     const user = me.get();
 
     const username = user.receiver_name ? user.receiver_name : user.username;
+
+    if (!cartAcceptForm)
+        return;
+
+    const form = cartAcceptForm;
 
     form.elements['username'].value = username || null;
     form.elements['number_phone'].value = user.number_phone || null;
@@ -127,7 +132,7 @@ function goAcceptStep (e) {
     e.preventDefault();
     cartOrderStep.classList.add('is-hidden');
     cartAcceptStep.classList.remove('is-hidden');
-    renderUserInfor(cartAcceptForm);
+    renderUserInfor();
 }
 
 function goBackToOrderStep () {
@@ -199,10 +204,7 @@ function render () {
 function RenderState () {
     renderNoti();
     renderUserCart();
-    renderTotalProductValue({
-        totalPrice : totalPrice, 
-        totalProducts : totalItem
-    })
+    renderTotalProductValue()
 }
 
 render();

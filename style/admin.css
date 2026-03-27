@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+}
+
+.is-hidden {
+    display: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* 
+    form
+*/
+
+form {
+    position: fixed;
+    border : 1px solid black;
+    height: 600px;
+    display: flex;
+    width: 350px;
+    top : calc(50% - 340px);
+    left : calc(50% - 175px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 
+    Đơn mua
+*/
+
+/* 
+    Hàng hóa
+*/

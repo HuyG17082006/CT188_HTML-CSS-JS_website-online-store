@@ -180,9 +180,10 @@ function renderBillProduct(product, quantity) {
 
 
 function render() {
-    
+    if (!me.get()) {
+        window.location.replace('../view/auth.html')
+    }
     renderContainer();
-    
 }
 
 render();

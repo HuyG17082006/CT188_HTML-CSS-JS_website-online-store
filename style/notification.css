@@ -74,6 +74,16 @@
     animation: time_running linear forwards;
 }
 
+@keyframes time_running {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 @media (min-width : 768px) {
     .notification__container {
         top: 150px;

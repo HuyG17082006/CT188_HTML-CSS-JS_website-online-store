@@ -121,6 +121,7 @@ function renderEmptyList(list) {
 }
 
 function renderProductsList(list) {
+
     let visibleList = visibleListProduct(list, {
         startIndex,
         endIndex
@@ -168,13 +169,13 @@ function setSelectedBrandFilter(e) {
     if (e.target.tagName === "LI") {
 
         brandFilter = e.target.dataset.brandName;
-
+        
         filterBoxBrandList.forEach(filterBox => filterBox.querySelectorAll('.filter__box--brand').forEach(item => {
             item.classList.remove('active');
             if (item.dataset.brandName === brandFilter)
                 item.classList.add('active');
-        }
-        )
+                }
+            )
         )
         render();
     }
