@@ -1,4 +1,4 @@
-const isAdmin = window.me.get().isAdmin;
+const isAdmin = window.me.get()?.isAdmin || false;
 const cartController = window.cartController;
 const productController = window.productController;
 
