@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,39 +9,84 @@
     <title>Quản lí</title>
     <script src="../auth/me.js"></script>
 </head>
+
 <body>
-    <form class="">
+    <form class="is-hidden">
         <h2>Thêm hàng hóa</h2>
-        <div class="review__image__box">
-            <img src="" alt="" width="100px" height="100px">
+
+        <div class="form__content">
+            <div class="form__left">
+                <div class="input__group">
+                    <label>Tên hàng hóa</label>
+                    <input type="text" name="product--name">
+                    <span class="error--name"></span>
+                </div>
+
+                <div class="input__group">
+                    <label>Thuộc tính</label>
+                    <input type="text" name="product--spec" class="product--spec"
+                        placeholder="VD: i5 • Iris Xe • 8GB • 512GB">
+                    <button class="add__syntax" type="button"> • </button>
+                    <span class="error--spec"></span>
+                </div>
+
+                <div class="input__group">
+                    <label>Giá</label>
+                    <input type="text" name="product--price">
+                    <span class="error--price"></span>
+                </div>
+
+                <div class="input__group">
+                    <label>Hãng</label>
+                    <select name="product--brand">
+                        <option value="">-- Chọn hãng --</option>
+                        <option value="dell">Dell</option>
+                        <option value="acer">Acer</option>
+                        <option value="asus">Asus</option>
+                        <option value="msi">MSI</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="lenovo">Lenovo</option>
+                        <option value="hp">HP</option>
+                        <option value="gigabyte">Gigabyte</option>
+                        <option value="surface">Surface</option>
+                    </select>
+                    <span class="error--brand"></span>
+                </div>
+
+                <div class="input__group">
+                    <label>Loại</label>
+                    <select name="product--category">
+                        <option value="">-- Chọn loại --</option>
+                        <option value="office">Office</option>
+                        <option value="study">Study</option>
+                        <option value="gaming">Gaming</option>
+                    </select>
+                    <span class="error--category"></span>
+                </div>
+            </div>
+
+            <div class="form__right">
+                <div class="review__image__box">
+                    <img src="" alt="" width="140px" height="140px">
+                </div>
+
+                <div class="upload__box" id="upload__box">
+                    <i class="fa-solid fa-upload"></i>
+                    <span class="normal__mess">Tải ảnh lên</span>
+                    <span class="error--file"></span>
+                </div>
+            </div>
+
         </div>
-        <div>
-            <label>Tên hàng hóa</label>
-            <input type="text" name="product--name">
-            <span class="error--name"></span>
-        </div>
-        <div>
-            <label>Thuộc tính</label>
-            <input type="text" name="product--spec">
-            <span class="error--spec"></span>
-        </div>
-        <div>
-            <label>Giá</label>
-            <input type="number" name="product--price">
-            <span class="error--price"></span>
-        </div>
-        <div>
-            <label>Ảnh</label>
+        <div class="input__group is-hidden">
             <input type="file" name="product--image" class="product--image">
-            <span class="error--file"></span>
         </div>
 
         <div class="btn__group">
-            <button type="submit">Thêm</button>
+            <button type="submit">Xác nhận</button>
             <button class="cancel__btn">Hủy</button>
         </div>
     </form>
-
     <div class="container-fluid ">
         <div class="row vh-100">
             <div class="col-3 side__bar">
@@ -132,7 +178,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="product__container">
+                <div class="product__container is-hidden">
                     <div class="tool__box">
                         <div class="tool__box--search">
                             <input type="text" placeholder="Tìm gì đó..." maxlength="20">
@@ -196,4 +242,5 @@
     <script src="../controller/cartController.js"></script>
     <script src="../script/admin.js"></script>
 </body>
+
 </html>
