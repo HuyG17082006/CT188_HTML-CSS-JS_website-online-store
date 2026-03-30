@@ -4,13 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/notification.css">
     <link rel="stylesheet" href="../library/bootstrap.css">
     <link rel="stylesheet" href="../style/admin.css">
+    
     <title>Quản lí</title>
+    <script src="../components/head.js"></script>
     <script src="../auth/me.js"></script>
 </head>
 
 <body>
+    <div class="notification__container">
+        
+    </div>
     <form class="is-hidden">
         <h2>Thêm hàng hóa</h2>
 
@@ -87,15 +93,17 @@
             <button class="cancel__btn">Hủy</button>
         </div>
     </form>
-    <div class="container-fluid ">
+    <div class="container-fluid admin__container">
         <div class="row vh-100">
-            <div class="col-3 side__bar">
-                <img src="../assets/image/main/logoStore.png" width="140px" alt="">
+            <div class="col-2 side__bar">
+                <div class="image__border">
+                    <img src="../assets/image/main/logoStore.png"  alt="">
+                </div>
                 <ul>
-                    <li>
+                    <li data-main-state="bills" class="selected">
                         Đơn mua
                     </li>
-                    <li>
+                    <li data-main-state="products">
                         Hàng hóa
                     </li>
                     <li class="log-out-btn">
@@ -103,129 +111,82 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-9 content__container">
-                <h1 class="title">
-                    Đơn mua
-                </h1>
-                <div class="bill__container">
-                    <div class="tool__box">
-                        <div class="tool__box--filter">
-                            <button class="nav-btn">
-                                <img src="" alt="">
-                            </button>
-                            <ul class="filter__list">
-                                <li>Gần đây</li>
-                                <li>Xa nhất</li>
-                                <li>Mặc định</li>
-                            </ul>
+            <div class="col-10 content__container">
+                <div class="content__container--inner">
+                    <h1 class="title">
+                        Đơn mua
+                    </h1>
+                    <div class="bill__container">
+                        <div class="tool__box">
+                            <div class="tool__box--filter">
+                                <ul class="filter__list">
+                                    <li>Gần đây</li>
+                                    <li>Xa nhất</li>
+                                    <li>Mặc định</li>
+                                </ul>
+                            </div>
+                            <div class="tool__box--button">
+                                <button class="confirm">
+                                    Xác nhận
+                                </button>
+                            </div>
                         </div>
-                        <div class="tool__box--button">
-                            <button class="add">
-                                Xác nhận
-                            </button>
+                        <ul class="bill__type__list">
+                            <li data-bill-type="ordered">Chưa xác nhận</li>
+                            <li data-bill-type="isPending">Đã xác nhận</li>
+                        </ul>
+                        <div class="list">
                         </div>
                     </div>
-                    <div class="list">
-                        <div class="bill" data-bill-id="" data-user-id="">
-                            <div class="info">
-                                <span class="date"></span>
-                                <span class="order-name"></span>
-                                <span class="address"></span>
+                    <div class="product__container">
+                        <div class="tool__box">
+                            <div class="tool__box--search">
+                                <input type="text" placeholder="Tìm gì đó..." maxlength="20">
                             </div>
-                            <div class="bill__list">
-                                <div class="order__product">
-                                    <div class="img__box">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <span class="name"></span>
-                                        <span class="spec"></span>
-                                        <div class="amount__box">
-                                            <span class="amount">x{total}</span>
-                                            <span class="price">xxx.xxxđ</span>
-                                        </div>
-                                    </div>
+                            <div class="tool__box--button">
+                                <button class="add">
+                                    Thêm
+                                </button>
+                                <button class="update">
+                                    Sửa
+                                </button>
+                                <button class="delete">
+                                    Xóa
+                                </button>
+                            </div>
+                        </div>
+                        <div class="list">
+                            <div class="product" id="{product-id}">
+                                <div class="img__box">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="info">
+                                    <span class="name">
+    
+                                    </span>
+                                    <span class="spec">
+    
+                                    </span>
+                                    <span class="price">
+    
+                                    </span>
                                 </div>
                             </div>
-                            <span class="total">
-                                xxx.xxxđ
-                            </span>
-                        </div>
-                        <div class="bill selected" data-bill-id="" data-user-id="">
-                            <div class="info">
-                                <span class="date"></span>
-                                <span class="order-name"></span>
-                                <span class="address"></span>
-                            </div>
-                            <div class="bill__list">
-                                <div class="order__product">
-                                    <div class="img__box">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <span class="name"></span>
-                                        <span class="spec"></span>
-                                        <div class="amount__box">
-                                            <span class="amount">x{total}</span>
-                                            <span class="price">xxx.xxxđ</span>
-                                        </div>
-                                    </div>
+                            <div class="product selected" id="{product-id}">
+                                <div class="img__box">
+                                    <img src="" alt="">
                                 </div>
-                            </div>
-                            <span class="total">
-                                xxx.xxxđ
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product__container is-hidden">
-                    <div class="tool__box">
-                        <div class="tool__box--search">
-                            <input type="text" placeholder="Tìm gì đó..." maxlength="20">
-                        </div>
-                        <div class="tool__box--button">
-                            <button class="add">
-                                Thêm
-                            </button>
-                            <button class="update">
-                                Sửa
-                            </button>
-                            <button class="delete">
-                                Xóa
-                            </button>
-                        </div>
-                    </div>
-                    <div class="list">
-                        <div class="product" id="{product-id}">
-                            <div class="img__box">
-                                <img src="" alt="">
-                            </div>
-                            <div class="info">
-                                <span class="name">
-
-                                </span>
-                                <span class="spec">
-
-                                </span>
-                                <span class="price">
-
-                                </span>
-                            </div>
-                        </div>
-                        <div class="product selected" id="{product-id}">
-                            <div class="img__box">
-                                <img src="" alt="">
-                            </div>
-                            <div class="info">
-                                <span class="name">
-
-                                </span>
-                                <span class="spec">
-
-                                </span>
-                                <span class="price">
-
-                                </span>
+                                <div class="info">
+                                    <span class="name">
+    
+                                    </span>
+                                    <span class="spec">
+    
+                                    </span>
+                                    <span class="price">
+    
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -234,12 +195,15 @@
         </div>
     </div>
     <script src="../helper/helper.js"></script>
+    <script src="../components/notification.js"></script>
 
     <script src="../core/database.js"></script>
     <script src="../repository/productRepo.js"></script>
     <script src="../controller/productController.js"></script>
     <script src="../repository/cartRepo.js"></script>
     <script src="../controller/cartController.js"></script>
+    <script src="../repository/orderRepo.js"></script>
+    <script src="../controller/orderController.js"></script>
     <script src="../script/admin.js"></script>
 </body>
 

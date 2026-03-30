@@ -1,4 +1,4 @@
-window.loadProducts = () => {
+function loadProducts() {
     const products = [
         {
             id: 'laptop-1',
@@ -7,7 +7,8 @@ window.loadProducts = () => {
             spec: 'Ryzen 7 • RTX 4060 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/lenovo-loq-2025.jpg',
-            price: '25.000.000đ'
+            price: '25.000.000đ',
+            isDeleted: true
         },
         {
             id: 'laptop-2',
@@ -16,7 +17,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/asus-expert-book.jpg',
-            price: '15.490.000đ'
+            price: '15.490.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-3',
@@ -25,7 +27,8 @@ window.loadProducts = () => {
             spec: 'Ryzen 5 • Radeon • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/lenovo-leco.jpg',
-            price: '19.490.000đ'
+            price: '19.490.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-4',
@@ -34,7 +37,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/acer-nitro-v.jpg',
-            price: '24.490.000đ'
+            price: '24.490.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-5',
@@ -43,7 +47,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/lenovo-legion-5.jpg',
-            price: '36.990.000đ'
+            price: '36.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-6',
@@ -52,7 +57,8 @@ window.loadProducts = () => {
             spec: 'i5 • RTX 3050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/hp-victus-16.jpg',
-            price: '23.000.000đ'
+            price: '23.000.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-7',
@@ -61,7 +67,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 8GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/l7.jpg',
-            price: '15.990.000đ'
+            price: '15.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-8',
@@ -70,7 +77,8 @@ window.loadProducts = () => {
             spec: 'Ryzen 5 • Radeon • 8GB • 512GB',
             type: 'study',
             image_src: '../assets/image/product/l8.jpg',
-            price: '15.990.000đ'
+            price: '15.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-9',
@@ -79,7 +87,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/l9.jpg',
-            price: '34.790.000đ'
+            price: '34.790.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-10',
@@ -88,7 +97,8 @@ window.loadProducts = () => {
             spec: 'i7 • Iris Xe • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/l10.jpg',
-            price: '24.990.000đ'
+            price: '24.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-11',
@@ -97,7 +107,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/l11.jpg',
-            price: '21.390.000đ'
+            price: '21.390.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-12',
@@ -106,7 +117,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/l12.jpg',
-            price: '19.990.000đ'
+            price: '19.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-13',
@@ -115,7 +127,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/l13.jpg',
-            price: '22.890.000đ'
+            price: '22.890.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-14',
@@ -124,7 +137,8 @@ window.loadProducts = () => {
             spec: 'i5 • RTX 3050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/l14.jpg',
-            price: '18.390.000đ'
+            price: '18.390.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-15',
@@ -133,7 +147,8 @@ window.loadProducts = () => {
             spec: 'i9 • RTX 4070 • 32GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/l15.jpg',
-            price: '44.490.000đ'
+            price: '44.490.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-16',
@@ -142,7 +157,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/l16.jpg',
-            price: '25.990.000đ'
+            price: '25.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-17',
@@ -151,7 +167,8 @@ window.loadProducts = () => {
             spec: 'i3 • UHD • 8GB • 256GB',
             type: 'study',
             image_src: '../assets/image/product/l17.jpg',
-            price: '11.490.000đ'
+            price: '11.490.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-18',
@@ -160,7 +177,8 @@ window.loadProducts = () => {
             spec: 'i9 • RTX 4080 • 32GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/l18.jpg',
-            price: '56.990.000đ'
+            price: '56.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-19',
@@ -169,7 +187,8 @@ window.loadProducts = () => {
             spec: 'Ryzen 5 • Radeon • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/l19.jpg',
-            price: '13.500.000đ'
+            price: '13.500.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-20',
@@ -178,7 +197,8 @@ window.loadProducts = () => {
             spec: 'Ryzen 7 • Radeon • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/l20.jpg',
-            price: '15.490.000đ'
+            price: '15.490.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-21',
@@ -187,7 +207,8 @@ window.loadProducts = () => {
             spec: 'Snapdragon X • Adreno • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/l21.jpg',
-            price: '25.990.000đ'
+            price: '25.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-22',
@@ -196,7 +217,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'study',
             image_src: '../assets/image/product/l22.jpg',
-            price: '17.490.000đ'
+            price: '17.490.000đ',
+            isDeleted: false
         }, {
             id: 'a1',
             name: 'MSI Cyborg 15',
@@ -204,7 +226,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/a1.jpg',
-            price: '23.990.000đ'
+            price: '23.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a2',
@@ -213,7 +236,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/a2.jpg',
-            price: '20.990.000đ'
+            price: '20.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a3',
@@ -222,7 +246,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/a3.jpg',
-            price: '30.990.000đ'
+            price: '30.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a4',
@@ -231,7 +256,8 @@ window.loadProducts = () => {
             spec: 'i5 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/a4.jpg',
-            price: '20.790.000đ'
+            price: '20.790.000đ',
+            isDeleted: false
         },
         {
             id: 'a5',
@@ -240,7 +266,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a5.jpg',
-            price: '14.290.000đ'
+            price: '14.290.000đ',
+            isDeleted: false
         },
         {
             id: 'a6',
@@ -249,7 +276,8 @@ window.loadProducts = () => {
             spec: 'Intel Ultra 7 • Intel Arc • 32GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/a6.jpg',
-            price: '44.990.000đ'
+            price: '44.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a7',
@@ -258,7 +286,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a7.jpg',
-            price: '19.990.000đ'
+            price: '19.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a8',
@@ -267,7 +296,8 @@ window.loadProducts = () => {
             spec: 'Ryzen 9 • RTX 4070 • 32GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/a8.jpg',
-            price: '63.690.000đ'
+            price: '63.690.000đ',
+            isDeleted: false
         },
         {
             id: 'a9',
@@ -276,7 +306,8 @@ window.loadProducts = () => {
             spec: 'Celeron • UHD • 4GB • 64GB',
             type: 'study',
             image_src: '../assets/image/product/a9.jpg',
-            price: '7.290.000đ'
+            price: '7.290.000đ',
+            isDeleted: false
         },
         {
             id: 'a10',
@@ -285,7 +316,8 @@ window.loadProducts = () => {
             spec: 'Intel Ultra 7 • Intel Arc • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/a10.jpg',
-            price: '32.990.000đ'
+            price: '32.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a11',
@@ -294,7 +326,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a11.jpg',
-            price: '19.690.000đ'
+            price: '19.690.000đ',
+            isDeleted: false
         },
         {
             id: 'a12',
@@ -303,7 +336,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a12.jpg',
-            price: '19.880.000đ'
+            price: '19.880.000đ',
+            isDeleted: false
         },
         {
             id: 'a13',
@@ -312,7 +346,8 @@ window.loadProducts = () => {
             spec: 'i7 • Iris Xe • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/a13.jpg',
-            price: '34.490.000đ'
+            price: '34.490.000đ',
+            isDeleted: false
         },
         {
             id: 'a14',
@@ -321,7 +356,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 8GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a14.jpg',
-            price: '25.990.000đ'
+            price: '25.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a15',
@@ -330,7 +366,8 @@ window.loadProducts = () => {
             spec: 'Celeron • UHD • 8GB • 128GB',
             type: 'study',
             image_src: '../assets/image/product/a15.jpg',
-            price: '19.990.000đ'
+            price: '19.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a16',
@@ -339,7 +376,8 @@ window.loadProducts = () => {
             spec: 'Intel Ultra 5 • Intel Arc • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a16.jpg',
-            price: '25.490.000đ'
+            price: '25.490.000đ',
+            isDeleted: false
         },
         {
             id: 'a17',
@@ -348,7 +386,8 @@ window.loadProducts = () => {
             spec: 'i5 • UHD • 8GB • 256GB',
             type: 'study',
             image_src: '../assets/image/product/a17.jpg',
-            price: '11.990.000đ'
+            price: '11.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a18',
@@ -357,7 +396,8 @@ window.loadProducts = () => {
             spec: 'i5 • HD 620 • 8GB • 256GB',
             type: 'study',
             image_src: '../assets/image/product/a18.jpg',
-            price: '6.990.000đ'
+            price: '6.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a19',
@@ -366,7 +406,8 @@ window.loadProducts = () => {
             spec: 'i7 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/a19.jpg',
-            price: '16.990.000đ'
+            price: '16.990.000đ',
+            isDeleted: false
         },
         {
             id: 'a20',
@@ -375,7 +416,8 @@ window.loadProducts = () => {
             spec: 'i7 • GTX 1060 • 32GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/a20.jpg',
-            price: '58.000.000đ'
+            price: '58.000.000đ',
+            isDeleted: false
         },
         {
             id: 'a21',
@@ -384,7 +426,8 @@ window.loadProducts = () => {
             spec: 'i7 • GTX 965M • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/a21.jpg',
-            price: '21.990.000đ'
+            price: '21.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-26',
@@ -393,7 +436,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'office',
             image_src: '../assets/image/product/h2.jpg',
-            price: '22.190.000đ'
+            price: '22.190.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-27',
@@ -402,7 +446,8 @@ window.loadProducts = () => {
             spec: 'i7 • Iris Xe • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/h3.jpg',
-            price: '21.990.000đ'
+            price: '21.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-28',
@@ -411,7 +456,8 @@ window.loadProducts = () => {
             spec: 'i5 • Iris Xe • 16GB • 512GB',
             type: 'study',
             image_src: '../assets/image/product/h4.jpg',
-            price: '15.990.000đ'
+            price: '15.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-29',
@@ -420,7 +466,8 @@ window.loadProducts = () => {
             spec: 'i9 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/h5.jpg',
-            price: '40.190.000đ'
+            price: '40.190.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-30',
@@ -429,7 +476,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4050 • 16GB • 1TB',
             type: 'office',
             image_src: '../assets/image/product/h6.jpg',
-            price: '35.990.000đ'
+            price: '35.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-31',
@@ -438,7 +486,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/g1.jpg',
-            price: '42.290.000đ'
+            price: '42.290.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-33',
@@ -447,7 +496,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/g3.jpg',
-            price: '29.190.000đ'
+            price: '29.190.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-34',
@@ -456,7 +506,8 @@ window.loadProducts = () => {
             spec: 'i5 • RTX 4050 • 16GB • 512GB',
             type: 'gaming',
             image_src: '../assets/image/product/g4.jpg',
-            price: '23.990.000đ'
+            price: '23.990.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-35',
@@ -465,7 +516,8 @@ window.loadProducts = () => {
             spec: 'i7 • RTX 4060 • 16GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/g5.jpg',
-            price: '31.690.000đ'
+            price: '31.690.000đ',
+            isDeleted: false
         },
         {
             id: 'laptop-36',
@@ -474,9 +526,14 @@ window.loadProducts = () => {
             spec: 'i9 • RTX 4070 • 32GB • 1TB',
             type: 'gaming',
             image_src: '../assets/image/product/g6.jpg',
-            price: '38.290.000đ'
+            price: '38.290.000đ',
+            isDeleted: false
         }
     ]
 
     localStorage.setItem('products', JSON.stringify(products));
+
+    console.log(JSON.parse(localStorage.getItem('products')))
 }
+
+loadProducts();

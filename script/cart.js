@@ -23,6 +23,7 @@ const backToOrderBtn = document.querySelector('.back__to__order');
 let totalItem = 0;
 let totalPrice = 0;
 
+let isAvailable = true;
 
 function isLogin () {
     if (!me.get()) {
@@ -140,15 +141,21 @@ function goBackToOrderStep () {
     cartAcceptStep.classList.add('is-hidden');
 }
 
+function isDeletedProductInCart () {
+    RenderState();
+    addNotification('warning', 'Có sản phẩm không hợp lệ!', 2000);
+}
 
 function renderOrderProduct(product, amount) {
 
+    if (product.isDeleted) {
+        isAvailable = false;
+    }
+
     const orderProduct = document.createElement('div');
-    orderProduct.className = 'order__product';
+    orderProduct.className = `order__product ${product.isDeleted ? 'deleted__product' : ''}`;
     const totalPrice = helper.convertStringToInt(product.price) * amount;
     orderProduct.innerHTML = `
-        
-
         <div class="image__border">
             <img src="${product.image_src}">
         </div>
@@ -179,6 +186,14 @@ function renderOrderProduct(product, amount) {
             <img src="../assets/icon/trash.svg">
             <span>Xóa</span>
         </div>
+
+        ${
+            product.isDeleted
+            ? `<div class="product__overlay">
+                    Sản phẩm đã ngừng kinh doanh
+               </div>`
+            : ''
+        }
     `
 
     const removeOrderProductImage = orderProduct.querySelector('.order__product--remove img');
@@ -204,7 +219,13 @@ function render () {
 function RenderState () {
     renderNoti();
     renderUserCart();
-    renderTotalProductValue()
+    renderTotalProductValue();
+
+    if (!isAvailable)
+        orderButton.onclick = () => isDeletedProductInCart();
+    else {
+        orderButton.onclick = (e) => goAcceptStep(e);
+    }
 }
 
 render();
@@ -216,5 +237,5 @@ cartAcceptForm.addEventListener('submit', (e) => {
 
 backToOrderBtn.addEventListener('click', goBackToOrderStep);
 
-orderButton.addEventListener('click', goAcceptStep);
-
+console.log(orderController.getAllOrder())
+console.log(orderController.getAllBill())

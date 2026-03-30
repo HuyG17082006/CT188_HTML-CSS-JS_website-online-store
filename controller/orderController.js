@@ -1,8 +1,29 @@
 const orderRepo = window.orderRepo;
 
 window.orderController = {
-    getOrderList : () => {
-        return orderRepo.getAll();
+    getAllOrder : () => {
+        return orderRepo.getAll()
+    },
+    
+    getAllBill : () => {
+        const AllOrder = orderRepo.getAll();
+
+        const BillList = [];
+
+        AllOrder.forEach(b => {
+
+            if (b.userId === 'admin')
+                return;
+
+            for (var bill of b.bills) {
+                BillList.push({
+                    userId : b.userId,
+                    bill : bill
+                })
+            }
+        })
+
+        return BillList;
     },
     
     acceptOrder : (userCart, orderId, userId, username, number_phone, address, email, totalPrice) => {
@@ -33,11 +54,17 @@ window.orderController = {
         orderRepo.update(userId, newUserBill);
     },
     
-    confirmDelivery : (userId, orderId) => {
+    confirmDelivery : ({userId, orderId}) => {
         const userBills = orderRepo.getOne(userId) || {
             userId,
             bills : []
         };
+
+        if (userBills.bills.length === 0)
+            return {
+                isOk : false,
+                message : 'Lỗi khi xác nhận đơn hàng!'
+            }
 
         const newBills = userBills.bills.map(bill => {
             if (bill.orderId === orderId)
@@ -54,6 +81,11 @@ window.orderController = {
         };
 
         orderRepo.update(userId, newUserBills);
+
+        return {
+            isOk : true,
+            message : `Đã xác nhận đơn hàng ${orderId}`
+        }
     },
 
     getUserOrderList : (userId) => {

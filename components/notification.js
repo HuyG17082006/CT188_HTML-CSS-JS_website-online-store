@@ -39,6 +39,8 @@ function createNotification(type, message, time) {
 
         <div class="time__bar"></div>
     `;
+    notification.style.animation = `slideNotification ${time}ms ease-out`
+
     const timeBar = notification.querySelector(".time__bar");
     timeBar.style.animationDuration = time + "ms";
     notificationList.append(notification);

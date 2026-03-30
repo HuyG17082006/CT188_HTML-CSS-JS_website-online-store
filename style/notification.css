@@ -1,10 +1,13 @@
+
+
 .notification__container {
     position: fixed;
     top: 30px;
     justify-self: center;
-    display: grid;
+    display: grid !important;
     gap: 10px;
     z-index: 99999;
+    opacity: 1 !important;
 }
 
 .notification {
@@ -12,16 +15,15 @@
     grid-template-rows: 1fr 4px;
     border-radius: 14px;
     overflow: hidden;
-    animation: slideMobile 2s ease-out;
+    animation: slideNotification 2s ease-out;
 }
 
 .info__notification__container {
     height: auto;
-    min-height: 70px;
-    width: 280px;
     border-radius: 20px;
     display: grid;
     grid-template-columns: 60px 1fr;
+    width: 280px;
 }
 
 .notification.success {
@@ -60,11 +62,18 @@
 
 .notification__info h4 {
     font-size: 15px;
+    height: fit-content !important;
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
 }
 
 .notification__info p {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.4;
+    height: fit-content !important;
+    padding: 0;
+    margin: 0;
 }
 
 .time__bar {
@@ -72,6 +81,13 @@
     width: 100%;
     background: linear-gradient(128deg, rgb(244, 255, 86), rgb(138, 138, 255), rgb(255, 130, 130), rgb(151, 235, 96), rgb(215, 130, 255), rgb(255, 46, 46));
     animation: time_running linear forwards;
+}
+
+@keyframes slideNotification {
+    0% { transform: translateX(30px); opacity: 0; }
+    11.5% { transform: translateX(0); opacity: 1; }
+    88.5% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(30px); opacity: 0; }
 }
 
 @keyframes time_running {
@@ -91,9 +107,7 @@
     }
 
     .notification {
-        grid-template-rows: 1fr 6px;
-        animation: none;
-        animation: dropPc 2s ease-in-out;
+        grid-template-rows: 1fr 7px;
     }
 
     .info__notification__container {
@@ -108,11 +122,12 @@
     }
 
     .notification__info h4 {
-        font-size: 18px;
+        font-size: 20px !important;
+        
     }
 
     .notification__info p {
-        font-size: 15px;
+        font-size: 15px !important;
     }
 
     .time__bar {

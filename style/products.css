@@ -417,6 +417,7 @@
     box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
 }
 
+
 @media (min-width : 768px) {
     .products__container {
         margin-top: 150px;

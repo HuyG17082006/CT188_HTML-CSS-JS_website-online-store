@@ -10,12 +10,9 @@ const filterBoxBrandList = document.querySelectorAll('.list__filter');
 const searchInput = document.querySelector('.search__input');
 const sortButton = document.querySelector('.sort__group');
 const refreshButton = document.querySelector('.refresh__group');
-const usingFilterList = document.querySelector('.type__using__filter')
+const usingFilterList = document.querySelector('.type__using__filter');
 
 //FUNCTION
-function productData() {
-    window.loadProducts();
-}
 
 function renderUIProduct(item, index) {
     const divOuter = document.createElement("div");
@@ -227,13 +224,13 @@ function resetPageSize() {
 
 function resetUsingFilter() {
     usingFilter = '';
-    usingFilterList.forEach(item => {
-        item.classList.remove('selected');
-    })
+    usingFilterList.querySelectorAll('li').forEach(i =>
+            i.classList.remove('selected')
+    );
 }
 
-productData();
 render();
+console.log(JSON.parse(localStorage.getItem('products')))
 
 searchInput.addEventListener('input', handleSearchInput);
 sortButton.addEventListener('click', setChangePriceMode);
