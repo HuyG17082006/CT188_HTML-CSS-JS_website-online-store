@@ -4,14 +4,16 @@ const productController = window.productController;
 const orderController = window.orderController;
 const helper = window.helper;
 
-
-console.table(cartController)
-console.table(productController)
-
-if (!isAdmin)
+//check
+if (!isAdmin) {
     window.location.replace('../view/home.html');
+}
 
-
+const logoutBtn = document.querySelector('.log-out-btn');
+logoutBtn.addEventListener('click', () => {
+    window.me.remove();
+    window.location.reload()
+})
 
 // Form
 const form = document.querySelector('form');
@@ -47,58 +49,63 @@ function closeForm() {
 
 }
 
-function validate({ name, spec, brand, type, price, image_src }) {
-    const error = {
-        nameErr: '',
-        specErr: '',
-        brandErr: '',
-        typeErr: '',
-        priceErr: '',
-        imgErr: ''
-    }
-
-    if (!name) {
-        error.nameErr = 'Không được bỏ trống!';
-    }
-
-    if (!spec) {
-        error.specErr = 'Không được bỏ trống!';
-    }
-    else if (!/^.+\s•\s.+\s•\s\d+GB\s•\s\d+GB$/.test(spec)) {
-        error.specErr = 'Sai định dạng (VD: i5 • Iris Xe • 8GB • 512GB)'
-    }
-
-    if (!brand) {
-        error.brandErr = 'Không được bỏ trống!';
-    }
-
-    if (!type) {
-        error.typeErr = 'Không được bỏ trống!';
-    }
-
-    if (!price) {
-        error.priceErr = 'Không được bỏ trống';
-    }
-    else if (isNaN(price || Number(price) < 0)) {
-        error.priceErr = 'Giá phải là số hợp lệ';
-    }
-
-    if (!image_src) {
-        error.imgErr = 'Vui lòng chọn ảnh';
-    }
-
-    const { nameErr, specErr, brandErr, typeErr, priceErr, imgErr } = error;
-
-    if (nameErr || specErr || brandErr || typeErr || priceErr || imgErr)
-        return {
-            ...error,
-            isOk: false
+function productValidate({ name, spec, brand, type, price, image_src }) {
+        const error = {
+            nameErr: '',
+            specErr: '',
+            brandErr: '',
+            typeErr: '',
+            priceErr: '',
+            imgErr: ''
         }
 
-    return {
-        isOk: true
-    }
+        if (!name) {
+            error.nameErr = 'Không được bỏ trống!';
+        }
+
+        if (!spec) {
+            error.specErr = 'Không được bỏ trống!';
+        }
+        else if (!/^.+\s•\s.+\s•\s\d+GB\s•\s\d+GB$/.test(spec)) {
+            error.specErr = 'Sai định dạng (VD: i5 • Iris Xe • 8GB • 512GB)'
+        }
+
+        if (!brand) {
+            error.brandErr = 'Không được bỏ trống!';
+        }
+
+        if (!type) {
+            error.typeErr = 'Không được bỏ trống!';
+        }
+
+        if (!price) {
+            error.priceErr = 'Không được bỏ trống';
+        }
+        else if (isNaN(price) || Number(price) < 0) {
+            error.priceErr = 'Giá phải là số hợp lệ';
+        }
+
+        if (!image_src) {
+            error.imgErr = 'Vui lòng chọn ảnh';
+        }
+
+        const { nameErr, specErr, brandErr, typeErr, priceErr, imgErr } = error;
+
+        if (nameErr || specErr || brandErr || typeErr || priceErr || imgErr)
+            return {
+                message: {
+                    ...error
+                },
+                isOk: false
+            }
+
+        return {
+            isOk: true,
+            message: "Đã thêm sản phẩm mới!"
+        }
+
 }
+
 
 function resetValidate() {
     form.reset();
@@ -167,10 +174,10 @@ function addProduct() {
             image_src: ''
         };
 
-        const res = validate(product)
+        const res = productValidate(product)
 
         if (!res.isOk) {
-            showError(res);
+            showError(res.message);
             return;
         }
     }
@@ -191,20 +198,19 @@ function addProduct() {
 
         console.log(reader.result)
 
-        const res = validate(product);
+        const res = productValidate(product);
 
         if (!res.isOk) {
-            showError(res)
+            showError(res.message)
             return;
         }
 
         productController.insertProduct({
             ...product,
-            price: helper.convertIntToVietNamDong(price),
-            isDeleted: false
+            price : helper.convertIntToVietNamDong(price),
+            isDeleted : false
         })
-
-        addNotification('success', 'Đã thêm mới sản phẩm!', 2000);
+        addNotification('success', res.message, 2000);
         renderNoti();
     }
     reader.readAsDataURL(file);
@@ -266,6 +272,7 @@ function render () {
         billContainer.classList.add('is-hidden');
         containerTitle.innerText = 'Hàng hóa'
     }
+    closeForm();
 }
 
 function filterBillList () {
@@ -286,11 +293,15 @@ function renderBillList () {
 function renderBill (bill, userId) {
     return `
         <div class="bill" data-order-id="${bill.orderId}" data-user-id="${userId}">
+
+            <div class="info-bill">
+                <span class="bill-id">Mã đơn: ${bill.orderId}</span>
+            </div>
             
-            <div class="info">
-                <span class="date">${bill.date}</span>
-                <span class="order-name">${bill.username}</span>
-                <span class="address">${bill.address}</span>
+            <div class="info-user">
+                <span class="date">Ngày đặt: ${bill.date}</span>
+                <span class="order-name">Tên người đặt: ${bill.username}</span>
+                <span class="address">Địa chỉ: ${bill.address}</span>
             </div>
 
             <div class="bill__list">
@@ -327,6 +338,9 @@ function handleBillSelect (e) {
         bill.classList.add('selected');
         billSelected.orderId = bill.dataset.orderId;
         billSelected.userId = bill.dataset.userId;
+    } else {
+        billSelected.orderId = null;
+        billSelected.userId = null;
     }
 }
 
@@ -381,6 +395,5 @@ addSyntaxBtn.addEventListener('click', addSyntax)
 imgInput.addEventListener('change', showReviewImage)
 addProductBtn.addEventListener('click', showAddForm)
 updateProductBtn.addEventListener('click', () => handleEditProduct(productId))
-
-console.log(JSON.parse(localStorage.getItem('products')))
+document.body.addEventListener('click', handleBillSelect)
 

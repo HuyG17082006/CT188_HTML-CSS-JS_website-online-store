@@ -18,7 +18,7 @@ function loadProducts() {
             type: 'office',
             image_src: '../assets/image/product/asus-expert-book.jpg',
             price: '15.490.000đ',
-            isDeleted: false
+            isDeleted: true
         },
         {
             id: 'laptop-3',

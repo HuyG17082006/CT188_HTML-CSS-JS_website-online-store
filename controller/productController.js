@@ -1,23 +1,23 @@
 const productRepo = window.productRepo;
 
 window.productController = {
-    getList : () => {
+    getList: () => {
         return productRepo.getAll() || [];
     },
 
-    getProduct : (id) => {
+    getProduct: (id) => {
         return productRepo.findById(id);
     },
 
-    updateProduct : (id) => {
+    updateProduct: (id) => {
         productRepo.updateById(id);
     },
 
-    deleteProduct : (id) => {
+    deleteProduct: (id) => {
         productRepo.deleteById(id);
     },
 
-    insertProduct : (newProduct) => {
-        productRepo.insert(newProduct);
+    insertProduct: (newProduct) => {
+        productRepo.insert(newProduct)
     }
 }

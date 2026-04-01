@@ -17,7 +17,7 @@ const usingFilterList = document.querySelector('.type__using__filter');
 function renderUIProduct(item, index) {
     const divOuter = document.createElement("div");
 
-    divOuter.className = "product__item";
+    divOuter.className = `product__item ${item.isDeleted ? 'deleted__product' : ''}`;
     divOuter.id = item.id;
 
     divOuter.innerHTML = `
@@ -33,6 +33,10 @@ function renderUIProduct(item, index) {
             <span class="product__item--name">${item.name}</span>
             <span class="product__item--spec">${item.spec}</span>
             <span class="product__item--price">${item.price}</span>
+        </div>
+
+        <div class="over__layer">
+            <span>Sản phẩm ngừng kinh doanh</span>
         </div>
     `;
 
