@@ -30,6 +30,8 @@ const addSyntaxBtn = form.querySelector('.add__syntax');
 
 const cancelFormBtn = form.querySelector('.cancel__btn');
 
+const statusBox = form.querySelector('status--box');
+
 function showReviewImage(e) {
     const file = e.target.files[0];
 
@@ -46,63 +48,63 @@ function showReviewImage(e) {
 
 function closeForm() {
     form.classList.add('is-hidden');
-
+    productSelected = ''
 }
 
 function productValidate({ name, spec, brand, type, price, image_src }) {
-        const error = {
-            nameErr: '',
-            specErr: '',
-            brandErr: '',
-            typeErr: '',
-            priceErr: '',
-            imgErr: ''
-        }
+    const error = {
+        nameErr: '',
+        specErr: '',
+        brandErr: '',
+        typeErr: '',
+        priceErr: '',
+        imgErr: ''
+    }
 
-        if (!name) {
-            error.nameErr = 'Không được bỏ trống!';
-        }
+    if (!name) {
+        error.nameErr = 'Không được bỏ trống!';
+    }
 
-        if (!spec) {
-            error.specErr = 'Không được bỏ trống!';
-        }
-        else if (!/^.+\s•\s.+\s•\s\d+GB\s•\s\d+GB$/.test(spec)) {
-            error.specErr = 'Sai định dạng (VD: i5 • Iris Xe • 8GB • 512GB)'
-        }
+    if (!spec) {
+        error.specErr = 'Không được bỏ trống!';
+    }
+    else if (!/^.+\s•\s.+\s•\s\d+GB\s•\s\d+GB$/.test(spec)) {
+        error.specErr = 'Sai định dạng (VD: i5 • Iris Xe • 8GB • 512GB)'
+    }
 
-        if (!brand) {
-            error.brandErr = 'Không được bỏ trống!';
-        }
+    if (!brand) {
+        error.brandErr = 'Không được bỏ trống!';
+    }
 
-        if (!type) {
-            error.typeErr = 'Không được bỏ trống!';
-        }
+    if (!type) {
+        error.typeErr = 'Không được bỏ trống!';
+    }
 
-        if (!price) {
-            error.priceErr = 'Không được bỏ trống';
-        }
-        else if (isNaN(price) || Number(price) < 0) {
-            error.priceErr = 'Giá phải là số hợp lệ';
-        }
+    if (!price) {
+        error.priceErr = 'Không được bỏ trống';
+    }
+    else if (isNaN(price) || Number(price) < 0) {
+        error.priceErr = 'Giá phải là số hợp lệ';
+    }
 
-        if (!image_src) {
-            error.imgErr = 'Vui lòng chọn ảnh';
-        }
+    if (!image_src) {
+        error.imgErr = 'Vui lòng chọn ảnh';
+    }
 
-        const { nameErr, specErr, brandErr, typeErr, priceErr, imgErr } = error;
+    const { nameErr, specErr, brandErr, typeErr, priceErr, imgErr } = error;
 
-        if (nameErr || specErr || brandErr || typeErr || priceErr || imgErr)
-            return {
-                message: {
-                    ...error
-                },
-                isOk: false
-            }
-
+    if (nameErr || specErr || brandErr || typeErr || priceErr || imgErr)
         return {
-            isOk: true,
-            message: "Đã thêm sản phẩm mới!"
+            message: {
+                ...error
+            },
+            isOk: false
         }
+
+    return {
+        isOk: true,
+        message: "Đã thêm sản phẩm mới!"
+    }
 
 }
 
@@ -139,13 +141,17 @@ function addSyntax() {
 }
 
 function showAddForm() {
+    resetValidate();
+
     form.classList.remove('is-hidden');
     formTitle.innerText = 'Thêm hàng hóa';
 
     if (cancelFormBtn) {
-        cancelFormBtn.onclick = () => closeForm();
+        cancelFormBtn.onclick = (e) => {
+            e.preventDefault()
+            closeForm()
+        };
     }
-    resetValidate();
 
     form.onsubmit = (e) => {
         e.preventDefault();
@@ -163,6 +169,7 @@ function addProduct() {
     const brand = formData.get('product--brand');
     const type = formData.get('product--category');
     const file = formData.get('product--image');
+
 
     if (!file || file.size === 0) {
         const product = {
@@ -207,8 +214,8 @@ function addProduct() {
 
         productController.insertProduct({
             ...product,
-            price : helper.convertIntToVietNamDong(price),
-            isDeleted : false
+            price: helper.convertIntToVietNamDong(price),
+            isDeleted: false
         })
         addNotification('success', res.message, 2000);
         renderNoti();
@@ -217,50 +224,61 @@ function addProduct() {
 }
 
 //Form cập nhật
-
-let productId = null;
-
-function handleEditProduct (productId) {
-    if (productId)
-        showUpdateForm(productId);
+function handleEditProduct(productSelected) {
+    if (productSelected)
+        showUpdateForm(productSelected);
     else {
         addNotification('error', 'Chưa chọn sản phẩm!', 2000);
         renderNoti();
     }
 }
 
-function showUpdateForm() {
-    form.classList.remove('is-hidden');
+function showUpdateForm(productSelected) {
+    resetValidate();
 
+    form.classList.remove('is-hidden');
     formTitle.innerText = 'Sửa thông tin';
 
-    if (cancelFormBtn)
-        cancelFormBtn.onclick = () => closeForm();
+    const product = productController.getProduct(productSelected);
 
-    resetValidate();
+    form.querySelector('[name="product--name"]').value = product.name;
+    form.querySelector('[name="product--spec"]').value = product.spec;
+    form.querySelector('[name="product--price"]').value = product.price;
+    form.querySelector('[name="product--brand"]').value = product.brand;
+    form.querySelector('[name="product--category"]').value = product.type;
+    form.querySelector('.product--showing--image').src = product.image_src;
+
+
+    if (cancelFormBtn) {
+        cancelFormBtn.onclick = (e) => {
+            e.preventDefault()
+            closeForm()
+        };
+    }
+}
+
+function saveUpdate () {
+    
 }
 
 // render 
+
 const sideBarSelectList = document.querySelector('.side__bar ul');
 
 const containerTitle = document.querySelector('.content__container--inner .title')
 const billContainer = document.querySelector('.bill__container');
-const productContainer = document.querySelector('.product__container');
-
 const billListContainer = billContainer.querySelector('.list');
-const productListContainer = productContainer.querySelector('.list');
-
 const billTypeSelectList = billContainer.querySelector('.bill__type__list');
 const confirmBillBtn = billContainer.querySelector('.confirm');
 
+const productContainer = document.querySelector('.product__container');
+const productListContainer = productContainer.querySelector('.list');
+const productBrandSelectList = productContainer.querySelector('.product--brand');
+const productStateSelectList = productContainer.querySelector('.product--state');
+const productSearchInput = productContainer.querySelector('.tool__box--search input');
 let mainState = 'bills';
-let filterBillType = 'ordered';
-let billSelected = {
-    userId : '',
-    orderId : ''
-}
 
-function render () {
+function render() {
     if (mainState === 'bills') {
         productContainer.classList.add('is-hidden');
         billContainer.classList.remove('is-hidden');
@@ -270,17 +288,140 @@ function render () {
     else {
         productContainer.classList.remove('is-hidden');
         billContainer.classList.add('is-hidden');
-        containerTitle.innerText = 'Hàng hóa'
+        containerTitle.innerText = 'Hàng hóa';
+        renderProductList();
     }
     closeForm();
 }
 
-function filterBillList () {
-    const billList = orderController.getAllBill() || []; 
+
+function handleMainState(e) {
+    sideBarSelectList.querySelectorAll('li').forEach(li => li.classList.remove('selected'))
+    if (e.target.tagName === 'LI' && !e.target.classList.contains('log-out-btn')) {
+        mainState = e.target.dataset.mainState;
+        e.target.classList.add('selected');
+    }
+    render();
+}
+
+// render Product
+
+let filterProductBrand = '';
+let filterProductStatus = '';
+let filterProductText = '';
+let productSelected = '';
+
+function filterProductList (brand, status, text) {
+    let products = productController.getList();
+
+    if (brand)
+        products = products.filter(product => product.brand === brand);
+
+    if (status) {  
+        let productState = status === 'disable' ? true : false;
+        products = products.filter(product => product.isDeleted === productState);
+    }
+
+    if (text) {
+        let textSearch = text.toLowerCase().trim();
+        products = products.filter(product => product.name.toLowerCase().trim().includes(textSearch))
+    }
+
+    return products;
+}
+
+function renderProductList() {
+    productListContainer.innerHTML = ''
+
+    const list = filterProductList(filterProductBrand, filterProductStatus, filterProductText);
+
+    list.forEach(p => productListContainer.appendChild(renderProduct(p)));
+}
+
+function renderProduct(product) {
+    const productHTML = document.createElement("div");
+    productHTML.className = "product";
+    productHTML.id = product.id;
+
+    productHTML.innerHTML = `
+        <div class="img__box">
+            <img src="${product.image_src}">
+        </div>
+        <div class="info">
+            <span class="name">${product.name}</span>
+            <span class="spec">${product.spec}</span>
+            <span class="price">${product.price}</span>
+        </div>
+        ${
+            product.isDeleted ?
+            '<button class="btn__status sell__again">Kinh doanh lại</button>'
+            :
+            '<button class="btn__status stop__sell">Ngừng kinh doanh</button>'
+        }
+    `;
+
+    const sellAgainBtn = productHTML.querySelector('.sell__again');
+    const stopSellingBtn = productHTML.querySelector('.stop__sell');
+
+    if (sellAgainBtn)
+        sellAgainBtn.addEventListener('click', () => {  
+            productController.sellAgain(product.id, product);
+            renderProductList();
+        })
+    
+    if (stopSellingBtn)
+        stopSellingBtn.addEventListener('click', () => {
+            productController.stopSelling(product.id, product)
+            renderProductList();
+        })
+
+
+    return productHTML;
+}
+
+function handleFilterProductBrand(e) {
+    filterProductBrand = e.target.value;
+    renderProductList();
+}
+
+function handleFilterProductStatus(e) {
+    filterProductStatus = e.target.value;
+    renderProductList();
+}
+
+function handleProductSearchText(e) {
+    filterProductText = e.target.value;
+    console.log(filterProductText)
+    renderProductList();
+}
+
+function handleProductSelected(e) {
+    productListContainer.querySelectorAll('.product').forEach(product => {
+        product.classList.remove('selected');
+    })
+    const product = e.target.closest('.product');
+    if (product) {
+        productSelected = product.id;
+        product.classList.add('selected');
+    }
+    else {
+        productSelected = null;
+    }
+}
+
+// render bill
+let filterBillType = 'ordered';
+let billSelected = {
+    userId: '',
+    orderId: ''
+}
+
+function filterBillList() {
+    const billList = orderController.getAllBill() || [];
     return result = billList.filter(bill => bill.bill.status === filterBillType);
 }
 
-function renderBillList () {
+function renderBillList() {
     billListContainer.innerHTML = '';
 
     const list = filterBillList();
@@ -290,7 +431,7 @@ function renderBillList () {
         .join("");
 }
 
-function renderBill (bill, userId) {
+function renderBill(bill, userId) {
     return `
         <div class="bill" data-order-id="${bill.orderId}" data-user-id="${userId}">
 
@@ -306,23 +447,23 @@ function renderBill (bill, userId) {
 
             <div class="bill__list">
                 ${bill.userCart.map(product => {
-                let productDetail = productController.getProduct(product.productId)
-                    
-                return `<div class="order__product">
-                        <div class="img__box">
-                            <img src="${productDetail.image_src}" alt="">
-                        </div>
-                        <div class="info">
-                            <span class="name">${productDetail.name}</span>
-                            <span class="spec">${productDetail.spec}</span>
-                            <div class="amount__box">
-                                <span class="amount">x${product.quantity}</span>
-                                <span class="price">${productDetail.price}</span>
-                            </div>
-                        </div>
+                    let productDetail = productController.getProduct(product.productId)
+
+                    return `<div class="order__product">
+                                    <div class="img__box">
+                                        <img src="${productDetail.image_src}" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <span class="name">${productDetail.name}</span>
+                                        <span class="spec">${productDetail.spec}</span>
+                                        <div class="amount__box">
+                                            <span class="amount">x${product.quantity}</span>
+                                            <span class="price">${productDetail.price}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `}).join("")}
                     </div>
-                `}).join("")}
-            </div>
 
             <span class="total">
                 ${bill.totalPrice}
@@ -331,7 +472,7 @@ function renderBill (bill, userId) {
     `;
 };
 
-function handleBillSelect (e) {
+function handleBillSelect(e) {
     billListContainer.querySelectorAll('.bill').forEach(bill => bill.classList.remove('selected'));
     const bill = e.target.closest('.bill');
     if (bill) {
@@ -344,16 +485,7 @@ function handleBillSelect (e) {
     }
 }
 
-function handleMainState (e) {
-    sideBarSelectList.querySelectorAll('li').forEach(li => li.classList.remove('selected'))
-    if (e.target.tagName === 'LI' && !e.target.classList.contains('log-out-btn')) {
-        mainState = e.target.dataset.mainState;
-        e.target.classList.add('selected');
-    }
-    render();
-}
-
-function handleBillType (e) {
+function handleBillType(e) {
     billTypeSelectList.querySelectorAll('li').forEach(li => li.classList.remove('selected'))
     if (e.target.tagName === 'LI') {
         filterBillType = e.target.dataset.billType;
@@ -362,7 +494,7 @@ function handleBillType (e) {
     render();
 }
 
-function acceptBill () {
+function acceptBill() {
     if (!billSelected.orderId || !billSelected.userId) {
         addNotification('error', 'Chưa chọn đơn hàng nào!', 2000);
         renderNoti();
@@ -382,18 +514,32 @@ function acceptBill () {
     render();
 }
 
-render(); 
+
+render();
+
+productBrandSelectList.addEventListener('click', handleFilterProductBrand)
+productStateSelectList.addEventListener('click', handleFilterProductStatus)
+productSearchInput.addEventListener('input', handleProductSearchText)
 
 confirmBillBtn.addEventListener('click', acceptBill)
 billListContainer.addEventListener('click', handleBillSelect)
 billTypeSelectList.addEventListener('click', handleBillType)
+
 sideBarSelectList.addEventListener('click', handleMainState)
 uploadBox.addEventListener('click', () => {
     imgInput.click();
 })
+
 addSyntaxBtn.addEventListener('click', addSyntax)
 imgInput.addEventListener('change', showReviewImage)
 addProductBtn.addEventListener('click', showAddForm)
-updateProductBtn.addEventListener('click', () => handleEditProduct(productId))
-document.body.addEventListener('click', handleBillSelect)
+updateProductBtn.addEventListener('click', () => handleEditProduct(productSelected))
+document.body.addEventListener('click', (e) => {
+    if (mainState === 'bills') {
+        handleBillSelect(e)
+    }
+    else {
+        handleProductSelected(e)
+    }
+})
 

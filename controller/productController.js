@@ -9,8 +9,8 @@ window.productController = {
         return productRepo.findById(id);
     },
 
-    updateProduct: (id) => {
-        productRepo.updateById(id);
+    updateProduct: (id, newProduct) => {
+        productRepo.updateById(id, newProduct);
     },
 
     deleteProduct: (id) => {
@@ -19,5 +19,23 @@ window.productController = {
 
     insertProduct: (newProduct) => {
         productRepo.insert(newProduct)
+    },
+
+    stopSelling : (id, product) => {
+        const newProduct = {
+            ...product,
+            isDeleted : true
+        }
+
+        productRepo.updateById(id, newProduct);
+    },
+
+    sellAgain : (id, product) => {
+        const newProduct = {
+            ...product,
+            isDeleted : false
+        }
+        console.log(newProduct)
+        productRepo.updateById(id, newProduct);
     }
 }

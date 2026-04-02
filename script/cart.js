@@ -47,6 +47,8 @@ function renderUserCart () {
     orderList.innerHTML = '';
 
     const userListCart = cartController.getUserCart().items;
+
+    console.log(cartController.getUserCart())
     
     if (!userListCart.length) {
         cartEmptyBox.classList.remove('is-hidden');
@@ -123,10 +125,10 @@ function acceptOrder () {
     const list = cartController.getUserCart().items;
     const orderId = crypto.randomUUID();
     orderController.acceptOrder(list, orderId, userId, username, number_phone, address, email, convertIntToVietNamDong(totalPrice));
-    console.log(localStorage.getItem('orders'))
-    RenderState();
+    cartController.removeAllFromCart(userId);
     addNotification('success', 'Đặt hàng thành công!', 2000);
     goBackToOrderStep();
+    RenderState();
 }
 
 function goAcceptStep (e) {

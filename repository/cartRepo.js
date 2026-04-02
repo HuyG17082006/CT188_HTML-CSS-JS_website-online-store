@@ -53,5 +53,9 @@ window.cartRepo = {
         }
 
         cartDatabase.replaceOne('cart', 'userId', userId, newCart);
+    },
+
+    removeAllFromCart (userId) {
+        cartDatabase.deleteOne('cart', 'userId', userId)
     }
 }

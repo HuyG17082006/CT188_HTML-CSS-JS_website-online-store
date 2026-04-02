@@ -15,12 +15,12 @@ const usingFilterList = document.querySelector('.type__using__filter');
 //FUNCTION
 
 function renderUIProduct(item, index) {
-    const divOuter = document.createElement("div");
+    const product = document.createElement("div");
 
-    divOuter.className = `product__item ${item.isDeleted ? 'deleted__product' : ''}`;
-    divOuter.id = item.id;
+    product.className = `product__item ${item.isDeleted ? 'deleted__product' : ''}`;
+    product.id = item.id;
 
-    divOuter.innerHTML = `
+    product.innerHTML = `
         <div class="product__item--active">
             <img src="../assets/icon/shopping-cart-white.svg">
         </div>
@@ -40,13 +40,12 @@ function renderUIProduct(item, index) {
         </div>
     `;
 
-    divOuter.style.setProperty("--i", index);
+    product.style.setProperty("--i", index);
 
-    divOuter
-        .querySelector(".product__item--active")
-        .addEventListener("click", () => addToCart(item.id));
+    if (!item.isDeleted)
+        product.querySelector(".product__item--active").addEventListener("click", () => addToCart(item.id));
 
-    return divOuter;
+    return product;
 }
 
 function addToCart(id) {

@@ -54,5 +54,9 @@ window.cartController = {
 
         cartRepo.remove(userId, productId);
         return true;
+    },
+
+    removeAllFromCart (userId) {
+        cartRepo.removeAllFromCart(userId);
     }
 }

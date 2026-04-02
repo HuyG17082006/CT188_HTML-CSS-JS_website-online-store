@@ -79,6 +79,7 @@ ul {
     height: 100%;
     overflow-y: auto;
     padding: 20px;
+    min-width: fit-content;
 }
 
 .content__container--inner {
@@ -107,7 +108,17 @@ ul {
     color: white;
 }
 
+.tool__box--button {
+    max-width: 180px;
+    min-width: fit-content;
+    display: flex;
+    width: 100%;
+    gap : 10px;
+}
+
 .tool__box button {
+    min-width: fit-content;
+    width: 100%;
     padding: 8px 14px;
     border: none;
     border-radius: 6px;
@@ -223,12 +234,11 @@ ul {
 }
 
 .img__box {
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
     background: #1e293b;
     border-radius: 6px;
     overflow: hidden;
-    flex-shrink: 0;
 }
 
 .img__box img {
@@ -276,6 +286,7 @@ ul {
 }
 
 .product {
+    position: relative;
     display: flex;
     gap: 12px;
     padding: 10px;
@@ -311,7 +322,8 @@ ul {
 
 .tool__box--search {
     gap : 30px;
-    display: flex;    
+    display: flex;
+    min-width: fit-content;    
 }
 
 ::-webkit-scrollbar {
@@ -325,14 +337,27 @@ ul {
 
 form {
     position: absolute;
-    border : 1px solid black;
+    border: 1px solid #334155;
     max-width: 800px;
     min-width: fit-content;
     width: 60%;
     justify-self: center;
-    top : calc(50% - 340px);
+    top: calc(50% - 340px);
     height: fit-content;
     padding: 30px;
+
+    background: #1e293b;
+    border-radius: 10px;
+    color: #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 1000;
+}
+
+form h2 {
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 form .form__content {
@@ -345,27 +370,33 @@ form .form__right {
     align-self: center;
 }
 
-form h2 {
-    text-align: center;
-    width: 100%;
-}
-
 form .review__image__box {
     justify-self: center;
     margin: 20px;
 }
 
+form .review__image__box img {
+    border-radius: 8px;
+    border: 1px solid #334155;
+}
+
 form .add__syntax {
     position: absolute;
-    top : 24px;
+    top: 24px;
     height: 40px;
-    border : none;
-    right : 0;
+    border: none;
+    right: 10px;
     width: 30px;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 32px;
+
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+form .add__syntax:hover {
+    color: #38bdf8;
 }
 
 form .input__group {
@@ -377,51 +408,91 @@ form .input__group {
 }
 
 form .input__group label {
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 3px;
 }
 
-form .input__group span, .error--file {
+form .input__group span,
+.error--file {
     height: 20px;
-    color : red !important;
-    font-size: 13px;
+    color: #f87171 !important;
+    font-size: 12px;
 }
 
 form .input__group input {
     height: 40px;
-    border : none;
-    background: rgb(211, 211, 211);
+    border: 1px solid #334155;
+    background: #0f172a;
     outline: none;
     padding-left: 10px;
+    border-radius: 6px;
+    color: #e2e8f0;
+    transition: 0.2s;
 }
 
 form .input__group select {
-    height: 30px;
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+form .input__group input:focus,
+form .input__group select:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 1px #38bdf8;
 }
 
 form .btn__group {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap : 10px;
+    gap: 10px;
 }
 
 form .btn__group button {
     width: 30%;
     height: 40px;
-    border : none;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+form .btn__group button:first-child {
+    background: #2563eb;
+    color: #fff;
+}
+
+form .btn__group button:first-child:hover {
+    background: #1d4ed8;
+}
+
+form .btn__group button:last-child {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+form .btn__group button:last-child:hover {
+    background: #475569;
 }
 
 .upload__box {
     width: 60%;
     height: 120px;
-    border: 2px dashed #555;
+    border: 2px dashed #475569;
     border-radius: 10px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #d3d3d3;
-    color: #464646;
+
+    background: #0f172a;
+    color: #94a3b8;
+
     cursor: pointer;
     transition: 0.2s;
     text-align: center;
@@ -430,33 +501,46 @@ form .btn__group button {
 }
 
 .upload__box:hover {
-    border-color: #4da6ff;
-    color: #4da6ff;
+    border-color: #38bdf8;
+    color: #38bdf8;
 }
 
-/* 
-    Đơn mua
-*/
+.btn__status {
+    position: absolute;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+    right: 20px;
+}
 
-/* 
-    Hàng hóa
-*/
+.stop__sell {
+    background: #ef4444;
+    color: #fff;
+}
 
-/* Màu riêng cho admin notificaiton */
+.sell__again {
+    background: #22c55e;
+    color: #fff;
+}
+
 .notification.success {
-    border: 1px solid rgba(34, 197, 94, 0.4);
-    background: rgba(34, 197, 94, 0.3);
-    color: #86efac;
+    border: 1px solid #22c55e;
+    background: #14532d; 
+    color: #bbf7d0; 
 }
 
 .notification.warning {
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    background: rgba(251, 191, 36, 0.3);
+    border: 1px solid #f59e0b;
+    background: #78350f;
     color: #fde68a;
 }
 
 .notification.error {
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    background: rgba(239, 68, 68, 0.3);
-    color: #fca5a5;
+    border: 1px solid #ef4444;
+    background: #7f1d1d;
+    color: #fecaca;
 }
