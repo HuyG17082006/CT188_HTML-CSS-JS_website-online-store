@@ -301,7 +301,23 @@ function handleMainState(e) {
         mainState = e.target.dataset.mainState;
         e.target.classList.add('selected');
     }
+    resetAllState();
     render();
+}
+
+function resetAllState() {
+    filterProductBrand = '';
+    filterProductStatus = '';
+    filterProductText = '';
+    productSelected = '';
+    filterBillType = 'ordered';
+    billSelected = billSelected = {
+        userId: '',
+        orderId: ''
+    }
+    productBrandSelectList.value = '';
+    productStateSelectList.value = '';
+    productSearchInput.value = '';
 }
 
 // render Product
