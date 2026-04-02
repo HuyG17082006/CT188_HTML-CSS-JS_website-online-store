@@ -87,7 +87,40 @@ window.orderController = {
             message : `Đã xác nhận đơn hàng ${orderId}`
         }
     },
+    
+    cancelOrderedBill : (userId, orderId) => {
+        const userBills = orderRepo.getOne(userId) || {
+            userId,
+            bills : []
+        };
 
+        if (userBills.bills.length === 0)
+            return {
+                isOk : false,
+                message : 'Lỗi khi hủy đơn hàng!'
+            }
+
+        const newBills = userBills.bills.map(bill => {
+            if (bill.orderId === orderId)
+                return {
+                ...bill,
+                status : 'cancel'
+                }
+            return bill;
+        })
+
+        const newUserBills = {
+            ...userBills,
+            bills : newBills
+        };
+
+        orderRepo.update(userId, newUserBills);
+
+        return {
+            isOk : true,
+            message : `Đã xác hủy đơn hàng ${orderId}`
+        }
+    },
     getUserOrderList : (userId) => {
         return orderRepo.getOne(userId);
     }

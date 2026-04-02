@@ -57,6 +57,8 @@ function renderUserInfor() {
 }
 
 function fillterBill(list, type) {
+
+    console.log(list)
     return list.filter(bill => bill.status === type);
 }
 
@@ -77,7 +79,7 @@ function renderUserBillList() {
     let billCode = 1;
 
     bills.forEach(bill => {
-        billList.append(renderBillItem(bill, `#${billCode}`, 3));
+        billList.append(renderbillHTML(bill, `#${billCode}`, 3));
         billCode++;
     })
 }
@@ -92,14 +94,14 @@ function emptyItem () {
     return empty
 }
 
-function renderBillItem(bill, shortId, maxItemPerTime = 3) {
-    const billItem = document.createElement('div');
-    billItem.className = 'bill__item';
-    billItem.id = bill.orderId;
+function renderbillHTML(bill, shortId, maxItemPerTime = 3) {
+    const billHTML = document.createElement('div');
+    billHTML.className = 'bill__item';
+    billHTML.id = bill.orderId;
 
     const previewProducts = bill.userCart.slice(0, maxItemPerTime);
 
-    billItem.innerHTML = `
+    billHTML.innerHTML = `
         <div class="bill__header">
             <span class="bill__id">Đơn : ${shortId}</span>
             <span class="bill__date">Ngày đặt : ${bill.date}</span>
@@ -123,9 +125,11 @@ function renderBillItem(bill, shortId, maxItemPerTime = 3) {
                 <span class="bill__total--price">${bill.totalPrice}</span>
             </span>
         </div>
+
+        ${bill.status === 'ordered' ? '<button class="cancel__bill">Hủy đơn</button>' : ''}
     `;
 
-    const productsBox = billItem.querySelector('.bill__products');
+    const productsBox = billHTML.querySelector('.bill__products');
 
     let moreBtn = null;
 
@@ -153,7 +157,16 @@ function renderBillItem(bill, shortId, maxItemPerTime = 3) {
         productsBox.appendChild(moreBtn);
     }
 
-    return billItem;
+    const cancelBtn = billHTML.querySelector('.cancel__bill');
+    if (cancelBtn)
+        cancelBtn.onclick = () => {
+            orderController.cancelOrderedBill(bill.userId, bill.orderId);
+            addNotification('success', 'Đã hủy đơn thành công!', 2000);
+            renderNoti();
+            renderUserBillList();
+        }
+
+    return billHTML;
 }
 
 function getProductDetail(productId) {
@@ -259,4 +272,3 @@ listSideBarBtn.forEach(btn =>
 )
 
 billTypeSelectList.addEventListener('click', choiceType)
-

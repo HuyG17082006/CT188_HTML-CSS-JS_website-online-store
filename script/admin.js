@@ -432,15 +432,15 @@ let billSelected = {
     orderId: ''
 }
 
-function filterBillList() {
+function filterBillList(type) {
     const billList = orderController.getAllBill() || [];
-    return result = billList.filter(bill => bill.bill.status === filterBillType);
+    return result = billList.filter(bill => bill.bill.status === type);
 }
 
 function renderBillList() {
     billListContainer.innerHTML = '';
 
-    const list = filterBillList();
+    const list = filterBillList(filterBillType);
 
     billListContainer.innerHTML = list
         .map(item => renderBill(item.bill, item.userId))
