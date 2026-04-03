@@ -57,8 +57,6 @@ function renderUserInfor() {
 }
 
 function fillterBill(list, type) {
-
-    console.log(list)
     return list.filter(bill => bill.status === type);
 }
 
@@ -99,8 +97,8 @@ function renderbillHTML(bill, shortId, maxItemPerTime = 3) {
     billHTML.className = 'bill__item';
     billHTML.id = bill.orderId;
 
-    const previewProducts = bill.userCart.slice(0, maxItemPerTime);
-
+    const previewProducts = bill.userCart.slice(0, bill.userCart.length < maxItemPerTime ? bill.userCart.length : maxItemPerTime);
+    console.log(previewProducts)
     billHTML.innerHTML = `
         <div class="bill__header">
             <span class="bill__id">Đơn : ${shortId}</span>
@@ -141,6 +139,7 @@ function renderbillHTML(bill, shortId, maxItemPerTime = 3) {
 
     previewProducts.forEach(p => {
         const product = getProductDetail(p.productId);
+        console.log(product)
         productsBox.appendChild(renderBillProduct(product, p.quantity))
     })
 
@@ -150,6 +149,7 @@ function renderbillHTML(bill, shortId, maxItemPerTime = 3) {
 
             bill.userCart.forEach(p => {
                 const product = getProductDetail(p.productId);
+                
                 productsBox.appendChild(renderBillProduct(product, p.quantity))
             })
             moreBtn.remove();
@@ -160,8 +160,20 @@ function renderbillHTML(bill, shortId, maxItemPerTime = 3) {
     const cancelBtn = billHTML.querySelector('.cancel__bill');
     if (cancelBtn)
         cancelBtn.onclick = () => {
-            orderController.cancelOrderedBill(bill.userId, bill.orderId);
-            addNotification('success', 'Đã hủy đơn thành công!', 2000);
+            const billSelected = {
+                orderId : bill.orderId,
+                userId : me.get().id
+            }
+
+            const res = orderController.cancelOrderedBill(billSelected);
+
+            if (!res.isOk) {
+                addNotification('error', res.message, 2000);
+                renderNoti();
+                return;
+            }
+
+            addNotification('success', res.message, 2000);
             renderNoti();
             renderUserBillList();
         }
@@ -174,7 +186,7 @@ function getProductDetail(productId) {
 }
 
 function renderBillProduct(product, quantity) {
-
+    
     const billProduct = document.createElement('div');
     billProduct.className = 'bill__product';
     billProduct.innerHTML = `<img src="${product.image_src}" alt="${product.name}">

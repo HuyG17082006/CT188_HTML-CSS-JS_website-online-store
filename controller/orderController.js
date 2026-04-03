@@ -88,7 +88,7 @@ window.orderController = {
         }
     },
     
-    cancelOrderedBill : (userId, orderId) => {
+    cancelOrderedBill : ({userId, orderId}) => {
         const userBills = orderRepo.getOne(userId) || {
             userId,
             bills : []
@@ -121,6 +121,7 @@ window.orderController = {
             message : `Đã xác hủy đơn hàng ${orderId}`
         }
     },
+
     getUserOrderList : (userId) => {
         return orderRepo.getOne(userId);
     }

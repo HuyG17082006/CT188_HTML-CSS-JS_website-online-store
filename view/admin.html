@@ -82,6 +82,8 @@
                     <span class="error--file"></span>
                 </div>
 
+                <button class="backup__image is-hidden">Giữ ảnh cũ</button>
+
             </div>
 
         </div>
@@ -119,11 +121,13 @@
                     </h1>
                     <div class="bill__container">
                         <div class="tool__box">
-                            <div class="tool__box--filter">
-                                <ul class="filter__list">
-                                    <li>Mặc định</li>
-                                    <li>Xa nhất</li>
-                                </ul>
+                            <div class="tool__box--search">
+                                <input type="text" placeholder="Nhập tên người dùng...">
+                                <select>
+                                    <option value="">Mặc định</option>
+                                    <option value="A-Z">A-Z</option>
+                                    <option value="Z-A">Z-A</option>
+                                </select>
                             </div>
                             <div class="tool__box--button">
                                 <button class="confirm">

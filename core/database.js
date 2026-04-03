@@ -39,7 +39,7 @@ window.database = {
     insertOne (key, data = {}) {
 
         data = {
-            id : crypto.randomUUID(),
+            id : data.id || crypto.randomUUID(),
             ...data
         }
 

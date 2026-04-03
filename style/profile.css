@@ -368,9 +368,10 @@
 
 .cancel__bill {
     position: absolute;
-    bottom: 12px;
-    left: 12px;
+    justify-self: center;
     padding: 6px 10px;
+    bottom: 16px;
+    left: 12px;
     border: none;
     border-radius: 6px;
     background: #ef4444;
@@ -411,6 +412,11 @@
 
     .bill__item {
         padding: 20px;
+    }
+
+    .cancel__bill {
+        left : 20px;
+        bottom: 24px;
     }
 
     .bill__product img {

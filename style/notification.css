@@ -112,7 +112,9 @@
 
     .info__notification__container {
         min-height: 90px;
-        width: 320px;
+        max-width: 400px;
+        width: fit-content;
+        min-width: 320px;
         grid-template-columns: 90px 1fr;
     }
 

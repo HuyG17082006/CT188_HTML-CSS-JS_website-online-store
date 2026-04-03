@@ -68,7 +68,7 @@ function productValidate({ name, spec, brand, type, price, image_src }) {
     if (!spec) {
         error.specErr = 'Không được bỏ trống!';
     }
-    else if (!/^.+\s•\s.+\s•\s\d+GB\s•\s\d+GB$/.test(spec)) {
+    else if (!/^.+\s•\s.+\s•\s\d+(GB|TB)\s•\s\d+(GB|TB)$/.test(spec)) {
         error.specErr = 'Sai định dạng (VD: i5 • Iris Xe • 8GB • 512GB)'
     }
 
@@ -102,8 +102,7 @@ function productValidate({ name, spec, brand, type, price, image_src }) {
         }
 
     return {
-        isOk: true,
-        message: "Đã thêm sản phẩm mới!"
+        isOk: true
     }
 
 }
@@ -118,7 +117,8 @@ function resetValidate() {
     form.querySelector('.error--price').innerText = '';
     form.querySelector('.error--file').innerText = '';
     form.querySelector('.normal__mess').classList.remove('is-hidden')
-    form.querySelector('.normal__mess').innerText = 'Tải ảnh lên'
+    form.querySelector('.normal__mess').innerText = 'Tải ảnh lên';
+    form.querySelector('.product--showing--image').src = '';
 }
 
 function showError(res) {
@@ -156,6 +156,7 @@ function showAddForm() {
     form.onsubmit = (e) => {
         e.preventDefault();
         addProduct();
+        closeForm();
     }
 }
 
@@ -217,13 +218,15 @@ function addProduct() {
             price: helper.convertIntToVietNamDong(price),
             isDeleted: false
         })
-        addNotification('success', res.message, 2000);
+        addNotification('success', 'Đã thêm sản phẩm mới!', 2000);
         renderNoti();
     }
     reader.readAsDataURL(file);
 }
 
 //Form cập nhật
+let tempImage = '';
+
 function handleEditProduct(productSelected) {
     if (productSelected)
         showUpdateForm(productSelected);
@@ -243,22 +246,109 @@ function showUpdateForm(productSelected) {
 
     form.querySelector('[name="product--name"]').value = product.name;
     form.querySelector('[name="product--spec"]').value = product.spec;
-    form.querySelector('[name="product--price"]').value = product.price;
+    form.querySelector('[name="product--price"]').value = helper.convertStringToInt(product.price);
     form.querySelector('[name="product--brand"]').value = product.brand;
     form.querySelector('[name="product--category"]').value = product.type;
     form.querySelector('.product--showing--image').src = product.image_src;
-
+    tempImage = product.image_src;
 
     if (cancelFormBtn) {
         cancelFormBtn.onclick = (e) => {
             e.preventDefault()
-            closeForm()
+            closeForm();
         };
+    }
+
+    form.onsubmit = (e) => {
+        e.preventDefault();
+        saveUpdate(product);
     }
 }
 
-function saveUpdate () {
-    
+function saveUpdate(product) {
+    const formData = new FormData(form);
+
+    const name = formData.get('product--name');
+    const spec = formData.get('product--spec');
+    const price = formData.get('product--price');
+    const brand = formData.get('product--brand');
+    const type = formData.get('product--category');
+    const file = formData.get('product--image');
+
+    console.log(form)
+    console.log(product)
+    console.log(file)
+
+    if (file && file.size > 0) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        console.log(2)
+        reader.onload = () => {
+
+            const updatedProduct = {
+                id : product.id,
+                name,
+                spec,
+                price,
+                brand,
+                type,
+                image_src: reader.result
+            };
+
+            console.log(reader.result)
+
+            const res = productValidate(updatedProduct);
+
+            if (!res.isOk) {
+                showError(res.message)
+                return;
+            }
+
+            productController.updateProduct(
+                product.id,
+                {
+                    ...updatedProduct,
+                    price: helper.convertIntToVietNamDong(price),
+                    isDeleted: false
+                }
+            )
+            addNotification('success', 'Đã cập nhật sản phẩm', 2000);
+            renderNoti();
+            renderProductList();
+        }
+    }
+    else {
+        const updatedProduct = {
+            id : product.id,
+            name,
+            spec,
+            price,
+            brand,
+            type,
+            image_src: product.image_src
+        };
+
+        const res = productValidate(updatedProduct);
+
+        if (!res.isOk) {
+            showError(res.message)
+            return;
+        }
+        console.log(1)
+        productController.updateProduct(
+            product.id,
+            {
+                ...updatedProduct,
+                price: helper.convertIntToVietNamDong(price),
+                isDeleted: false
+            }
+        )
+        addNotification('success', 'Đã cập nhật sản phẩm', 2000);
+        renderNoti();
+        renderProductList();
+    }
+
+    closeForm()
 }
 
 // render 
@@ -270,6 +360,8 @@ const billContainer = document.querySelector('.bill__container');
 const billListContainer = billContainer.querySelector('.list');
 const billTypeSelectList = billContainer.querySelector('.bill__type__list');
 const confirmBillBtn = billContainer.querySelector('.confirm');
+const billSearchInput = billContainer.querySelector('.tool__box--search input');
+const billSortSelectList = billContainer.querySelector('select');
 
 const productContainer = document.querySelector('.product__container');
 const productListContainer = productContainer.querySelector('.list');
@@ -294,7 +386,6 @@ function render() {
     closeForm();
 }
 
-
 function handleMainState(e) {
     sideBarSelectList.querySelectorAll('li').forEach(li => li.classList.remove('selected'))
     if (e.target.tagName === 'LI' && !e.target.classList.contains('log-out-btn')) {
@@ -306,18 +397,31 @@ function handleMainState(e) {
 }
 
 function resetAllState() {
+    resetBillState();
+    resetProductState();
+}
+
+function resetProductState() {
     filterProductBrand = '';
     filterProductStatus = '';
     filterProductText = '';
     productSelected = '';
+    
+    productBrandSelectList.value = '';
+    productStateSelectList.value = '';
+    productSearchInput.value = '';
+}
+
+function resetBillState() {
     filterBillType = 'ordered';
     billSelected = billSelected = {
         userId: '',
         orderId: ''
     }
-    productBrandSelectList.value = '';
-    productStateSelectList.value = '';
-    productSearchInput.value = '';
+    filterBillSort = '';
+    filterBillText = '';
+    billSortSelectList.value = '';
+    billSearchInput.value = '';
 }
 
 // render Product
@@ -327,13 +431,13 @@ let filterProductStatus = '';
 let filterProductText = '';
 let productSelected = '';
 
-function filterProductList (brand, status, text) {
+function filterProductList({ brand, status, text }) {
     let products = productController.getList();
 
     if (brand)
         products = products.filter(product => product.brand === brand);
 
-    if (status) {  
+    if (status) {
         let productState = status === 'disable' ? true : false;
         products = products.filter(product => product.isDeleted === productState);
     }
@@ -349,7 +453,11 @@ function filterProductList (brand, status, text) {
 function renderProductList() {
     productListContainer.innerHTML = ''
 
-    const list = filterProductList(filterProductBrand, filterProductStatus, filterProductText);
+    const list = filterProductList({
+        brand: filterProductBrand,
+        status: filterProductStatus,
+        text: filterProductText
+    });
 
     list.forEach(p => productListContainer.appendChild(renderProduct(p)));
 }
@@ -368,8 +476,7 @@ function renderProduct(product) {
             <span class="spec">${product.spec}</span>
             <span class="price">${product.price}</span>
         </div>
-        ${
-            product.isDeleted ?
+        ${product.isDeleted ?
             '<button class="btn__status sell__again">Kinh doanh lại</button>'
             :
             '<button class="btn__status stop__sell">Ngừng kinh doanh</button>'
@@ -380,11 +487,11 @@ function renderProduct(product) {
     const stopSellingBtn = productHTML.querySelector('.stop__sell');
 
     if (sellAgainBtn)
-        sellAgainBtn.addEventListener('click', () => {  
+        sellAgainBtn.addEventListener('click', () => {
             productController.sellAgain(product.id, product);
             renderProductList();
         })
-    
+
     if (stopSellingBtn)
         stopSellingBtn.addEventListener('click', () => {
             productController.stopSelling(product.id, product)
@@ -423,24 +530,53 @@ function handleProductSelected(e) {
     else {
         productSelected = null;
     }
+    console.log(productSelected)
 }
 
 // render bill
 let filterBillType = 'ordered';
+let filterBillText = '';
+let filterBillSort = '';
 let billSelected = {
     userId: '',
     orderId: ''
 }
 
-function filterBillList(type) {
-    const billList = orderController.getAllBill() || [];
-    return result = billList.filter(bill => bill.bill.status === type);
+function filterBillList({ type, text, sortMode }) {
+    let bills = orderController.getAllBill() || [];
+    let result = [...bills];
+
+    if (type) {
+        result = result.filter(bill => bill.bill.status === type);
+    }
+
+    if (text) {
+        let textSearch = text.toLowerCase().trim();
+        result = result.filter(bill => {
+            const username = bill.username || '';
+            return username.toLowerCase().trim().includes(textSearch);
+        });
+    }
+
+    if (sortMode === 'A-Z' && result.length > 1) {
+        result.sort((a, b) => (a.username || '').localeCompare(b.username || ''));
+    }
+
+    if (sortMode === 'Z-A' && result.length > 1) {
+        result.sort((a, b) => (b.username || '').localeCompare(a.username || ''));
+    }
+
+    return result;
 }
 
 function renderBillList() {
     billListContainer.innerHTML = '';
 
-    const list = filterBillList(filterBillType);
+    const list = filterBillList({
+        text: filterBillText,
+        sortMode: filterBillSort,
+        type: filterBillType
+    });
 
     billListContainer.innerHTML = list
         .map(item => renderBill(item.bill, item.userId))
@@ -459,13 +595,14 @@ function renderBill(bill, userId) {
                 <span class="date">Ngày đặt: ${bill.date}</span>
                 <span class="order-name">Tên người đặt: ${bill.username}</span>
                 <span class="address">Địa chỉ: ${bill.address}</span>
+                <span class="number-phone">SĐT: ${bill.number_phone}</span>
             </div>
 
             <div class="bill__list">
                 ${bill.userCart.map(product => {
-                    let productDetail = productController.getProduct(product.productId)
+        let productDetail = productController.getProduct(product.productId)
 
-                    return `<div class="order__product">
+        return `<div class="order__product">
                                     <div class="img__box">
                                         <img src="${productDetail.image_src}" alt="">
                                     </div>
@@ -510,6 +647,16 @@ function handleBillType(e) {
     render();
 }
 
+function handleBillSearchText(e) {
+    filterBillText = e.target.value;
+    renderBillList();
+}
+
+function handleBillFilterSort(e) {
+    filterBillSort = e.target.value;
+    renderBillList();
+}
+
 function acceptBill() {
     if (!billSelected.orderId || !billSelected.userId) {
         addNotification('error', 'Chưa chọn đơn hàng nào!', 2000);
@@ -540,6 +687,8 @@ productSearchInput.addEventListener('input', handleProductSearchText)
 confirmBillBtn.addEventListener('click', acceptBill)
 billListContainer.addEventListener('click', handleBillSelect)
 billTypeSelectList.addEventListener('click', handleBillType)
+billSortSelectList.addEventListener('click', handleBillFilterSort)
+billSearchInput.addEventListener('input', handleBillSearchText)
 
 sideBarSelectList.addEventListener('click', handleMainState)
 uploadBox.addEventListener('click', () => {

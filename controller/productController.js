@@ -35,7 +35,6 @@ window.productController = {
             ...product,
             isDeleted : false
         }
-        console.log(newProduct)
         productRepo.updateById(id, newProduct);
     }
 }

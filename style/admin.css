@@ -311,6 +311,7 @@ ul {
     flex-direction: column;
 }
 
+.bill__container select,
 .product__container select {
     background: #1e293b;
     color: white;
