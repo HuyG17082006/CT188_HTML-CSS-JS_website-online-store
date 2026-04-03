@@ -83,22 +83,27 @@
 }
 
 .sign__another__container li {
-    width: 45%;
-    border: 1px solid rgb(101, 163, 255);
-    overflow: hidden;
+    width: 30%;
+    border: 1px solid #111e33;
+    border-radius: 8px;
+    padding: 8px 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 17px;
+    gap: 8px;
+    font-size: 30px;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sign__another__container li:hover {
+    background-color: #65a3ff;
+    color: white;
+    transform: translateY(-2px);
 }
 
 .sign__another__container li * {
     pointer-events: none;
-}
-
-.sign__another__container img {
-    width: 30px;
 }
 
 .auth__error {

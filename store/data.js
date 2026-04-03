@@ -8,7 +8,7 @@ function loadProducts() {
             type: 'gaming',
             image_src: '../assets/image/product/lenovo-loq-2025.jpg',
             price: '25.000.000đ',
-            isDeleted: true
+            isDeleted: false
         },
         {
             id: 'laptop-2',
@@ -18,7 +18,7 @@ function loadProducts() {
             type: 'office',
             image_src: '../assets/image/product/asus-expert-book.jpg',
             price: '15.490.000đ',
-            isDeleted: true
+            isDeleted: false
         },
         {
             id: 'laptop-3',
@@ -531,9 +531,11 @@ function loadProducts() {
         }
     ]
 
-    localStorage.setItem('products', JSON.stringify(products));
+    const data = JSON.parse(localStorage.getItem('products') || 'null');
 
-    console.log(JSON.parse(localStorage.getItem('products')))
+    if (!data || data.length === 0) {
+        localStorage.setItem('products', JSON.stringify(products));
+    }
 }
 
 loadProducts();

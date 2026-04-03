@@ -383,13 +383,14 @@ form .review__image__box img {
 
 form .add__syntax {
     position: absolute;
-    top: 24px;
+    top: 18px;
     height: 40px;
     border: none;
     right: 10px;
     width: 30px;
     font-size: 32px;
-
+    justify-self: center;
+    align-self: center;
     background: transparent;
     color: #94a3b8;
     cursor: pointer;
