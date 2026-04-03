@@ -36,6 +36,11 @@
     gap: 70px;
 }
 
+.introduce__text span {
+    display: flex;
+    gap : 5px;
+}
+
 .introduce__bar span {
     line-height: 100%;
     display: flex;

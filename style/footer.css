@@ -18,6 +18,14 @@
     font-size: 0.95rem;
 }
 
+p .phone {
+    color : red
+}
+
+p .mail {
+    color : rgb(240, 224, 224)
+}
+
 .footer-inner {
     display: flex;
     flex-wrap: wrap;
