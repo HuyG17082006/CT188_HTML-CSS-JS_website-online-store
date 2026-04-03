@@ -38,8 +38,6 @@ auth
 │     │  ├─ hp.png
 │     │  ├─ lenovo.png
 │     │  ├─ msi.png
-│     │  ├─ order_information.svg
-│     │  ├─ order_information_gray.svg
 │     │  ├─ samsung.png
 │     │  └─ surface.png
 │     ├─ info
@@ -50,8 +48,6 @@ auth
 │     │  ├─ Pham_Phuc_Tam.jpg
 │     │  └─ Phan_The_Hien.jpg
 │     ├─ main
-│     │  ├─ 23-730x408-1.jpg
-│     │  ├─ asus-rog-mo-dat-hang-laptop-gaming-50-series-1-6-1365x1024.jpg
 │     │  ├─ download.jpg
 │     │  ├─ error.png
 │     │  ├─ facebook-logo-blue-circle_705838-12823.jpg
@@ -59,8 +55,6 @@ auth
 │     │  ├─ H1_1440x242_6b2b92c3c5.jpg
 │     │  ├─ H1_1440x242_93f8d1845b.jpg
 │     │  ├─ H1_1440x242_e90739576d.jpg
-│     │  ├─ images.jpg
-│     │  ├─ images_no_bg.png
 │     │  ├─ introduceImgae.jpg
 │     │  ├─ logoStore.png
 │     │  ├─ mark.png
@@ -175,7 +169,6 @@ auth
 │  ├─ notification.css
 │  ├─ products.css
 │  └─ profile.css
-├─ test.js
 ├─ view
 │  ├─ admin.html
 │  ├─ auth.html
@@ -183,8 +176,7 @@ auth
 │  ├─ home.html
 │  ├─ info.html
 │  ├─ products.html
-│  ├─ profile.html
-│  └─ test.html
+│  └─ profile.html
 └─ webfonts
    ├─ fa-brands-400.woff2
    ├─ fa-regular-400.woff2
